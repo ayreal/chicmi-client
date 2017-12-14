@@ -12,11 +12,25 @@ class App extends Component {
   render() {
     // debugger;
     console.log("Inside App, this.props.userId\n", this.props.userId);
+    console.log("Inside App, loggedIn is: \n", this.props.loggedIn);
+    console.log("---------------------");
     return (
       <div className="App">
         <ul>
           <li>
-            {this.props.loggedIn ? <a href="">Sign Out</a> : <LoginForm />}
+            {this.props.loggedIn ? (
+              <a
+                href=""
+                onClick={e => {
+                  e.preventDefault();
+                  this.props.logoutUser();
+                }}
+              >
+                Sign Out
+              </a>
+            ) : (
+              <LoginForm />
+            )}
           </li>
         </ul>
       </div>
@@ -31,7 +45,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchCurrentUser: () => dispatch(actions.fetchCurrentUser())
+    fetchCurrentUser: () => dispatch(actions.fetchCurrentUser()),
+    logoutUser: () => dispatch(actions.logoutUser())
   };
 };
 

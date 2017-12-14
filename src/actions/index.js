@@ -1,4 +1,4 @@
-import { ASYNC_START, LOGIN_USER } from "./types";
+import { ASYNC_START, LOGIN_USER, LOGOUT_USER } from "./types";
 import * as adapter from "./adapter";
 
 export function fetchProfile(data) {
@@ -37,5 +37,5 @@ export function fetchCurrentUser() {
 
 export const logoutUser = () => {
   localStorage.removeItem("token");
-  return { type: "LOGOUT_USER" };
+  return { type: LOGOUT_USER };
 };

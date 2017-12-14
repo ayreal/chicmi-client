@@ -40,6 +40,8 @@ const currentUserReducer = (state = {}, action) => {
         bio: action.user.bio,
         isFetching: false
       };
+    case "LOGOUT_USER":
+      return { ...state, currentUser: {} };
     default:
       return state;
   }
