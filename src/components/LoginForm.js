@@ -20,10 +20,6 @@ class LoginForm extends Component {
   };
 
   render() {
-    console.log(
-      "Inside LoginForm, this.props.currentUser is: \n",
-      this.props.currentUser
-    );
     return (
       <div>
         Login Form:
