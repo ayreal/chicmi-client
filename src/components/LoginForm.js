@@ -8,36 +8,49 @@ class LoginForm extends Component {
     password: ""
   };
 
-  handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault();
-    this.props.fetchProfile();
-  }
+    // console.log("Inside handleSubmit, this.state is:", this.state);
+    this.props.fetchProfile(this.state);
+  };
 
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
+  handleChange = e => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
 
   render() {
+    console.log("Inside components/LoginForm.js");
+    console.log("-----------------------");
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          name="username"
-          value={this.state.username}
-          onChange={this.handleChange}
-        />
-        <input
-          type="text"
-          name="password"
-          value={this.state.password}
-          onChange={this.handleChange}
-        />
-        <button type="submit">Login</button>
-      </form>
+      <div>
+        Login Form:
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            name="username"
+            value={this.state.username}
+            onChange={this.handleChange}
+          />
+          <input
+            type="text"
+            name="password"
+            value={this.state.password}
+            onChange={this.handleChange}
+          />
+          <button type="submit">Login</button>
+        </form>
+      </div>
     );
   }
 }
 
-export default LoginForm;
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchProfile: data => {
+      return dispatch(actions.fetchProfile(data));
+    }
+  };
+};
+
+export default connect(null, mapDispatchToProps)(LoginForm);
