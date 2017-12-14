@@ -5,7 +5,7 @@ const headers = {
   "Content-Type": "application/json"
 };
 
-export function fetchUser(data) {
+export function fetchCurrentUser(data) {
   return fetch(`${ROUTE}/login`, {
     method: "POST",
     headers: headers,
