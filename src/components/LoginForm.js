@@ -20,8 +20,10 @@ class LoginForm extends Component {
   };
 
   render() {
-    console.log("Inside components/LoginForm.js");
-    console.log("-----------------------");
+    console.log(
+      "Inside LoginForm, this.props.currentUser is: \n",
+      this.props.currentUser
+    );
     return (
       <div>
         Login Form:
@@ -45,6 +47,13 @@ class LoginForm extends Component {
   }
 }
 
+const mapStateToProps = ({ loading, currentUser }) => {
+  return {
+    loading,
+    currentUser
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     fetchProfile: data => {
@@ -53,4 +62,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

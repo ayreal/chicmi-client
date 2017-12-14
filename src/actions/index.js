@@ -6,9 +6,8 @@ export function fetchProfile(data) {
     console.log("Inside action fetchUser");
     dispatch({ type: ASYNC_START });
     adapter.fetchUser(data).then(user => {
-      debugger;
-      console.log("About to dispatch user, user is", user);
-      // dispatch({ type: LOGIN_USER, user: user });
+      console.log("About to dispatch user, user is \n", user);
+      dispatch({ type: LOGIN_USER, user: user });
     });
   };
 }
