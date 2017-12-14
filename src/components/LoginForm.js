@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-const currentUser = {};
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
 class LoginForm extends Component {
   state = {
@@ -9,6 +10,7 @@ class LoginForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    this.props.fetchProfile();
   }
 
   handleChange(e) {
