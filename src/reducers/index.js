@@ -16,15 +16,4 @@ const rootReducer = (state = defaultState, action) => {
   }
 };
 
-// case "FETCH_PROFILE":
-//   console.log("Action.user is", action.user);
-//   return {
-//     ...state,
-//     profile: {
-//       firstName: action.user.firstName,
-//       picture: action.user.picture
-//     },
-//     loading: false
-//   };
-
 export default rootReducer;
