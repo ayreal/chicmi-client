@@ -5,11 +5,22 @@ export function fetchProfile(data) {
   return dispatch => {
     console.log("Inside action fetchProfile");
     dispatch({ type: ASYNC_START });
-    adapter.fetchCurrentUser(data).then(user => {
+    adapter.loginUser(data).then(user => {
       localStorage.setItem("token", user.token);
       console.log("About to dispatch user, user is \n", user);
       dispatch({ type: LOGIN_USER, user: user });
       // history.push('/');
+    });
+  };
+}
+
+export function fetchCurrentUser() {
+  return dispatch => {
+    console.log("Inside action fetchCurrentUser");
+    dispatch({ type: ASYNC_START });
+    adapter.fetchCurrentUser().then(user => {
+      // debugger;
+      dispatch({ type: LOGIN_USER, user: user });
     });
   };
 }

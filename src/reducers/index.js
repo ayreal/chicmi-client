@@ -20,10 +20,7 @@
 
 import { combineReducers } from "redux";
 
-const currentUserReducer = (
-  state = { isFetching: false, currentUser: {} },
-  action
-) => {
+const currentUserReducer = (state = {}, action) => {
   console.log("state", state, "action", action);
   switch (action.type) {
     case "ASYNC_START":
@@ -32,7 +29,15 @@ const currentUserReducer = (
       console.log("Action.user is", action.user);
       return {
         ...state,
-        currentUser: action.user,
+        id: action.user.id,
+        name: action.user.name,
+        email: action.user.email,
+        photo: action.user.photo,
+        city_id: action.user.city_id,
+        username: action.user.username,
+        twitter: action.user.twitter,
+        instagram: action.user.instagram,
+        bio: action.user.bio,
         isFetching: false
       };
     default:

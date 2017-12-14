@@ -5,11 +5,19 @@ const headers = {
   "Content-Type": "application/json"
 };
 
-export function fetchCurrentUser(data) {
+export function loginUser(data) {
   return fetch(`${ROUTE}/login`, {
     method: "POST",
     headers: headers,
     body: JSON.stringify(data)
+  }).then(res => res.json());
+}
+
+export function fetchCurrentUser() {
+  return fetch(`${ROUTE}/current_user`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({ token: localStorage.token })
   }).then(res => res.json());
 }
 
