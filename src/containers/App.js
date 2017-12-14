@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 // import { Link, Switch, Route } from "react-router-dom";
-import LoginForm from "../components/LoginForm";
 // import Events from "./Events";
+import Navbar from "./Navbar";
+import Events from "./Events";
+import Footer from "../components/Footer";
 import * as actions from "../actions";
 
 class App extends Component {
@@ -11,28 +13,14 @@ class App extends Component {
   }
   render() {
     // debugger;
-    console.log("Inside App, this.props.userId\n", this.props.userId);
-    console.log("Inside App, loggedIn is: \n", this.props.loggedIn);
+    console.log("Inside render App, this.props.userId\n", this.props.userId);
+    console.log("Inside render App, loggedIn is: \n", this.props.loggedIn);
     console.log("---------------------");
     return (
       <div className="App">
-        <ul>
-          <li>
-            {this.props.loggedIn ? (
-              <a
-                href=""
-                onClick={e => {
-                  e.preventDefault();
-                  this.props.logoutUser();
-                }}
-              >
-                Sign Out
-              </a>
-            ) : (
-              <LoginForm />
-            )}
-          </li>
-        </ul>
+        <Navbar />
+        <Events />
+        <Footer />
       </div>
     );
   }

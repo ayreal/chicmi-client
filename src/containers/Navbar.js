@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 
-class Events extends Component {
+class Navbar extends Component {
   render() {
-    console.log("%c Inside render containers/Events.js \n", "color: #bada55");
+    console.log("%c Inside render containers/Navbar.js \n", "color: #bada55");
     console.log("----------------------- \n");
 
-    return <div>Inside Events</div>;
+    return <div>Inside Navbar</div>;
   }
 }
 
@@ -19,4 +19,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, null)(Events);
+export default connect(null, null)(Navbar);
