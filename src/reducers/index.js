@@ -27,7 +27,7 @@ const currentUserReducer = (
   console.log("state", state, "action", action);
   switch (action.type) {
     case "ASYNC_START":
-      return { ...state, currentUser: {}, isFetching: true };
+      return { ...state, isFetching: true };
     case "LOGIN_USER":
       console.log("Action.user is", action.user);
       return {
@@ -41,6 +41,7 @@ const currentUserReducer = (
 };
 
 const rootReducer = combineReducers({
+  // how to get an isFetching here set to false?
   currentUser: currentUserReducer
 });
 
