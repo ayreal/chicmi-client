@@ -1,5 +1,5 @@
 import { ASYNC_START, LOGIN_USER, LOGOUT_USER } from "./types";
-import * as adapter from "./adapter";
+import * as adapter from "../services/adapter";
 
 export function fetchProfile(data) {
   return dispatch => {
@@ -9,7 +9,7 @@ export function fetchProfile(data) {
       localStorage.setItem("token", user.token);
       console.log("About to dispatch user, user is \n", user);
       dispatch({ type: LOGIN_USER, user: user });
-      // history.push('/');
+      // history.push("/");
     });
   };
 }
