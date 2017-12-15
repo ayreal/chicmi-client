@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Switch, Route } from "react-router-dom";
-import * as actions from "../actions";
-import { Container, Header } from "semantic-ui-react";
+// import * as actions from "../actions";
 import Events from "./Events";
 import Login from "./Login";
 import Profile from "./Profile";
