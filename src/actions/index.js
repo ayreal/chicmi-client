@@ -1,15 +1,15 @@
 import { ASYNC_START, LOGIN_USER, LOGOUT_USER } from "./types";
 import * as adapter from "../services/adapter";
 
-export function fetchProfile(data) {
+export function fetchProfile(data, history) {
   return dispatch => {
-    console.log("Inside action fetchProfile");
+    console.log("Inside action fetchProfile, history is", history);
     dispatch({ type: ASYNC_START });
     adapter.loginUser(data).then(user => {
       localStorage.setItem("token", user.token);
       console.log("About to dispatch user, user is \n", user);
       dispatch({ type: LOGIN_USER, user: user });
-      // history.push("/");
+      history.push("/");
     });
   };
 }
