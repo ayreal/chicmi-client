@@ -18,7 +18,6 @@ class App extends Component {
     console.log("Inside render App, this.props.userId\n", this.props.userId);
     console.log("Inside render App, loggedIn is: \n", this.props.loggedIn);
     console.log("---------------------");
-    console.log("Main component", Main);
     return (
       <div className="App">
         <Navbar loggedIn={this.props.loggedIn} />

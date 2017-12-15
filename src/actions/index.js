@@ -1,4 +1,9 @@
-import { ASYNC_START, LOGIN_USER, LOGOUT_USER } from "./types";
+import {
+  ASYNC_START,
+  LOGIN_USER,
+  LOGOUT_USER,
+  ADD_EVENTS_TO_STORE
+} from "./types";
 import * as adapter from "../services/adapter";
 
 export function fetchProfile(data, history) {
@@ -28,4 +33,14 @@ export const logoutUser = () => {
   console.log("Inside logoutUser action");
   localStorage.removeItem("token");
   return { type: LOGOUT_USER };
+};
+
+export const fetchRemoteEvents = () => {
+  return dispatch => {
+    console.log("Inside action fetchRemoteEvents");
+    dispatch({ type: ASYNC_START });
+    adapter.fetchRemoteEvents().then(results => {
+      dispatch({ type: ADD_EVENTS_TO_STORE, events: results.values.events });
+    });
+  };
 };

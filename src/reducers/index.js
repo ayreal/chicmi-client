@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
 const currentUserReducer = (state = {}, action) => {
-  console.log("state", state, "action", action);
+  console.log("STORE state", state, "STORE action", action);
   switch (action.type) {
     case "ASYNC_START":
       return { ...state, isFetching: true };
@@ -27,9 +27,23 @@ const currentUserReducer = (state = {}, action) => {
   }
 };
 
+const eventReducer = (state = {}, action) => {
+  console.log("STORE state", state, "STORE action", action);
+  switch (action.type) {
+    case "ADD_EVENTS_TO_STORE":
+      return {
+        ...state,
+        events: action.events
+      };
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   // how to get an isFetching here set to false?
-  currentUser: currentUserReducer
+  currentUser: currentUserReducer,
+  events: eventReducer
 });
 
 // NOTE:
