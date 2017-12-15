@@ -21,7 +21,6 @@ const currentUserReducer = (state = {}, action) => {
         isFetching: false
       };
     case "LOGOUT_USER":
-      debugger;
       return {};
     default:
       return state;

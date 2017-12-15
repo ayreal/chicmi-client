@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import Main from "./Main";
 import Footer from "../components/Footer";
 import * as actions from "../actions";
+import { Route } from "react-router-dom";
 
 class App extends Component {
   componentDidMount() {
@@ -21,7 +22,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar loggedIn={this.props.loggedIn} />
-        <Main />
+        <Route path="/" component={Main} />
         <Footer />
       </div>
     );
@@ -29,7 +30,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  debugger;
+  // debugger;
   return {
     loggedIn: !!state.currentUser.id,
     userId: state.currentUser.id
