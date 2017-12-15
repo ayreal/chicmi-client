@@ -49,7 +49,9 @@ class Navbar extends Component {
             <Image size="mini" src={logo} style={{ marginRight: "1.5em" }} />
             ChicMi
           </Menu.Item>
-          <Menu.Item as="a">Home</Menu.Item>
+          <Menu.Item as={Link} to="/">
+            Home
+          </Menu.Item>
           {this.renderProfile()}
           {this.renderLogout()}
         </Container>
@@ -75,4 +77,4 @@ const mapDispatchToProps = dispatch => {
   );
 };
 
-export default connect(null, mapDispatchToProps)(Navbar);
+export default withRouter(connect(null, mapDispatchToProps)(Navbar));

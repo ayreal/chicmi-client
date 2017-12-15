@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 // import * as actions from "../actions";
 import { Container, Header } from "semantic-ui-react";
+import withAuth from "../hocs/withAuth";
 
 class Profile extends Component {
   render() {
@@ -17,10 +18,10 @@ class Profile extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  loggedIn: !!state.currentUser.id,
-  user: state.currentUser
-});
+// const mapStateToProps = state => ({
+//   loggedIn: !!state.currentUser.id,
+//   user: state.currentUser
+// });
 
 // const mapDispatchToProps = dispatch => {
 //   return {
@@ -30,4 +31,4 @@ const mapStateToProps = state => ({
 //   };
 // };
 
-export default connect(mapStateToProps, null)(Profile);
+export default withAuth(Profile);

@@ -8,13 +8,16 @@ import * as actions from "../actions";
 
 class App extends Component {
   componentDidMount() {
-    this.props.fetchCurrentUser();
+    if (localStorage.token) {
+      this.props.fetchCurrentUser();
+    }
   }
+
   render() {
-    // debugger;
     console.log("Inside render App, this.props.userId\n", this.props.userId);
     console.log("Inside render App, loggedIn is: \n", this.props.loggedIn);
     console.log("---------------------");
+    console.log("Main component", Main);
     return (
       <div className="App">
         <Navbar loggedIn={this.props.loggedIn} />
@@ -25,10 +28,13 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  loggedIn: !!state.currentUser.id,
-  userId: state.currentUser.id
-});
+const mapStateToProps = state => {
+  debugger;
+  return {
+    loggedIn: !!state.currentUser.id,
+    userId: state.currentUser.id
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {

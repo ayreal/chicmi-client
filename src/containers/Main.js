@@ -7,24 +7,29 @@ import Login from "./Login";
 import Profile from "./Profile";
 
 class Main extends Component {
+  componentWillReceiveProps(nextProps) {}
+
   render() {
     console.log("%c Inside render containers/Main.js \n", "color: #bada55");
     console.log("----------------------- \n");
 
     return (
       <Switch>
-        <Route exact path="/" component={Events} />
         <Route path="/login" component={Login} />
         <Route path="/profile" component={Profile} />
+        <Route exact path="/" component={Events} />
       </Switch>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  loggedIn: !!state.currentUser.id,
-  user: state.currentUser
-});
+const mapStateToProps = state => {
+  debugger;
+  return {
+    loggedIn: !!state.currentUser.id,
+    user: state.currentUser
+  };
+};
 
 // const mapDispatchToProps = dispatch => {
 //   return {
