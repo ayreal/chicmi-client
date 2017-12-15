@@ -10,8 +10,8 @@ class Events extends Component {
   }
   render() {
     console.log("%c Inside render containers/Events.js \n", "color: #bada55");
+    console.log("PROPS: ", this.props);
     console.log("----------------------- \n");
-
     return (
       <Container text style={{ marginTop: "7em" }}>
         <Header as="h1">This Week's Sample Sales</Header>
@@ -24,7 +24,8 @@ class Events extends Component {
 
 const mapStateToProps = state => ({
   loggedIn: !!state.currentUser.id,
-  user: state.currentUser
+  user: state.currentUser,
+  events: state.events
 });
 
 // const mapDispatchToProps = dispatch => {
