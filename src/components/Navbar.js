@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-// import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-// import * as actions from "../actions";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { Link, withRouter } from "react-router-dom";
+import { logoutUser } from "../actions";
 import { Container, Image, Menu, Button, Icon } from "semantic-ui-react";
 import logo from "../logo.svg";
 
@@ -26,12 +27,18 @@ class Navbar extends Component {
     if (this.props.loggedIn) {
       return (
         <Menu.Item>
-          <Button>Logout</Button>
+          <Button onClick={this.handleLogout}>Logout</Button>
         </Menu.Item>
       );
     } else {
       return null;
     }
+  };
+
+  handleLogout = e => {
+    console.log("Inside components/Navbar handleLogout");
+    e.preventDefault();
+    this.props.logoutUser();
   };
 
   render() {
@@ -51,4 +58,21 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     fetchProfile: (data, history) => {
+//       return dispatch(actions.fetchProfile(data, history));
+//     }
+//   };
+// };
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      logoutUser: logoutUser
+    },
+    dispatch
+  );
+};
+
+export default connect(null, mapDispatchToProps)(Navbar);
