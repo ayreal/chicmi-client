@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import { Link, Switch, Route } from "react-router-dom";
 // import Events from "./Events";
-import Navbar from "./Navbar";
-import Events from "./Events";
+import Navbar from "../components/Navbar";
+import Main from "./Main";
 import Footer from "../components/Footer";
 import * as actions from "../actions";
 
@@ -18,8 +17,8 @@ class App extends Component {
     console.log("---------------------");
     return (
       <div className="App">
-        <Navbar />
-        <Events />
+        <Navbar loggedIn={this.props.loggedIn} />
+        <Main />
         <Footer />
       </div>
     );

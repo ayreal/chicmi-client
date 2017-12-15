@@ -1,18 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Switch, Route } from "react-router-dom";
 import * as actions from "../actions";
 import { Container, Header } from "semantic-ui-react";
+import Events from "./Events";
+import Login from "./Login";
+import Profile from "./Profile";
 
-class Events extends Component {
+class Main extends Component {
   render() {
-    console.log("%c Inside render containers/Events.js \n", "color: #bada55");
+    console.log("%c Inside render containers/Main.js \n", "color: #bada55");
     console.log("----------------------- \n");
 
     return (
-      <Container text style={{ marginTop: "7em" }}>
-        <Header as="h1">This Week's Sample Sales</Header>
-        <p>Some text here.</p>
-      </Container>
+      <Switch>
+        <Route exact path="/" component={Events} />
+        <Route path="/login" component={Login} />
+        <Route path="/profile" component={Profile} />
+      </Switch>
     );
   }
 }
@@ -30,4 +35,4 @@ const mapStateToProps = state => ({
 //   };
 // };
 
-export default connect(mapStateToProps, null)(Events);
+export default connect(mapStateToProps, null)(Main);

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-
+import { Container, Header, Form, Input, Button } from "semantic-ui-react";
 import * as actions from "../actions";
 
-class LoginForm extends Component {
+class Login extends Component {
   state = {
     username: "",
     password: ""
@@ -23,24 +23,25 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div>
-        Login Form:
-        <form onSubmit={this.handleSubmit}>
-          <input
+      <Container text style={{ marginTop: "7em" }}>
+        <Header as="h1">Login</Header>
+
+        <Form onSubmit={this.handleSubmit}>
+          <Input
             type="text"
             name="username"
             value={this.state.username}
             onChange={this.handleChange}
           />
-          <input
+          <Input
             type="text"
             name="password"
             value={this.state.password}
             onChange={this.handleChange}
           />
-          <button type="submit">Login</button>
-        </form>
-      </div>
+          <Button type="submit">Login</Button>
+        </Form>
+      </Container>
     );
   }
 }
@@ -60,6 +61,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(LoginForm)
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
