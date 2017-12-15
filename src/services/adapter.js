@@ -20,10 +20,3 @@ export function fetchCurrentUser() {
     body: JSON.stringify({ token: localStorage.token })
   }).then(res => res.json());
 }
-
-// export function fetchCurrentUser() {
-//   const token = localStorage.getItem("token");
-//   return fetch(`${ROUTE}/current_user`, {
-//     headers: { Authorization: token }
-//   }).then(res => res.json());
-// }

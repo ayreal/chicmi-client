@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 // import * as actions from "../actions";
 import { Container, Header } from "semantic-ui-react";
+import EventCard from "../components/EventCard";
 
 class Events extends Component {
   render() {
@@ -12,6 +13,7 @@ class Events extends Component {
       <Container text style={{ marginTop: "7em" }}>
         <Header as="h1">This Week's Sample Sales</Header>
         <p>Some text here.</p>
+        <EventCard />
       </Container>
     );
   }
