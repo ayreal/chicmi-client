@@ -60,14 +60,6 @@ class Navbar extends Component {
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     fetchProfile: (data, history) => {
-//       return dispatch(actions.fetchProfile(data, history));
-//     }
-//   };
-// };
-
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {

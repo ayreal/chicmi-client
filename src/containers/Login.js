@@ -12,7 +12,6 @@ class Login extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    // console.log("Inside handleSubmit, this.state is:", this.state);
     this.props.fetchProfile(this.state, this.props.history);
   };
 
@@ -22,6 +21,9 @@ class Login extends Component {
   };
 
   render() {
+    console.log("%c >> Inside render Login \n", "color: #bada55");
+    console.log("---------------------");
+
     return (
       <Container text style={{ marginTop: "7em" }}>
         <Header as="h1">Login</Header>
@@ -34,7 +36,7 @@ class Login extends Component {
             onChange={this.handleChange}
           />
           <Input
-            type="text"
+            type="password"
             name="password"
             value={this.state.password}
             onChange={this.handleChange}
@@ -45,20 +47,5 @@ class Login extends Component {
     );
   }
 }
-
-// const mapStateToProps = ({ loading, currentUser }) => {
-//   return {
-//     loading,
-//     currentUser
-//   };
-// };
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     fetchProfile: (data, history) => {
-//       return dispatch(actions.fetchProfile(data, history));
-//     }
-//   };
-// };
 
 export default withRouter(connect(null, actions)(Login));

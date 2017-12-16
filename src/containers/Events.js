@@ -6,10 +6,7 @@ import EventCard from "../components/EventCard";
 
 class Events extends Component {
   render() {
-    console.log(
-      "%c >> Inside render containers/Events.js \n",
-      "color: #bada55"
-    );
+    console.log("%c >> Inside render Events \n", "color: #bada55");
     console.log("PROPS: ", this.props);
     console.log("----------------------- \n");
     return (
@@ -26,13 +23,5 @@ const mapStateToProps = state => ({
   user: state.currentUser,
   events: state.events
 });
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     fetchProfile: () => {
-//       return dispatch(actions.fetchProfile());
-//     }
-//   };
-// };
 
 export default connect(mapStateToProps, actions)(Events);

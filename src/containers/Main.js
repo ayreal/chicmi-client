@@ -5,7 +5,6 @@ import * as actions from "../actions";
 import Events from "./Events";
 import Login from "./Login";
 import Profile from "./Profile";
-// import { withRouter } from "react-router-dom";
 
 class Main extends Component {
   componentDidMount() {
@@ -13,9 +12,9 @@ class Main extends Component {
   }
 
   render() {
-    console.log("%c Inside render containers/Main.js \n", "color: #bada55");
+    console.log("%c>> Inside render Main \n", "color: #bada55");
+    console.log("PROPS: ", this.props);
     console.log("----------------------- \n");
-    console.log(this.props);
 
     return (
       <div className="Main">
@@ -26,20 +25,5 @@ class Main extends Component {
     );
   }
 }
-
-// const mapStateToProps = state => {
-//   return {
-//     loggedIn: !!state.currentUser.id,
-//     user: state.currentUser
-//   };
-// };
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     fetchProfile: () => {
-//       return dispatch(actions.fetchProfile());
-//     }
-//   };
-// };
 
 export default connect(null, actions)(Main);

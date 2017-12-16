@@ -15,7 +15,7 @@ class App extends Component {
   }
 
   render() {
-    console.log("%c >> Inside render containers/App.js \n", "color: #bada55");
+    console.log("%c >> Inside render App \n", "color: #bada55");
     console.log("USER ID: ", this.props.userId);
     console.log("LOGGED IN: ", this.props.loggedIn);
     console.log("---------------------");
@@ -30,7 +30,6 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  // debugger;
   return {
     loggedIn: !!state.currentUser.id,
     userId: state.currentUser.id

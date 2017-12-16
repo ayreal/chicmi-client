@@ -6,7 +6,7 @@ import withAuth from "../hocs/withAuth";
 
 class Profile extends Component {
   render() {
-    console.log("%c Inside render containers/Profile.js \n", "color: #bada55");
+    console.log("%c Inside render Profile \n", "color: #bada55");
     console.log("PROPS: ", this.props);
     console.log("----------------------- \n");
 
