@@ -5,11 +5,11 @@ import { Container, Header } from "semantic-ui-react";
 import EventCard from "../components/EventCard";
 
 class Events extends Component {
-  componentDidMount() {
-    this.props.fetchRemoteEvents();
-  }
   render() {
-    console.log("%c Inside render containers/Events.js \n", "color: #bada55");
+    console.log(
+      "%c >> Inside render containers/Events.js \n",
+      "color: #bada55"
+    );
     console.log("PROPS: ", this.props);
     console.log("----------------------- \n");
     return (
@@ -23,7 +23,6 @@ class Events extends Component {
 }
 
 const mapStateToProps = state => ({
-  loggedIn: !!state.currentUser.id,
   user: state.currentUser,
   events: state.events
 });

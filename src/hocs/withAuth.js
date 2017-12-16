@@ -37,7 +37,8 @@ const withAuth = WrappedComponent => {
   }
 
   const mapStateToProps = state => ({
-    loggedIn: !!state.currentUser.id
+    loggedIn: !!state.currentUser.id,
+    user: state.currentUser
   });
 
   return connect(mapStateToProps, actions)(AuthedComponent);

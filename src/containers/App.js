@@ -15,8 +15,9 @@ class App extends Component {
   }
 
   render() {
-    console.log("Inside render App, this.props.userId\n", this.props.userId);
-    console.log("Inside render App, loggedIn is: \n", this.props.loggedIn);
+    console.log("%c >> Inside render containers/App.js \n", "color: #bada55");
+    console.log("USER ID: ", this.props.userId);
+    console.log("LOGGED IN: ", this.props.loggedIn);
     console.log("---------------------");
     return (
       <div className="App">

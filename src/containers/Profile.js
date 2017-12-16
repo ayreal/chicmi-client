@@ -7,12 +7,13 @@ import withAuth from "../hocs/withAuth";
 class Profile extends Component {
   render() {
     console.log("%c Inside render containers/Profile.js \n", "color: #bada55");
+    console.log("PROPS: ", this.props);
     console.log("----------------------- \n");
 
     return (
       <Container text style={{ marginTop: "7em" }}>
         <Header as="h1">Profile</Header>
-        <p>Some text here.</p>
+        <p>Welcome, {this.props.user.name}! Some text here.</p>
       </Container>
     );
   }
