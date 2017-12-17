@@ -65,7 +65,6 @@ class EventCard extends Component {
 }
 
 const mapStateToProps = state => {
-  // debugger;
   return {
     loggedIn: !!state.currentUser.id,
     user: state.currentUser

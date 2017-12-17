@@ -21,11 +21,6 @@ const currentUserReducer = (state = {}, action) => {
         events: action.user.events,
         isFetching: false
       };
-    // case "SAVE_EVENT_TO_PROFILE":
-    //   return {
-    //     ...state.currentUser,
-    //     events: [...state.currentUser.events, action.event]
-    //   };
     case "LOGOUT_USER":
       return {};
     default:
@@ -43,15 +38,6 @@ const eventReducer = (state = [], action) => {
       return state;
   }
 };
-
-// const userEventReducer = (state = [], action) => {
-//   switch (action.type) {
-//     case "SAVE_EVENT_TO_PROFILE":
-//       return [...state, action.event];
-//     default:
-//       return state;
-//   }
-// };
 
 const rootReducer = combineReducers({
   currentUser: currentUserReducer,
