@@ -18,8 +18,14 @@ const currentUserReducer = (state = {}, action) => {
         twitter: action.user.twitter,
         instagram: action.user.instagram,
         bio: action.user.bio,
+        events: action.user.events,
         isFetching: false
       };
+    // case "SAVE_EVENT_TO_PROFILE":
+    //   return {
+    //     ...state.currentUser,
+    //     events: [...state.currentUser.events, action.event]
+    //   };
     case "LOGOUT_USER":
       return {};
     default:
@@ -38,19 +44,19 @@ const eventReducer = (state = [], action) => {
   }
 };
 
-const userEventReducer = (state = [], action) => {
-  switch (action.type) {
-    case "SAVE_EVENT_TO_PROFILE":
-      return [...state, action.event];
-    default:
-      return state;
-  }
-};
+// const userEventReducer = (state = [], action) => {
+//   switch (action.type) {
+//     case "SAVE_EVENT_TO_PROFILE":
+//       return [...state, action.event];
+//     default:
+//       return state;
+//   }
+// };
 
 const rootReducer = combineReducers({
   currentUser: currentUserReducer,
-  events: eventReducer,
-  userEvents: userEventReducer
+  events: eventReducer
+  // userEvents: userEventReducer
 });
 
 // NOTE:

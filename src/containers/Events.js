@@ -28,8 +28,7 @@ class Events extends Component {
 const mapStateToProps = state => {
   return {
     user: state.currentUser,
-    events: state.events,
-    userEvents: state.userEvents
+    events: state.events
   };
 };
 

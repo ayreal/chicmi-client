@@ -13,18 +13,37 @@ class EventCard extends Component {
     this.props.fetchAddEvent(this.props.user.id, this.props.data);
   };
 
+  isUserEvent = event => {
+    return event.external_id === this.props.data.event_id;
+  };
+
+  renderButton = () => {
+    if (this.props.user.events.find(this.isUserEvent)) {
+      return (
+        <Button animated onClick={this.handleClick}>
+          <Button.Content visible>I'm Going</Button.Content>
+          <Button.Content hidden>
+            <Icon name="check" />
+          </Button.Content>
+        </Button>
+      );
+    } else {
+      return (
+        <Button animated onClick={this.handleClick}>
+          <Button.Content visible>Add to My Events</Button.Content>
+          <Button.Content hidden>
+            <Icon name="check" />
+          </Button.Content>
+        </Button>
+      );
+    }
+  };
+
   renderShowAttending = props => {
     if (this.props.loggedIn) {
       return (
         <Card.Content extra>
-          <a>
-            <Button animated onClick={this.handleClick}>
-              <Button.Content visible>Add To My Events</Button.Content>
-              <Button.Content hidden>
-                <Icon name="check" />
-              </Button.Content>
-            </Button>
-          </a>
+          <a>{this.renderButton()}</a>
         </Card.Content>
       );
     }
