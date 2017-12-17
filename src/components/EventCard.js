@@ -10,7 +10,7 @@ class EventCard extends Component {
   };
 
   handleClick = () => {
-    this.props.fetchAddEvent(this.props.user.id, this.props.data.event_id);
+    this.props.fetchAddEvent(this.props.user.id, this.props.data);
   };
 
   renderShowAttending = props => {

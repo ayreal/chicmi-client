@@ -27,10 +27,10 @@ export function fetchRemoteEvents() {
   return fetch(`${EXT_ROUTE}/current_user`).then(res => res.json());
 }
 
-export function fetchAddEvent(user_id, event_id) {
+export function fetchAddEvent(userId, event) {
   return fetch(`${ROUTE}/events`, {
     method: "POST",
     headers: headers,
-    body: JSON.stringify({ user_id: user_id, event_id: event_id })
+    body: JSON.stringify({ user_id: userId, event: event })
   }).then(res => res.json());
 }
