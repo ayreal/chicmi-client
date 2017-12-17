@@ -20,10 +20,10 @@ class EventCard extends Component {
   renderButton = () => {
     if (this.props.user.events.find(this.isUserEvent)) {
       return (
-        <Button animated onClick={this.handleClick}>
-          <Button.Content visible>I'm Going</Button.Content>
-          <Button.Content hidden>
-            <Icon name="check" />
+        <Button onClick={this.handleClick}>
+          <Button.Content visible>
+            {" "}
+            <Icon name="check" /> I'm Going
           </Button.Content>
         </Button>
       );
@@ -32,7 +32,7 @@ class EventCard extends Component {
         <Button animated onClick={this.handleClick}>
           <Button.Content visible>Add to My Events</Button.Content>
           <Button.Content hidden>
-            <Icon name="check" />
+            <Icon name="check" /> I'm Going
           </Button.Content>
         </Button>
       );
