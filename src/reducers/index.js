@@ -27,6 +27,8 @@ const currentUserReducer = (state = {}, action) => {
   }
 };
 
+// fetch events once when the page loads and store to a constant that is passed as the initial state to the store?
+
 const eventReducer = (state = [], action) => {
   switch (action.type) {
     case "ADD_EVENTS_TO_STORE":
@@ -36,9 +38,19 @@ const eventReducer = (state = [], action) => {
   }
 };
 
+const userEventReducer = (state = [], action) => {
+  switch (action.type) {
+    case "SAVE_EVENT_TO_PROFILE":
+      return [...state, action.event];
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   currentUser: currentUserReducer,
-  events: eventReducer
+  events: eventReducer,
+  userEvents: userEventReducer
 });
 
 // NOTE:

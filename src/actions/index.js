@@ -46,13 +46,14 @@ export const fetchRemoteEvents = () => {
   };
 };
 
+// need a fn to fetch userEvents from internal API
+
 export const fetchAddEvent = (userId, event) => {
   return dispatch => {
     console.log("Inside action fetchaddEvent");
     dispatch({ type: ASYNC_START });
     adapter.fetchAddEvent(userId, event).then(result => {
-      debugger;
-      // dispatch({ type: SAVE_EVENT_TO_PROFILE, event: result });
+      dispatch({ type: SAVE_EVENT_TO_PROFILE, event: result });
     });
   };
 };

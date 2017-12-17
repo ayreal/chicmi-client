@@ -7,7 +7,6 @@ import EventCard from "../components/EventCard";
 class Events extends Component {
   renderEvents = () => {
     return this.props.events.map(event => {
-      // debugger;
       return <EventCard key={event.event_id} data={event} />;
     });
   };
@@ -29,7 +28,8 @@ class Events extends Component {
 const mapStateToProps = state => {
   return {
     user: state.currentUser,
-    events: state.events
+    events: state.events,
+    userEvents: state.userEvents
   };
 };
 
