@@ -17,10 +17,10 @@ class Events extends Component {
     console.log("PROPS: ", this.props);
     console.log("----------------------- \n");
     return (
-      <Container text style={{ marginTop: "7em" }}>
+      <Container style={{ marginTop: "7em" }}>
         <Header as="h1">This Week's Sample Sales</Header>
         <p>Some text here.</p>
-        <Card.Group>{this.renderEvents()}</Card.Group>
+        <Card.Group itemsPerRow={3}>{this.renderEvents()}</Card.Group>
       </Container>
     );
   }
