@@ -2,7 +2,8 @@ import {
   ASYNC_START,
   LOGIN_USER,
   LOGOUT_USER,
-  ADD_EVENTS_TO_STORE
+  ADD_EVENTS_TO_STORE,
+  SAVE_EVENT_TO_PROFILE
 } from "./types";
 import * as adapter from "../services/adapter";
 
@@ -41,6 +42,16 @@ export const fetchRemoteEvents = () => {
     dispatch({ type: ASYNC_START });
     adapter.fetchRemoteEvents().then(results => {
       dispatch({ type: ADD_EVENTS_TO_STORE, events: results.values.events });
+    });
+  };
+};
+
+export const fetchAddEvent = (user, event) => {
+  return dispatch => {
+    console.log("Inside action fetchaddEvent");
+    dispatch({ type: ASYNC_START });
+    adapter.fetchAddEvent(user, event).then(result => {
+      dispatch({ type: SAVE_EVENT_TO_PROFILE, event: result });
     });
   };
 };

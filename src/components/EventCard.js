@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Card, Icon, Image, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
+import * as actions from "../actions";
 
 class EventCard extends Component {
   parseDate = utcString => {
@@ -8,12 +9,16 @@ class EventCard extends Component {
     debugger;
   };
 
+  handleClick = () => {
+    this.props.fetchAddEvent(this.props.user.id, this.props.data.event_id);
+  };
+
   renderShowAttending = props => {
     if (this.props.loggedIn) {
       return (
         <Card.Content extra>
           <a>
-            <Button animated>
+            <Button animated onClick={this.handleClick}>
               <Button.Content visible>Add To My Events</Button.Content>
               <Button.Content hidden>
                 <Icon name="check" />
@@ -48,4 +53,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(EventCard);
+export default connect(mapStateToProps, actions)(EventCard);
