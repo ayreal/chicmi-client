@@ -32,7 +32,7 @@ const eventReducer = (state = {}, action) => {
     case "ADD_EVENTS_TO_STORE":
       return {
         ...state,
-        events: action.events
+        ...action.events
       };
     default:
       return state;
