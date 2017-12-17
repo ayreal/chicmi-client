@@ -27,13 +27,10 @@ const currentUserReducer = (state = {}, action) => {
   }
 };
 
-const eventReducer = (state = {}, action) => {
+const eventReducer = (state = [], action) => {
   switch (action.type) {
     case "ADD_EVENTS_TO_STORE":
-      return {
-        ...state,
-        ...action.events
-      };
+      return [...action.events];
     default:
       return state;
   }

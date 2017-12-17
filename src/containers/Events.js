@@ -1,10 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions";
-import { Container, Header } from "semantic-ui-react";
+import { Container, Header, Card } from "semantic-ui-react";
 import EventCard from "../components/EventCard";
 
 class Events extends Component {
+  renderEvents = () => {
+    return this.props.events.map(event => {
+      // debugger;
+      return <EventCard key={event.event_id} data={event} />;
+    });
+  };
+
   render() {
     console.log("%c >> Inside render Events \n", "color: #bada55");
     console.log("PROPS: ", this.props);
@@ -13,15 +20,17 @@ class Events extends Component {
       <Container text style={{ marginTop: "7em" }}>
         <Header as="h1">This Week's Sample Sales</Header>
         <p>Some text here.</p>
-        <EventCard />
+        <Card.Group>{this.renderEvents()}</Card.Group>
       </Container>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  user: state.currentUser,
-  events: state.events
-});
+const mapStateToProps = state => {
+  return {
+    user: state.currentUser,
+    events: state.events
+  };
+};
 
 export default connect(mapStateToProps, actions)(Events);

@@ -7,9 +7,9 @@ import Login from "./Login";
 import Profile from "./Profile";
 
 class Main extends Component {
-  componentDidMount() {
-    this.props.fetchRemoteEvents();
-  }
+  // componentDidMount() {
+  //   this.props.fetchRemoteEvents();
+  // }
 
   render() {
     console.log("%c>> Inside render Main \n", "color: #bada55");

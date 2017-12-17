@@ -12,6 +12,8 @@ class App extends Component {
     if (localStorage.token) {
       this.props.fetchCurrentUser();
     }
+
+    this.props.fetchRemoteEvents();
   }
 
   render() {
@@ -35,12 +37,12 @@ const mapStateToProps = state => {
     userId: state.currentUser.id
   };
 };
+//
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     fetchCurrentUser: () => dispatch(actions.fetchCurrentUser()),
+//     logoutUser: () => dispatch(actions.logoutUser())
+//   };
+// };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchCurrentUser: () => dispatch(actions.fetchCurrentUser()),
-    logoutUser: () => dispatch(actions.logoutUser())
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, actions)(App);
