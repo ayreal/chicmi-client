@@ -38,7 +38,7 @@ class EventShow extends Component {
 
   renderShowAttending = () => {
     // if the currentEvent is also a userEvent
-    if (this.props.events.find(this.isUserEvent)) {
+    if (this.props.userEvents.find(this.isUserEvent)) {
       return (
         <Button animated onClick={this.handleRemove}>
           <Button.Content visible>I'm Going</Button.Content>
