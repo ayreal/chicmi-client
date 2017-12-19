@@ -37,10 +37,9 @@ export function fetchAddEvent(userId, event) {
 
 // this should delete the association, not the Event instance in the back
 export function fetchDeleteEvent(userId, eventId) {
-  // debugger;
   return fetch(`${ROUTE}/events/${eventId}`, {
     method: "DELETE",
     headers: headers,
-    body: JSON.stringify({ user_id: userId, event: eventId })
+    body: JSON.stringify({ user_id: userId })
   }).then(res => res.json());
 }

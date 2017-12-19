@@ -64,7 +64,7 @@ export const fetchDeleteEvent = (userId, externalEventId) => {
     console.log("Inside action fetchDeleteEvent");
     dispatch({ type: ASYNC_START });
     adapter.fetchDeleteEvent(userId, externalEventId).then(result => {
-      dispatch({ type: SAVE_EVENT_TO_PROFILE, event: result });
+      dispatch({ type: LOGIN_USER, user: result });
     });
   };
 };
