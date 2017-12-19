@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions";
+import { withRouter } from "react-router-dom";
 import { Container, Header, Button, Icon } from "semantic-ui-react";
 // import EventCard from "../components/EventCard";
 
@@ -9,11 +10,8 @@ class EventShow extends Component {
     currentEvent: {}
   };
 
-  componentWillReceiveProps(nextProps) {
-    // debugger;
-    if (nextProps.events.length > 0) {
-      this.setCurrentEvent();
-    }
+  componentDidMount() {
+    this.setCurrentEvent();
   }
 
   setCurrentEvent = () => {
@@ -92,4 +90,4 @@ const mapStateToProps = state => {
     userEvents: state.currentUser.events
   };
 };
-export default connect(mapStateToProps, actions)(EventShow);
+export default withRouter(connect(mapStateToProps, actions)(EventShow));
