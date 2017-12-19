@@ -52,19 +52,12 @@ class EventShow extends Component {
         <Button animated onClick={this.handleRemove}>
           <Button.Content visible>I'm Going</Button.Content>
           <Button.Content hidden>
-            <Icon name="cancel" /> Remove From My Events
+            <Icon name="cancel" /> Remove
           </Button.Content>
         </Button>
       );
     } else {
-      return (
-        <Button animated onClick={this.handleAdd}>
-          <Button.Content visible>Add To My Events</Button.Content>
-          <Button.Content hidden>
-            <Icon name="check" />
-          </Button.Content>
-        </Button>
-      );
+      return <Button onClick={this.handleAdd}>Add To My Events</Button>;
     }
   };
 
