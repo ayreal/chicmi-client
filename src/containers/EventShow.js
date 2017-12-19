@@ -62,7 +62,12 @@ class EventShow extends Component {
   };
 
   renderEvent = () => {
-    return <div>This is {this.currentEvent.event_name_en}</div>;
+    if (!!this.state.currentEvent.event_id) {
+      // debugger;
+      return <div>This is {this.state.currentEvent.event_name_en}</div>;
+    } else {
+      return null;
+    }
   };
 
   render() {
@@ -74,7 +79,7 @@ class EventShow extends Component {
       <Container style={{ marginTop: "7em" }}>
         <Header as="h1">Sample Sale Show Page</Header>
 
-        {this.state.currentEvent ? this.renderEvent : null}
+        {this.renderEvent()}
       </Container>
     );
   }
