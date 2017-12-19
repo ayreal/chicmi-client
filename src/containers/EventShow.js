@@ -5,6 +5,29 @@ import { Container, Header, Button, Icon } from "semantic-ui-react";
 // import EventCard from "../components/EventCard";
 
 class EventShow extends Component {
+  state = {
+    currentEvent: {}
+  };
+
+  componentWillReceiveProps(nextProps) {
+    // debugger;
+    if (nextProps.events.length > 0) {
+      this.setCurrentEvent();
+    }
+  }
+
+  setCurrentEvent = () => {
+    if (this.props.events.length > 0) {
+      // debugger;
+      const currentEvent = this.props.events.find(
+        event => event.slug === this.props.match.params.slug
+      );
+      this.setState({
+        currentEvent: currentEvent
+      });
+    }
+  };
+
   isUserEvent = event => {
     return event.external_id === this.props.currentEvent.event_id;
   };
@@ -37,15 +60,21 @@ class EventShow extends Component {
       );
     }
   };
+
+  renderEvent = () => {
+    return <div>This is {this.currentEvent.event_name_en}</div>;
+  };
+
   render() {
     console.log("%c >> Inside render EventShow \n", "color: #bada55");
     console.log("PROPS: ", this.props);
+    console.log("STATE: ", this.state);
     console.log("----------------------- \n");
     return (
       <Container style={{ marginTop: "7em" }}>
         <Header as="h1">Sample Sale Show Page</Header>
-        <p>for </p>
-        <div />
+
+        {this.state.currentEvent ? this.renderEvent : null}
       </Container>
     );
   }
@@ -54,8 +83,8 @@ const mapStateToProps = state => {
   return {
     loggedIn: !!state.currentUser.id,
     user: state.currentUser,
-    currentEvent: state.currentEvent,
-    events: state.currentUser.events
+    events: state.events,
+    userEvents: state.currentUser.events
   };
 };
 export default connect(mapStateToProps, actions)(EventShow);

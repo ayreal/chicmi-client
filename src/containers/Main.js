@@ -26,7 +26,10 @@ class Main extends Component {
         <Route exact path="/" component={Events} />
         <Route path="/login" component={Login} />
         <Route path="/profile" component={Profile} />
-        <Route path="/events/:slug/" component={EventShow} />
+        <Route
+          path="/events/:slug"
+          render={props => <EventShow {...props} />}
+        />
       </div>
     );
   }
