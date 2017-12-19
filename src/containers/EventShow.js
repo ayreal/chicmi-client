@@ -7,7 +7,8 @@ import { Container, Header, Button, Icon } from "semantic-ui-react";
 
 class EventShow extends Component {
   state = {
-    currentEvent: {}
+    currentEvent: {},
+    myApiEvent: {}
   };
 
   componentDidMount() {
@@ -20,8 +21,12 @@ class EventShow extends Component {
       const currentEvent = this.props.events.find(
         event => event.slug === this.props.match.params.slug
       );
+      const myApiEvent = this.props.userEvents.find(
+        event => event.external_id === currentEvent.event_id
+      );
       this.setState({
-        currentEvent: currentEvent
+        currentEvent: currentEvent,
+        myApiEvent: myApiEvent
       });
     }
   };
@@ -30,7 +35,11 @@ class EventShow extends Component {
     return event.external_id === this.state.currentEvent.event_id;
   };
 
-  handleRemove = () => {};
+  handleRemove = () => {
+    const eventId = this.state.myApiEvent.id;
+    const userId = this.props.user.id;
+    this.props.fetchDeleteEvent(userId, eventId);
+  };
 
   handleAdd = () => {
     this.props.fetchAddEvent(this.props.user.id, this.state.currentEvent);

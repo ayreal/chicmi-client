@@ -3,7 +3,8 @@ import {
   LOGIN_USER,
   LOGOUT_USER,
   ADD_EVENTS_TO_STORE,
-  SAVE_EVENT_TO_PROFILE
+  SAVE_EVENT_TO_PROFILE,
+  DELETE_EVENT_FROM_PROFILE
 } from "./types";
 import * as adapter from "../services/adapter";
 
@@ -50,9 +51,19 @@ export const fetchRemoteEvents = () => {
 
 export const fetchAddEvent = (userId, event) => {
   return dispatch => {
-    console.log("Inside action fetchaddEvent");
+    console.log("Inside action fetchAddEvent");
     dispatch({ type: ASYNC_START });
     adapter.fetchAddEvent(userId, event).then(result => {
+      dispatch({ type: SAVE_EVENT_TO_PROFILE, event: result });
+    });
+  };
+};
+
+export const fetchDeleteEvent = (userId, externalEventId) => {
+  return dispatch => {
+    console.log("Inside action fetchDeleteEvent");
+    dispatch({ type: ASYNC_START });
+    adapter.fetchDeleteEvent(userId, externalEventId).then(result => {
       dispatch({ type: SAVE_EVENT_TO_PROFILE, event: result });
     });
   };
