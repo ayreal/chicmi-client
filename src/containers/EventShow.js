@@ -27,16 +27,16 @@ class EventShow extends Component {
   };
 
   isUserEvent = event => {
-    return event.external_id === this.props.currentEvent.event_id;
+    return event.external_id === this.state.currentEvent.event_id;
   };
 
   handleRemove = () => {};
 
   handleAdd = () => {
-    this.props.fetchAddEvent(this.props.user.id, this.props.currentEvent);
+    this.props.fetchAddEvent(this.props.user.id, this.state.currentEvent);
   };
 
-  renderButton = () => {
+  renderShowAttending = () => {
     // if the currentEvent is also a userEvent
     if (this.props.events.find(this.isUserEvent)) {
       return (
@@ -62,7 +62,12 @@ class EventShow extends Component {
   renderEvent = () => {
     if (!!this.state.currentEvent.event_id) {
       // debugger;
-      return <div>This is {this.state.currentEvent.event_name_en}</div>;
+      return (
+        <div>
+          This is {this.state.currentEvent.event_name_en}{" "}
+          {this.props.loggedIn ? this.renderShowAttending() : null}
+        </div>
+      );
     } else {
       return null;
     }
