@@ -3,6 +3,7 @@ import React, { Component } from "react";
 // import * as actions from "../actions";
 import { Container, Header } from "semantic-ui-react";
 import withAuth from "../hocs/withAuth";
+import EventCard from "../components/EventCard";
 
 class Profile extends Component {
   render() {
@@ -14,6 +15,9 @@ class Profile extends Component {
       <Container text style={{ marginTop: "7em" }}>
         <Header as="h1">Profile</Header>
         <p>Welcome, {this.props.user.name}! Some text here.</p>
+        {this.props.user.events.map(event => (
+          <EventCard key={event.event_id} data={event} />
+        ))}
       </Container>
     );
   }

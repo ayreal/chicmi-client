@@ -54,7 +54,7 @@ export const fetchAddEvent = (userId, event) => {
     console.log("Inside action fetchAddEvent");
     dispatch({ type: ASYNC_START });
     adapter.fetchAddEvent(userId, event).then(result => {
-      dispatch({ type: SAVE_EVENT_TO_PROFILE, event: result });
+      dispatch({ type: LOGIN_USER, user: result });
     });
   };
 };

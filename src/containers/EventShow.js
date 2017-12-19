@@ -52,7 +52,7 @@ class EventShow extends Component {
         <Button animated onClick={this.handleRemove}>
           <Button.Content visible>I'm Going</Button.Content>
           <Button.Content hidden>
-            <Icon name="cancel" />
+            <Icon name="cancel" /> Remove From My Events
           </Button.Content>
         </Button>
       );
