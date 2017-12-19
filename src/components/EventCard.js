@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Card, Icon, Image, Button } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 
@@ -17,37 +18,18 @@ class EventCard extends Component {
     return event.external_id === this.props.data.event_id;
   };
 
-  renderButton = () => {
+  renderShowAttending = () => {
     if (this.props.user.events.find(this.isUserEvent)) {
       return (
-        <Button onClick={this.handleClick}>
-          <Button.Content visible>
-            {" "}
-            <Icon name="check" /> I'm Going
-          </Button.Content>
+        <Button icon labelPosition="right">
+          <Icon name="check" />
+          I'm Going
         </Button>
       );
     } else {
-      return (
-        <Button animated onClick={this.handleClick}>
-          <Button.Content visible>Add to My Events</Button.Content>
-          <Button.Content hidden>
-            <Icon name="check" /> I'm Going
-          </Button.Content>
-        </Button>
-      );
+      return null;
     }
   };
-
-  renderShowAttending() {
-    if (this.props.loggedIn) {
-      return (
-        <Card.Content extra>
-          <a>{this.props.user.events ? this.renderButton() : null}</a>
-        </Card.Content>
-      );
-    }
-  }
 
   render() {
     return (
@@ -56,9 +38,18 @@ class EventCard extends Component {
         <Card.Content>
           <Card.Header>{this.props.data.event_name_en}</Card.Header>
           <Card.Meta>{this.props.data.start_date}</Card.Meta>
-          <Card.Description>{this.props.data.summary}</Card.Description>
         </Card.Content>
-        {this.renderShowAttending()}
+        {this.props.loggedIn ? this.renderShowAttending() : null}
+
+        <Button
+          icon
+          labelPosition="right"
+          as={Link}
+          to={`/events/${this.props.data.slug}`}
+        >
+          View More
+          <Icon name="right arrow" />
+        </Button>
       </Card>
     );
   }
