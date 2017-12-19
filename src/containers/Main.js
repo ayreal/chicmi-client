@@ -5,6 +5,7 @@ import * as actions from "../actions";
 import Events from "./Events";
 import Login from "./Login";
 import Profile from "./Profile";
+import EventShow from "./EventShow";
 
 class Main extends Component {
   componentDidMount() {
@@ -25,6 +26,7 @@ class Main extends Component {
         <Route exact path="/" component={Events} />
         <Route path="/login" component={Login} />
         <Route path="/profile" component={Profile} />
+        <Route path="/events/:slug/" component={EventShow} />
       </div>
     );
   }
