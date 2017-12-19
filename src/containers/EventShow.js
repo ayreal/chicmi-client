@@ -15,19 +15,38 @@ class EventShow extends Component {
     this.setCurrentEvent();
   }
 
+  // setMyAPIEvent relies on setCurrentEvent.
+  // Needs to happen as a cb because setState is async :)
   setCurrentEvent = () => {
+    console.log("Setting currentEvent");
+    console.log("-----------------");
     if (this.props.events.length > 0) {
-      // debugger;
       const currentEvent = this.props.events.find(
         event => event.slug === this.props.match.params.slug
       );
+      this.setState(
+        {
+          currentEvent: currentEvent
+        },
+        this.setMyApiEvent
+      );
+    }
+  };
+
+  setMyApiEvent = () => {
+    // debugger;
+    if (this.props.loggedIn) {
+      console.log("Setting apiEvent");
+      console.log("-----------------");
+      // debugger;
       const myApiEvent = this.props.userEvents.find(
-        event => event.external_id === currentEvent.event_id
+        event => event.external_id === this.state.currentEvent.event_id
       );
       this.setState({
-        currentEvent: currentEvent,
         myApiEvent: myApiEvent
       });
+    } else {
+      return null;
     }
   };
 
@@ -36,6 +55,7 @@ class EventShow extends Component {
   };
 
   handleRemove = () => {
+    debugger;
     const eventId = this.state.myApiEvent.id;
     const userId = this.props.user.id;
     this.props.fetchDeleteEvent(userId, eventId);
@@ -52,12 +72,19 @@ class EventShow extends Component {
         <Button animated onClick={this.handleRemove}>
           <Button.Content visible>I'm Going</Button.Content>
           <Button.Content hidden>
-            <Icon name="cancel" /> Remove
+            <Icon name="cancel" /> Remove From My Events
           </Button.Content>
         </Button>
       );
     } else {
-      return <Button onClick={this.handleAdd}>Add To My Events</Button>;
+      return (
+        <Button animated onClick={this.handleAdd}>
+          <Button.Content visible>Add To My Events</Button.Content>
+          <Button.Content hidden>
+            <Icon name="check" />
+          </Button.Content>
+        </Button>
+      );
     }
   };
 
