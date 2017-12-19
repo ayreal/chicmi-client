@@ -12,8 +12,6 @@ class App extends Component {
     if (localStorage.token) {
       this.props.fetchCurrentUser();
     }
-
-    this.props.fetchRemoteEvents();
   }
 
   render() {

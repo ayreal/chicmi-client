@@ -39,15 +39,15 @@ class EventCard extends Component {
     }
   };
 
-  renderShowAttending = props => {
+  renderShowAttending() {
     if (this.props.loggedIn) {
       return (
         <Card.Content extra>
-          <a>{this.renderButton()}</a>
+          <a>{this.props.user.events ? this.renderButton() : null}</a>
         </Card.Content>
       );
     }
-  };
+  }
 
   render() {
     return (

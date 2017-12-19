@@ -7,7 +7,11 @@ import Login from "./Login";
 import Profile from "./Profile";
 
 class Main extends Component {
-  // componentDidMount() {
+  componentDidMount() {
+    this.props.fetchRemoteEvents();
+  }
+
+  // componentWillReceiveProps(nextProps) {
   //   this.props.fetchRemoteEvents();
   // }
 
@@ -18,9 +22,9 @@ class Main extends Component {
 
     return (
       <div className="Main">
+        <Route exact path="/" component={Events} />
         <Route path="/login" component={Login} />
         <Route path="/profile" component={Profile} />
-        <Route exact path="/" component={Events} />
       </div>
     );
   }
