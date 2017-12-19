@@ -55,10 +55,8 @@ class EventShow extends Component {
   };
 
   handleRemove = () => {
-    debugger;
-    const eventId = this.state.myApiEvent.id;
-    const userId = this.props.user.id;
-    this.props.fetchDeleteEvent(userId, eventId);
+    // debugger;
+    this.props.fetchDeleteEvent(this.props.user.id, this.state.myApiEvent.id);
   };
 
   handleAdd = () => {
@@ -68,6 +66,7 @@ class EventShow extends Component {
   renderShowAttending = () => {
     // if the currentEvent is also a userEvent
     if (this.props.userEvents.find(this.isUserEvent)) {
+      // debugger;
       return (
         <Button animated onClick={this.handleRemove}>
           <Button.Content visible>I'm Going</Button.Content>
@@ -77,6 +76,7 @@ class EventShow extends Component {
         </Button>
       );
     } else {
+      // debugger;
       return (
         <Button animated onClick={this.handleAdd}>
           <Button.Content visible>Add To My Events</Button.Content>
