@@ -8,18 +8,33 @@ import { Container, Header, Button, Icon } from "semantic-ui-react";
 class EventShow extends Component {
   state = {
     currentEvent: {},
-    myApiEvent: {}
+    myApiEvent: {},
+    slug: ""
   };
 
   componentDidMount() {
     this.setCurrentEvent();
   }
 
-  // setMyAPIEvent relies on setCurrentEvent.
-  // Needs to happen as a cb because setState is async :)
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.events.length > 0) {
+      console.log("inside if statement");
+      const slug = nextProps.match.params.slug;
+      this.setState({ slug: slug }, () =>
+        this.findEvent(this.state.slug, nextProps)
+      );
+    }
+  }
+
+  findEvent = (name, props) => {
+    const currentEvent = props.events.filter(myEvent => {
+      return myEvent.slug === name;
+    })[0];
+    this.setCurrentEvent(currentEvent);
+  };
+
   setCurrentEvent = () => {
-    console.log("Setting currentEvent");
-    console.log("-----------------");
+    console.log("inside setCurrentEvent");
     if (this.props.events.length > 0) {
       const currentEvent = this.props.events.find(
         event => event.slug === this.props.match.params.slug
@@ -90,7 +105,6 @@ class EventShow extends Component {
 
   renderEvent = () => {
     if (!!this.state.currentEvent.event_id) {
-      // debugger;
       return (
         <div>
           This is {this.state.currentEvent.event_name_en}{" "}
