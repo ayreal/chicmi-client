@@ -5,7 +5,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 
 BigCalendar.momentLocalizer(moment);
 
-let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k]);
+// let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k]);
 
 class Calendar extends Component {
   parseUserEventsForCalendar = props => {

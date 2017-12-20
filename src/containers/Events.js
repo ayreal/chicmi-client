@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 import { Container, Header, Card } from "semantic-ui-react";
-import EventCard from "../components/EventCard";
+import EventCard from "./EventCard";
 
 class Events extends Component {
   renderEvents = () => {

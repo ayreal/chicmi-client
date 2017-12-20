@@ -2,9 +2,7 @@ import {
   ASYNC_START,
   LOGIN_USER,
   LOGOUT_USER,
-  ADD_EVENTS_TO_STORE,
-  SAVE_EVENT_TO_PROFILE,
-  DELETE_EVENT_FROM_PROFILE
+  ADD_EVENTS_TO_STORE
 } from "./types";
 import * as adapter from "../services/adapter";
 

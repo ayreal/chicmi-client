@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // import * as actions from "../actions";
 import { Container, Header, Card } from "semantic-ui-react";
 import withAuth from "../hocs/withAuth";
-import EventCard from "../components/EventCard";
+import EventCard from "./EventCard";
 import Calendar from "../components/Calendar";
 
 class Profile extends Component {
