@@ -8,28 +8,35 @@ BigCalendar.momentLocalizer(moment);
 let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k]);
 
 class Calendar extends Component {
-  componentDidMount() {}
-
-  parseUserEventsForCalendar = () => {
+  parseUserEventsForCalendar = props => {
     return this.props.events.map(event => {
-      // debugger;
-      let newEvent = {};
+      let newEvent = { ...event };
       newEvent.title = event.event_name_en;
-      newEvent.allDay = true;
+      // newEvent.allDay = true;
       newEvent.start = new Date(event.start_date);
       newEvent.end = new Date(event.end_date);
       return newEvent;
     });
   };
 
+  handleClick = event => {
+    debugger;
+  };
+
   render() {
     return (
       <BigCalendar
         {...this.props}
+        selectable
         events={this.parseUserEventsForCalendar()}
-        views={allViews}
+        views={{
+          month: true,
+          week: true
+        }}
+        defaultView={"week"}
         step={60}
         defaultDate={new Date()}
+        onSelectEvent={this.handleClick}
       />
     );
   }
