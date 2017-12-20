@@ -20,7 +20,7 @@ class Calendar extends Component {
   };
 
   handleClick = event => {
-    debugger;
+    this.props.setCalendarEvent(event);
   };
 
   render() {

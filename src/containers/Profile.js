@@ -17,6 +17,15 @@ class Profile extends Component {
     });
   };
 
+  renderCalendarEvent = () => {
+    const event = this.state.calendarEvent;
+    return (
+      <div>
+        <strong> More details for {event.event_name_en} will go here</strong>
+      </div>
+    );
+  };
+
   render() {
     console.log("%c Inside render Profile \n", "color: #bada55");
     console.log("PROPS: ", this.props);
@@ -35,6 +44,7 @@ class Profile extends Component {
           ))}
         </Card.Group>
 
+        {this.state.calendarEvent.id ? this.renderCalendarEvent() : null}
         <Calendar
           events={this.props.user.events}
           setCalendarEvent={this.setCalendarEvent}
