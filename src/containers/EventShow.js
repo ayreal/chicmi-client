@@ -88,16 +88,12 @@ class EventShow extends Component {
   };
 
   renderEvent = () => {
-    if (!!this.props.currentEvent.external_id) {
-      return (
-        <div>
-          This is {this.props.currentEvent.event_name_en}{" "}
-          {this.props.loggedIn ? this.renderShowAttending() : null}
-        </div>
-      );
-    } else {
-      return null;
-    }
+    return (
+      <div>
+        This is {this.props.currentEvent.event_name_en}{" "}
+        {this.props.loggedIn ? this.renderShowAttending() : null}
+      </div>
+    );
   };
 
   renderComments = () => {
