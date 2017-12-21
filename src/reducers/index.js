@@ -40,8 +40,18 @@ const eventReducer = (state = [], action) => {
   }
 };
 
+const currentEventReducer = (state = {}, action) => {
+  switch (action.type) {
+    case "SET_CURRENT_EVENT":
+      return { ...action.event };
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   currentUser: currentUserReducer,
+  currentEvent: currentEventReducer,
   events: eventReducer
   // userEvents: userEventReducer
 });

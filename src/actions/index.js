@@ -2,7 +2,8 @@ import {
   ASYNC_START,
   LOGIN_USER,
   LOGOUT_USER,
-  ADD_EVENTS_TO_STORE
+  ADD_EVENTS_TO_STORE,
+  SET_CURRENT_EVENT
 } from "./types";
 import * as adapter from "../services/adapter";
 
@@ -45,7 +46,7 @@ export const fetchRemoteEvents = () => {
   };
 };
 
-// need a fn to fetch userEvents from internal API
+//
 
 export const fetchAddEvent = (userId, event) => {
   return dispatch => {
@@ -63,6 +64,16 @@ export const fetchDeleteEvent = (userId, externalEventId) => {
     dispatch({ type: ASYNC_START });
     adapter.fetchDeleteEvent(userId, externalEventId).then(result => {
       dispatch({ type: LOGIN_USER, user: result });
+    });
+  };
+};
+
+export const fetchCreateEvent = event => {
+  return dispatch => {
+    console.log("Inside action fetchCreateEvent");
+    dispatch({ type: ASYNC_START });
+    adapter.fetchCreateEvent(event).then(result => {
+      dispatch({ type: SET_CURRENT_EVENT, event: result });
     });
   };
 };

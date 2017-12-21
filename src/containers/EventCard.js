@@ -11,7 +11,9 @@ class EventCard extends Component {
   };
 
   handleClick = () => {
-    this.props.fetchAddEvent(this.props.user.id, this.props.data);
+    // debugger;
+    this.props.fetchCreateEvent(this.props.data);
+    // this.props.fetchAddEvent(this.props.user.id, this.props.data);
   };
 
   isUserEvent = event => {
@@ -19,6 +21,7 @@ class EventCard extends Component {
   };
 
   renderShowAttending = () => {
+    // debugger;
     if (this.props.user.events.find(this.isUserEvent)) {
       return (
         <Button icon labelPosition="right">
@@ -46,6 +49,7 @@ class EventCard extends Component {
           labelPosition="right"
           as={Link}
           to={`/events/${this.props.data.slug}`}
+          onClick={this.handleClick}
         >
           View More
           <Icon name="right arrow" />
