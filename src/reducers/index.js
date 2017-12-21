@@ -43,6 +43,7 @@ const eventReducer = (state = [], action) => {
 const currentEventReducer = (state = {}, action) => {
   switch (action.type) {
     case "SET_CURRENT_EVENT":
+      console.log("Action for SET_CURRENT_EVENT is", action.event);
       return { ...action.event };
     default:
       return state;

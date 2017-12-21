@@ -4,77 +4,83 @@ import * as actions from "../actions";
 import { withRouter } from "react-router-dom";
 import { Container, Header, Button, Icon, Comment } from "semantic-ui-react";
 
+// IF I click on an event card, the event is persisted, redux store state is set and I'm taken to the show Page
+// IF i go to a URL/refresh, check to see if there is a currentEvent in the redux store. If not, do a fetch
+
 class EventShow extends Component {
   state = {
-    currentEvent: {},
-    myApiEvent: {},
     slug: ""
   };
 
   componentDidMount() {
-    this.setCurrentEvent();
+    const slug = this.props.match.params.slug;
+    this.setState({ slug: slug });
+    // if (!this.props.currentEvent.external_id) {
+    //   // if no currentEvent in the redux store
+    //   debugger;
+    // }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.events.length > 0) {
-      console.log("inside if statement");
-      const slug = nextProps.match.params.slug;
-      this.setState({ slug: slug }, () =>
-        this.findEvent(this.state.slug, nextProps)
-      );
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.events.length > 0) {
+  //     console.log("inside if statement");
+  //     const slug = nextProps.match.params.slug;
+  //     this.setState({ slug: slug }, () =>
+  //       this.findEvent(this.state.slug, nextProps)
+  //     );
+  //   }
+  // }
+  //
+  // findEvent = (name, props) => {
+  //   const currentEvent = props.events.filter(myEvent => {
+  //     return myEvent.slug === name;
+  //   })[0];
+  //   this.setCurrentEvent(currentEvent);
+  // };
+  //
+  // setCurrentEvent = () => {
+  //   console.log("inside setCurrentEvent");
+  //   if (this.props.events.length > 0) {
+  //     const currentEvent = this.props.events.find(
+  //       event => event.slug === this.props.match.params.slug
+  //     );
+  //     this.setState(
+  //       {
+  //         currentEvent: currentEvent
+  //       },
+  //       this.setMyApiEvent
+  //     );
+  //   }
+  // };
+  //
+  // setMyApiEvent = () => {
+  //   // debugger;
+  //   if (this.props.loggedIn) {
+  //     console.log("Setting apiEvent");
+  //     console.log("-----------------");
+  //     // debugger;
+  //     const myApiEvent = this.props.userEvents.find(
+  //       event => event.external_id === this.state.currentEvent.event_id
+  //     );
+  //     this.setState({
+  //       myApiEvent: myApiEvent
+  //     });
+  //   } else {
+  //     return null;
+  //   }
+  // };
 
-  findEvent = (name, props) => {
-    const currentEvent = props.events.filter(myEvent => {
-      return myEvent.slug === name;
-    })[0];
-    this.setCurrentEvent(currentEvent);
-  };
-
-  setCurrentEvent = () => {
-    console.log("inside setCurrentEvent");
-    if (this.props.events.length > 0) {
-      const currentEvent = this.props.events.find(
-        event => event.slug === this.props.match.params.slug
-      );
-      this.setState(
-        {
-          currentEvent: currentEvent
-        },
-        this.setMyApiEvent
-      );
-    }
-  };
-
-  setMyApiEvent = () => {
-    // debugger;
-    if (this.props.loggedIn) {
-      console.log("Setting apiEvent");
-      console.log("-----------------");
-      // debugger;
-      const myApiEvent = this.props.userEvents.find(
-        event => event.external_id === this.state.currentEvent.event_id
-      );
-      this.setState({
-        myApiEvent: myApiEvent
-      });
-    } else {
-      return null;
-    }
-  };
-
-  isUserEvent = event => {
-    return event.external_id === this.state.currentEvent.event_id;
+  isUserEvent = myEvent => {
+    return myEvent.id === this.props.currentEvent.id;
   };
 
   handleRemove = () => {
     // debugger;
-    this.props.fetchDeleteEvent(this.props.user.id, this.state.myApiEvent.id);
+    this.props.fetchDeleteEvent(this.props.user.id, this.props.currentEvent.id);
   };
 
   handleAdd = () => {
-    this.props.fetchAddEvent(this.props.user.id, this.state.currentEvent);
+    this.props.fetchAddEvent(this.props.user.id, this.props.currentEvent);
   };
 
   renderShowAttending = () => {
@@ -103,10 +109,10 @@ class EventShow extends Component {
   };
 
   renderEvent = () => {
-    if (!!this.state.currentEvent.event_id) {
+    if (!!this.props.currentEvent.external_id) {
       return (
         <div>
-          This is {this.state.currentEvent.event_name_en}{" "}
+          This is {this.props.currentEvent.event_name_en}{" "}
           {this.props.loggedIn ? this.renderShowAttending() : null}
         </div>
       );
@@ -134,7 +140,8 @@ const mapStateToProps = state => {
     loggedIn: !!state.currentUser.id,
     user: state.currentUser,
     events: state.events,
-    userEvents: state.currentUser.events
+    userEvents: state.currentUser.events,
+    currentEvent: state.currentEvent
   };
 };
 export default withRouter(connect(mapStateToProps, actions)(EventShow));
