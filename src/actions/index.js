@@ -77,3 +77,14 @@ export const fetchCreateEvent = event => {
     });
   };
 };
+
+export const fetchEventBySlug = slug => {
+  return dispatch => {
+    console.log("Inside action fetchCreateEvent");
+    dispatch({ type: ASYNC_START });
+    adapter.fetchEventBySlug(slug).then(result => {
+      debugger;
+      dispatch({ type: SET_CURRENT_EVENT, event: result });
+    });
+  };
+};

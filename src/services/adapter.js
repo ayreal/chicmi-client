@@ -51,3 +51,7 @@ export function fetchDeleteEvent(userId, eventId) {
     body: JSON.stringify({ user_id: userId })
   }).then(res => res.json());
 }
+
+export function fetchEventBySlug(slug) {
+  return fetch(`${EXT_ROUTE}/current_user`).then(res => res.json());
+}

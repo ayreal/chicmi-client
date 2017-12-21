@@ -12,32 +12,38 @@ class EventShow extends Component {
     slug: ""
   };
 
-  componentDidMount() {
-    const slug = this.props.match.params.slug;
-    this.setState({ slug: slug });
-    // if (!this.props.currentEvent.external_id) {
-    //   // if no currentEvent in the redux store
-    //   debugger;
-    // }
-  }
+  // componentDidMount() {
+  //   const slug = this.props.match.params.slug;
+  //   this.setState({ slug: slug });
+  // }
 
   // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.events.length > 0) {
-  //     console.log("inside if statement");
-  //     const slug = nextProps.match.params.slug;
-  //     this.setState({ slug: slug }, () =>
-  //       this.findEvent(this.state.slug, nextProps)
-  //     );
+  //   const slug = this.props.match.params.slug;
+  //   this.setState({ slug: slug });
+  //   if (!!nextProps.currentEvent) {
+  //     // if no currentEvent in the redux store
+  //     debugger;
   //   }
   // }
+
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.loggedIn) {
+      const slug = this.props.match.params.slug;
+      // this.setState({ slug: slug });
+      // debugger;
+      this.props.fetchEventBySlug(slug);
+    }
+  }
+
+  // findEvent = props => {
   //
-  // findEvent = (name, props) => {
-  //   const currentEvent = props.events.filter(myEvent => {
-  //     return myEvent.slug === name;
-  //   })[0];
-  //   this.setCurrentEvent(currentEvent);
+  //   // const currentEvent = props.events.filter(myEvent => {
+  //   //   return myEvent.slug === slug;
+  //   // })[0];
+  //   // // fetch
+  //   // this.setCurrentEvent(currentEvent);
   // };
-  //
+
   // setCurrentEvent = () => {
   //   console.log("inside setCurrentEvent");
   //   if (this.props.events.length > 0) {
@@ -138,7 +144,6 @@ const mapStateToProps = state => {
   return {
     loggedIn: !!state.currentUser.id,
     user: state.currentUser,
-    events: state.events,
     userEvents: state.currentUser.events,
     currentEvent: state.currentEvent
   };
