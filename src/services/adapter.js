@@ -59,3 +59,11 @@ export function fetchEventBySlug(slug) {
     body: JSON.stringify({ slug: slug })
   }).then(res => res.json());
 }
+
+export function fetchAddComment(userId, eventId, comment) {
+  return fetch(`${ROUTE}/comments`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({ user_id: userId, event_id: eventId, text: comment })
+  }).then(res => res.json());
+}

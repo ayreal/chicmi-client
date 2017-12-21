@@ -16,16 +16,16 @@ import CommentCard from "../components/CommentCard";
 // IF i go to a URL/refresh, check to see if there is a currentEvent in the redux store. If not, do a fetch
 
 class EventShow extends Component {
+  state = {
+    comment: ""
+  };
+
   componentDidMount() {
     const slug = this.props.match.params.slug;
     if (!this.props.loggedIn) {
       this.props.fetchEventBySlug(slug);
     }
   }
-
-  isUserEvent = myEvent => {
-    return myEvent.id === this.props.currentEvent.id;
-  };
 
   handleRemove = () => {
     // debugger;
@@ -34,6 +34,34 @@ class EventShow extends Component {
 
   handleAdd = () => {
     this.props.fetchAddEvent(this.props.user.id, this.props.currentEvent);
+  };
+
+  handleChangeComment = e => {
+    this.setState({
+      comment: e.target.value
+    });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    let userId;
+    if (this.props.loggedIn) {
+      userId = this.props.user.id;
+    } else {
+      userId = 8;
+    }
+    this.props.fetchAddComment(
+      userId,
+      this.props.currentEvent.id,
+      this.state.comment
+    );
+    this.setState({
+      comment: ""
+    });
+  };
+
+  isUserEvent = myEvent => {
+    return myEvent.id === this.props.currentEvent.id;
   };
 
   renderShowAttending = () => {
@@ -82,17 +110,20 @@ class EventShow extends Component {
           </Header>
 
           {this.props.comments.map(comment => (
-            <CommentCard key={comment.id} data={comment} />
+            <CommentCard
+              key={comment.id}
+              data={comment}
+              loggedIn={this.props.loggedIn}
+              currentUser={this.props.user}
+            />
           ))}
 
-          <Form reply>
-            <Form.TextArea />
-            <Button
-              content="Add Reply"
-              labelPosition="left"
-              icon="edit"
-              primary
+          <Form reply onSubmit={this.handleSubmit}>
+            <Form.TextArea
+              value={this.state.comment}
+              onChange={this.handleChangeComment}
             />
+            <Button content="Comment" labelPosition="left" icon="edit" />
           </Form>
         </Comment.Group>
       );

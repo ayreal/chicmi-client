@@ -87,3 +87,13 @@ export const fetchEventBySlug = slug => {
     });
   };
 };
+
+export const fetchAddComment = (userId, eventId, comment) => {
+  return dispatch => {
+    console.log("Inside action fetchCreateEvent");
+    dispatch({ type: ASYNC_START });
+    adapter.fetchAddComment(userId, eventId, comment).then(result => {
+      dispatch({ type: SET_CURRENT_EVENT, event: result });
+    });
+  };
+};
