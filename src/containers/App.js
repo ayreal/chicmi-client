@@ -18,6 +18,7 @@ class App extends Component {
     console.log("%c >> Inside render App \n", "color: #bada55");
     console.log("USER ID: ", this.props.userId);
     console.log("LOGGED IN: ", this.props.loggedIn);
+    console.log("PROPS: ", this.props);
     console.log("---------------------");
     return (
       <div className="App">

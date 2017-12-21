@@ -36,7 +36,7 @@ export function fetchAddEvent(userId, event) {
 }
 
 export function fetchCreateEvent(event) {
-  return fetch(`${ROUTE}/new_event`, {
+  return fetch(`${ROUTE}/get_event`, {
     method: "POST",
     headers: headers,
     body: JSON.stringify({ event: event })
@@ -53,6 +53,7 @@ export function fetchDeleteEvent(userId, eventId) {
 }
 
 export function fetchEventBySlug(slug) {
+  console.log("hit event by slug", slug);
   return fetch(`${ROUTE}/get_event`, {
     method: "POST",
     headers: headers,

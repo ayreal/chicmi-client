@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Card, Icon, Image, Button } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 
@@ -11,9 +11,9 @@ class EventCard extends Component {
   };
 
   handleClick = () => {
+    // dispatch an action that goes to the event show page based on the slug
     // debugger;
     this.props.fetchCreateEvent(this.props.data);
-    // this.props.fetchAddEvent(this.props.user.id, this.props.data);
   };
 
   isUserEvent = event => {
@@ -66,4 +66,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, actions)(EventCard);
+export default withRouter(connect(mapStateToProps, actions)(EventCard));

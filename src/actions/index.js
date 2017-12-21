@@ -7,6 +7,8 @@ import {
 } from "./types";
 import * as adapter from "../services/adapter";
 
+// AUTH
+
 export function fetchProfile(data, history) {
   return dispatch => {
     console.log("Inside action fetchProfile, history is", history);
@@ -36,6 +38,7 @@ export const logoutUser = () => {
   return { type: LOGOUT_USER };
 };
 
+// GET EVENTS FROM EXTERNAL API
 export const fetchRemoteEvents = () => {
   return dispatch => {
     console.log("Inside action fetchRemoteEvents");
@@ -46,7 +49,7 @@ export const fetchRemoteEvents = () => {
   };
 };
 
-//
+// ADD EVENT TO A USER'S EVENTS
 
 export const fetchAddEvent = (userId, event) => {
   return dispatch => {
@@ -57,6 +60,8 @@ export const fetchAddEvent = (userId, event) => {
     });
   };
 };
+
+// REMOVE EVENT FROM A USER'S EVENTS
 
 export const fetchDeleteEvent = (userId, externalEventId) => {
   return dispatch => {
@@ -69,6 +74,7 @@ export const fetchDeleteEvent = (userId, externalEventId) => {
 };
 
 export const fetchCreateEvent = event => {
+  // debugger;
   return dispatch => {
     console.log("Inside action fetchCreateEvent");
     dispatch({ type: ASYNC_START });
@@ -80,9 +86,10 @@ export const fetchCreateEvent = event => {
 
 export const fetchEventBySlug = slug => {
   return dispatch => {
-    console.log("Inside action fetchCreateEvent");
+    console.log("Inside action fetchCreateEvent", slug);
     dispatch({ type: ASYNC_START });
     adapter.fetchEventBySlug(slug).then(result => {
+      // debugger;
       dispatch({ type: SET_CURRENT_EVENT, event: result });
     });
   };
