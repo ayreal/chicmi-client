@@ -12,10 +12,12 @@ class EventShow extends Component {
     slug: ""
   };
 
-  // componentDidMount() {
-  //   const slug = this.props.match.params.slug;
-  //   this.setState({ slug: slug });
-  // }
+  componentDidMount() {
+    const slug = this.props.match.params.slug;
+    if (!this.props.loggedIn) {
+      this.props.fetchEventBySlug(slug);
+    }
+  }
 
   // componentWillReceiveProps(nextProps) {
   //   const slug = this.props.match.params.slug;
@@ -26,14 +28,14 @@ class EventShow extends Component {
   //   }
   // }
 
-  componentWillReceiveProps(nextProps) {
-    if (!this.props.loggedIn) {
-      const slug = this.props.match.params.slug;
-      // this.setState({ slug: slug });
-      // debugger;
-      this.props.fetchEventBySlug(slug);
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (!this.props.loggedIn) {
+  //     const slug = this.props.match.params.slug;
+  //     // this.setState({ slug: slug });
+  //     // debugger;
+  //     this.props.fetchEventBySlug(slug);
+  //   }
+  // }
 
   // findEvent = props => {
   //

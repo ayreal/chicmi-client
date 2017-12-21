@@ -83,7 +83,6 @@ export const fetchEventBySlug = slug => {
     console.log("Inside action fetchCreateEvent");
     dispatch({ type: ASYNC_START });
     adapter.fetchEventBySlug(slug).then(result => {
-      debugger;
       dispatch({ type: SET_CURRENT_EVENT, event: result });
     });
   };
