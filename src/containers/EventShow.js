@@ -10,6 +10,7 @@ import {
   Comment,
   Form
 } from "semantic-ui-react";
+import CommentCard from "../components/CommentCard";
 
 // IF I click on an event card, the event is persisted, redux store state is set and I'm taken to the show Page
 // IF i go to a URL/refresh, check to see if there is a currentEvent in the redux store. If not, do a fetch
@@ -80,7 +81,9 @@ class EventShow extends Component {
             Comments
           </Header>
 
-          {this.props.comments.map(comment => <Comment key={comment.id} />)}
+          {this.props.comments.map(comment => (
+            <CommentCard key={comment.id} data={comment} />
+          ))}
 
           <Form reply>
             <Form.TextArea />
