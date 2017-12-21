@@ -73,7 +73,10 @@ export const fetchDeleteEvent = (userId, externalEventId) => {
   };
 };
 
-export const fetchCreateEvent = event => {
+// PERSIST AN EVENT TO MY API
+
+export const fetchCreateEvent = (event, history) => {
+  //
   // debugger;
   return dispatch => {
     console.log("Inside action fetchCreateEvent");
@@ -82,6 +85,7 @@ export const fetchCreateEvent = event => {
       dispatch({ type: SET_CURRENT_EVENT, event: result });
     });
   };
+  history.push(`/events/${event.slug}`);
 };
 
 export const fetchEventBySlug = slug => {
