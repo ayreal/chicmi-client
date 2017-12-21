@@ -1,20 +1,17 @@
 import React from "react";
 import { Comment } from "semantic-ui-react";
 
-const CommentCard = () => {
+const CommentCard = props => {
   console.log("%c ... rendering Comment \n", "color: #42dff4");
   return (
     <Comment>
       <Comment.Avatar src="https://steemit-production-imageproxy-thumbnail.s3.amazonaws.com/U5dtbmo5eTa4c8T9FJukpS2y1xgpYwo_1680x8400" />
       <Comment.Content>
-        <Comment.Author as="a">Matt</Comment.Author>
+        <Comment.Author as="a">{props.data.user_id}</Comment.Author>
         <Comment.Metadata>
-          <div>Today at 5:42PM</div>
+          <div>{props.data.created_at}</div>
         </Comment.Metadata>
-        <Comment.Text>How artistic!</Comment.Text>
-        <Comment.Actions>
-          <Comment.Action>Reply</Comment.Action>
-        </Comment.Actions>
+        <Comment.Text>{props.data.text}</Comment.Text>
       </Comment.Content>
     </Comment>
   );
