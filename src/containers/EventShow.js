@@ -88,42 +88,38 @@ class EventShow extends Component {
   };
 
   renderEvent = () => {
-    return (
-      <div>
-        This is {this.props.currentEvent.event_name_en}{" "}
-        {this.props.loggedIn ? this.renderShowAttending() : null}
-      </div>
-    );
+    return <div>{this.props.loggedIn ? this.renderShowAttending() : null}</div>;
   };
 
   renderComments = () => {
-    if (this.props.comments.length > 0) {
-      console.log("%c ... rendering Comments \n", "color: #42dff4");
-      return (
-        <Comment.Group>
-          <Header as="h3" dividing>
-            Comments
-          </Header>
+    return (
+      <Comment.Group>
+        <Header as="h3" dividing>
+          Comments
+        </Header>
 
-          {this.props.comments.map(comment => (
-            <CommentCard
-              key={comment.id}
-              data={comment}
-              loggedIn={this.props.loggedIn}
-              currentUser={this.props.user}
-            />
-          ))}
+        {this.props.comments.length > 0
+          ? null
+          : "There are no comments yet. Be the first!"}
 
-          <Form reply onSubmit={this.handleSubmit}>
-            <Form.TextArea
-              value={this.state.comment}
-              onChange={this.handleChangeComment}
-            />
-            <Button content="Comment" labelPosition="left" icon="edit" />
-          </Form>
-        </Comment.Group>
-      );
-    }
+        {this.props.comments.map(comment => (
+          <CommentCard
+            key={comment.id}
+            data={comment}
+            loggedIn={this.props.loggedIn}
+            currentUser={this.props.user}
+          />
+        ))}
+
+        <Form reply onSubmit={this.handleSubmit}>
+          <Form.TextArea
+            value={this.state.comment}
+            onChange={this.handleChangeComment}
+          />
+          <Button content="Comment" labelPosition="left" icon="edit" />
+        </Form>
+      </Comment.Group>
+    );
   };
 
   render() {
@@ -133,7 +129,7 @@ class EventShow extends Component {
     console.log("----------------------- \n");
     return (
       <Container style={{ marginTop: "7em" }}>
-        <Header as="h1">Sample Sale Show Page</Header>
+        <Header as="h1">{this.props.currentEvent.event_name_en}</Header>
 
         {this.renderEvent()}
 
