@@ -4,7 +4,8 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 
 const style = {
   width: "100%",
-  height: "100%"
+  height: "100%",
+  position: "relative"
 };
 export class MapContainer extends Component {
   render() {
@@ -13,7 +14,16 @@ export class MapContainer extends Component {
     console.log("----------------------- \n");
 
     return (
-      <Map google={this.props.google} zoom={14} style={style}>
+      <Map
+        className={"map"}
+        google={this.props.google}
+        zoom={14}
+        style={style}
+        initialCenter={{
+          lat: 40.7433809,
+          lng: -73.9912899
+        }}
+      >
         {this.props.events.map(myEvent => (
           <Marker
             key={myEvent.id}
