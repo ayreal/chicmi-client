@@ -7,7 +7,7 @@ const CommentCard = props => {
     <Comment>
       <Comment.Avatar src="https://steemit-production-imageproxy-thumbnail.s3.amazonaws.com/U5dtbmo5eTa4c8T9FJukpS2y1xgpYwo_1680x8400" />
       <Comment.Content>
-        <Comment.Author as="a">{props.data.user_id}</Comment.Author>
+        <Comment.Author as="a">{props.data.name}</Comment.Author>
         <Comment.Metadata>
           <div>{props.data.created_at}</div>
         </Comment.Metadata>

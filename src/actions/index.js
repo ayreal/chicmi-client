@@ -100,6 +100,8 @@ export const fetchAddComment = (userId, eventId, comment) => {
     console.log("Inside action fetchAddComment");
     dispatch({ type: ASYNC_START });
     adapter.fetchAddComment(userId, eventId, comment).then(result => {
+      // debugger;
+      console.log("FETCH ADDCOMMENTRESULT,", result);
       dispatch({ type: SET_CURRENT_EVENT, event: result });
     });
   };
