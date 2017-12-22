@@ -7,6 +7,10 @@ const style = {
 };
 export class MapContainer extends Component {
   render() {
+    console.log("%c Inside render MapContainer \n", "color: #bada55");
+    console.log("PROPS: ", this.props);
+    console.log("----------------------- \n");
+
     return (
       <Map google={this.props.google} zoom={14} style={style}>
         <Marker onClick={this.onMarkerClick} name={"Current location"} />

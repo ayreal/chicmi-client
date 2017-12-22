@@ -85,12 +85,11 @@ export const fetchCreateEvent = (event, history) => {
       dispatch({ type: SET_CURRENT_EVENT, event: result });
     });
   };
-  history.push(`/events/${event.slug}`);
 };
 
 export const fetchEventBySlug = slug => {
   return dispatch => {
-    console.log("Inside action fetchCreateEvent", slug);
+    console.log("Inside action fetchEventBySlug", slug);
     dispatch({ type: ASYNC_START });
     adapter.fetchEventBySlug(slug).then(result => {
       // debugger;
@@ -101,7 +100,7 @@ export const fetchEventBySlug = slug => {
 
 export const fetchAddComment = (userId, eventId, comment) => {
   return dispatch => {
-    console.log("Inside action fetchCreateEvent");
+    console.log("Inside action fetchAddComment");
     dispatch({ type: ASYNC_START });
     adapter.fetchAddComment(userId, eventId, comment).then(result => {
       dispatch({ type: SET_CURRENT_EVENT, event: result });

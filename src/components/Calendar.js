@@ -33,7 +33,7 @@ class Calendar extends Component {
           month: true,
           week: true
         }}
-        defaultView={"week"}
+        defaultView={"month"}
         step={60}
         defaultDate={new Date()}
         onSelectEvent={this.handleClick}
