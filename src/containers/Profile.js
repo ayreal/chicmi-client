@@ -5,6 +5,7 @@ import { Container, Header, Card } from "semantic-ui-react";
 import withAuth from "../hocs/withAuth";
 import EventCard from "./EventCard";
 import Calendar from "../components/Calendar";
+import MapContainer from "./MapContainer";
 
 class Profile extends Component {
   state = {
@@ -38,6 +39,9 @@ class Profile extends Component {
         <p>Welcome, {this.props.user.name}! Some text here.</p>
 
         <h2>Events I'm Attending</h2>
+        <Container>
+          <MapContainer events={this.props.user.events} />
+        </Container>
         <Card.Group itemsPerRow={3}>
           {this.props.user.events.map(event => (
             <EventCard key={event.id} data={event} />
