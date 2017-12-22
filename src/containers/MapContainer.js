@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
+// import { Container } from "semantic-ui-react";
 
 const style = {
-  width: "50%",
-  height: "50%"
+  width: "100%",
+  height: "100%"
 };
 export class MapContainer extends Component {
   render() {
@@ -13,11 +14,18 @@ export class MapContainer extends Component {
 
     return (
       <Map google={this.props.google} zoom={14} style={style}>
-        <Marker onClick={this.onMarkerClick} name={"Current location"} />
-
-        <InfoWindow onClose={this.onInfoWindowClose}>
-          <div />
-        </InfoWindow>
+        {this.props.events.map(myEvent => (
+          <Marker
+            key={myEvent.id}
+            title={myEvent.event_name_en}
+            name={myEvent.event_name_en}
+            position={{
+              lat: myEvent.latitude,
+              lng: myEvent.longitude
+            }}
+          />
+        ))}
+        <InfoWindow onClose={this.onInfoWindowClose} />
       </Map>
     );
   }
