@@ -4,10 +4,11 @@ import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import { logoutUser } from "../actions";
 import { Container, Image, Menu, Button, Icon } from "semantic-ui-react";
+import SearchBarWrapper from "./SearchBarWrapper";
 import logo from "../logo.svg";
 
 class Navbar extends Component {
-  renderProfile = props => {
+  renderProfileLink = props => {
     if (this.props.loggedIn) {
       return (
         <Menu.Item as={Link} to="/profile">
@@ -23,7 +24,7 @@ class Navbar extends Component {
     }
   };
 
-  renderLogout = props => {
+  renderLogoutLink = props => {
     if (this.props.loggedIn) {
       return (
         <Menu.Item>
@@ -52,8 +53,11 @@ class Navbar extends Component {
           <Menu.Item as={Link} to="/">
             Home
           </Menu.Item>
-          {this.renderProfile()}
-          {this.renderLogout()}
+          <Menu.Item>
+            <SearchBarWrapper />
+          </Menu.Item>
+          {this.renderProfileLink()}
+          {this.renderLogoutLink()}
         </Container>
       </Menu>
     );
