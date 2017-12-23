@@ -15,6 +15,14 @@ export function loginUser(data) {
   }).then(res => res.json());
 }
 
+export function signupUser(data) {
+  return fetch(`${ROUTE}/signup`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify(data)
+  }).then(res => res.json());
+}
+
 export function fetchCurrentUser() {
   return fetch(`${ROUTE}/current_user`, {
     method: "POST",

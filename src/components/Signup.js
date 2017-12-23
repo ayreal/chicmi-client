@@ -26,7 +26,7 @@ class Signup extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.fetchProfile(this.state, this.props.history);
+    this.props.signupUser(this.state, this.props.history);
   };
 
   handleChange = e => {
@@ -35,9 +35,6 @@ class Signup extends Component {
   };
 
   render() {
-    console.log("%c >> Inside render Signup \n", "color: #bada55");
-    console.log("---------------------");
-
     return (
       <Container style={{ marginTop: "7em" }}>
         <Header as="h1">Signup</Header>
@@ -47,6 +44,13 @@ class Signup extends Component {
             name="name"
             placeholder="Your Name"
             value={this.state.name}
+            onChange={this.handleChange}
+          />
+          <Input
+            type="password"
+            name="password"
+            placeholder="Choose a password"
+            value={this.state.password}
             onChange={this.handleChange}
           />
           <Input

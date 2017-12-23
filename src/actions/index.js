@@ -9,6 +9,20 @@ import * as adapter from "../services/adapter";
 
 // AUTH
 
+export function signupUser(data, history) {
+  return dispatch => {
+    console.log("inside actions/functions, signupUser");
+    console.log("--------------------------------------");
+
+    adapter.signupUser(data).then(user => {
+      console.log("response from signup is: ", user);
+      localStorage.setItem("token", user.token);
+      dispatch({ type: LOGIN_USER, user: user });
+      history.push("/");
+    });
+  };
+}
+
 export function fetchProfile(data, history) {
   return dispatch => {
     console.log("Inside action fetchProfile, history is", history);
