@@ -130,7 +130,7 @@ class EventShow extends Component {
     return (
       <Container style={{ marginTop: "7em" }}>
         <Header as="h1">{this.props.currentEvent.event_name_en}</Header>
-
+        <Header as="h2">{this.props.attending} attending.</Header>
         {this.renderEvent()}
 
         {this.renderComments()}
@@ -144,7 +144,8 @@ const mapStateToProps = state => {
     user: state.currentUser,
     userEvents: state.currentUser.events,
     currentEvent: state.currentEvent,
-    comments: state.currentEvent.comments
+    comments: state.currentEvent.comments,
+    attending: state.currentEvent.attending
   };
 };
 export default withRouter(connect(mapStateToProps, actions)(EventShow));
