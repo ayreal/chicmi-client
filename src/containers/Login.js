@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { Container, Header, Form, Input, Button } from "semantic-ui-react";
 import * as actions from "../actions";
 
@@ -43,6 +43,8 @@ class Login extends Component {
           />
           <Button type="submit">Login</Button>
         </Form>
+
+        <Link to="/signup">Signup</Link>
       </Container>
     );
   }

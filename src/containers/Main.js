@@ -4,6 +4,7 @@ import { Route } from "react-router-dom";
 import * as actions from "../actions";
 import Events from "./Events";
 import Login from "./Login";
+import Signup from "../components/Signup";
 import Profile from "./Profile";
 import EventShow from "./EventShow";
 
@@ -25,6 +26,7 @@ class Main extends Component {
       <div className="Main">
         <Route exact path="/" component={Events} />
         <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
         <Route path="/profile" component={Profile} />
         <Route
           path="/events/:slug"
