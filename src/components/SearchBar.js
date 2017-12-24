@@ -6,6 +6,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchCreateEvent } from "../actions";
 
+// the error here is from a static router?
+
 class SearchBar extends Component {
   componentWillMount() {
     this.resetComponent();

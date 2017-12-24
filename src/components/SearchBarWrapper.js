@@ -4,7 +4,9 @@ import { Label } from "semantic-ui-react";
 
 import SearchBar from "./SearchBar";
 
-const resultRenderer = ({ event_name_en }) => <Label content={event_name_en} />;
+const resultRenderer = ({ event_name_en, event_id }) => (
+  <Label key={event_id} content={event_name_en} />
+);
 
 resultRenderer.propTypes = {
   event_name_en: PropTypes.string,
