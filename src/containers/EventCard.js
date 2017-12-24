@@ -6,14 +6,8 @@ import * as actions from "../actions";
 import moment from "moment";
 
 class EventCard extends Component {
-  parseDate = utcString => {
-    // write this
-    debugger;
-  };
-
   handleClick = () => {
     // dispatch an action that goes to the event show page based on the slug
-    // debugger;
     this.props.fetchCreateEvent(this.props.data, this.props.history);
   };
 
@@ -22,7 +16,6 @@ class EventCard extends Component {
   };
 
   renderShowAttending = () => {
-    // debugger;
     if (this.props.user.events.find(this.isUserEvent)) {
       return (
         <Button icon labelPosition="right">
