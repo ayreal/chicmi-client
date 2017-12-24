@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { Search, Grid } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
