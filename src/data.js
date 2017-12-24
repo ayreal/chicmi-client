@@ -1,11 +1,4 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import * as actions from "../actions";
-import { Container, Header, Card } from "semantic-ui-react";
-import EventCard from "./EventCard";
-
-// remove hardcode data later
-const EVENTS = [
+const events = [
   {
     address_business_name: "The Museum at FIT",
     address_street_1: "7th Avenue at 27 Street",
@@ -190,36 +183,3 @@ const EVENTS = [
     event_logo_url: "https://d3e5kk0afz85hq.cloudfront.net/4302-logo.jpg"
   }
 ];
-
-class Events extends Component {
-  renderEvents = () => {
-    return EVENTS.map(event => {
-      return <EventCard key={event.event_id} data={event} />;
-    });
-  };
-
-  render() {
-    console.log("%c >> Inside render Events \n", "color: #bada55");
-    console.log("PROPS: ", this.props);
-    console.log("PROPS EVENTS LENGTH:", this.props.events.length);
-    console.log("----------------------- \n");
-    return (
-      <Container style={{ marginTop: "7em" }}>
-        <Header as="h1">This Week's Sample Sales</Header>
-        <p>Some text here.</p>
-        <Card.Group itemsPerRow={3}>
-          {this.props.events ? this.renderEvents() : null}
-        </Card.Group>
-      </Container>
-    );
-  }
-}
-
-const mapStateToProps = state => {
-  return {
-    user: state.currentUser,
-    events: state.events
-  };
-};
-
-export default connect(mapStateToProps, actions)(Events);
