@@ -8,7 +8,8 @@ import {
   Button,
   Icon,
   Comment,
-  Form
+  Form,
+  Statistic
 } from "semantic-ui-react";
 import CommentCard from "../components/CommentCard";
 
@@ -130,7 +131,15 @@ class EventShow extends Component {
     return (
       <Container style={{ marginTop: "7em" }}>
         <Header as="h1">{this.props.currentEvent.event_name_en}</Header>
-        <Header as="h2">{this.props.attending} attending.</Header>
+
+        <Statistic color="grey">
+          <Statistic.Value>
+            <Icon name="check" />
+            {this.props.attending}
+          </Statistic.Value>
+          <Statistic.Label>attending</Statistic.Label>
+        </Statistic>
+
         {this.renderEvent()}
 
         {this.renderComments()}

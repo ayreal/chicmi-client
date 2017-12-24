@@ -3,6 +3,7 @@ import { Card, Icon, Image, Button } from "semantic-ui-react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
+import moment from "moment";
 
 class EventCard extends Component {
   parseDate = utcString => {
@@ -40,7 +41,11 @@ class EventCard extends Component {
         <Image src={this.props.data.event_hero_url} />
         <Card.Content>
           <Card.Header>{this.props.data.event_name_en}</Card.Header>
-          <Card.Meta>{this.props.data.start_date}</Card.Meta>
+          <Card.Meta>
+            {moment(new Date(this.props.data.start_date)).format(
+              "dddd, MMMM Do"
+            )}
+          </Card.Meta>
         </Card.Content>
         {this.props.loggedIn ? this.renderShowAttending() : null}
 
