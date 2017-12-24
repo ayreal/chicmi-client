@@ -89,12 +89,13 @@ export const fetchDeleteEvent = (userId, externalEventId) => {
 
 // PERSIST AN EVENT TO MY API
 
-export const fetchCreateEvent = event => {
+export const fetchCreateEvent = (event, history) => {
   return dispatch => {
     console.log("Inside action fetchCreateEvent");
     dispatch({ type: ASYNC_START });
     adapter.fetchCreateEvent(event).then(result => {
       dispatch({ type: SET_CURRENT_EVENT, event: result });
+      history.push(`events/${result.slug}`);
     });
   };
 };

@@ -1,8 +1,10 @@
 import _ from "lodash";
 import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
 import { Search, Grid } from "semantic-ui-react";
 import { connect } from "react-redux";
-import * as actions from "../actions";
+import { bindActionCreators } from "redux";
+import { fetchCreateEvent } from "../actions";
 
 class SearchBar extends Component {
   componentWillMount() {
@@ -12,12 +14,12 @@ class SearchBar extends Component {
   resetComponent = () =>
     this.setState({ isLoading: false, results: [], value: "" });
 
-  handleResultSelect = (e, { result }) =>
-    this.setState({ value: result.event_name_en });
+  handleResultSelect = (e, { result }) => {
+    this.setState({ value: "" });
+    this.props.fetchCreateEvent(result, this.props.history);
+  };
 
   handleSearchChange = (e, { value }) => {
-    console.log("EVENTS in search change handler: ", this.props.events);
-    console.log("STATE in search change handler: ", this.state);
     this.setState({ isLoading: true, value });
 
     setTimeout(() => {
@@ -35,6 +37,7 @@ class SearchBar extends Component {
 
   render() {
     const { isLoading, value, results } = this.state;
+    console.log("PROPS in searchbar: ", this.props);
 
     return (
       <Grid>
@@ -58,4 +61,16 @@ const mapStateToProps = state => {
     events: state.events
   };
 };
-export default connect(mapStateToProps, null)(SearchBar);
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      fetchCreateEvent: fetchCreateEvent
+    },
+    dispatch
+  );
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(SearchBar)
+);
