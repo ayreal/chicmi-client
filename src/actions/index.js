@@ -95,7 +95,7 @@ export const fetchCreateEvent = (event, history) => {
     dispatch({ type: ASYNC_START });
     adapter.fetchCreateEvent(event).then(result => {
       dispatch({ type: SET_CURRENT_EVENT, event: result });
-      history.push(`events/${result.slug}`);
+      history.push(`${result.slug}`);
     });
   };
 };

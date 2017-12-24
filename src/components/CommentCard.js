@@ -5,7 +5,7 @@ const CommentCard = props => {
   console.log("%c ... rendering Comment \n", "color: #42dff4");
   return (
     <Comment>
-      <Comment.Avatar src="https://steemit-production-imageproxy-thumbnail.s3.amazonaws.com/U5dtbmo5eTa4c8T9FJukpS2y1xgpYwo_1680x8400" />
+      <Comment.Avatar src={props.data.photo} />
       <Comment.Content>
         <Comment.Author as="a">{props.data.name}</Comment.Author>
         <Comment.Metadata>
