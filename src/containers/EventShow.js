@@ -4,6 +4,9 @@ import * as actions from "../actions";
 import { withRouter } from "react-router-dom";
 import {
   Container,
+  Grid,
+  Image,
+  Segment,
   Header,
   Button,
   Icon,
@@ -69,16 +72,26 @@ class EventShow extends Component {
     // if the currentEvent is also a userEvent
     if (this.props.userEvents.find(this.isUserEvent)) {
       return (
-        <Button animated onClick={this.handleRemove}>
+        <Button
+          animated
+          onClick={this.handleRemove}
+          size="small"
+          textAlign="center"
+        >
           <Button.Content visible>I'm Going</Button.Content>
           <Button.Content hidden>
-            <Icon name="cancel" /> Remove From My Events
+            <Icon name="cancel" />
           </Button.Content>
         </Button>
       );
     } else {
       return (
-        <Button animated onClick={this.handleAdd}>
+        <Button
+          animated
+          onClick={this.handleAdd}
+          size="small"
+          textAlign="center"
+        >
           <Button.Content visible>Add To My Events</Button.Content>
           <Button.Content hidden>
             <Icon name="check" />
@@ -96,7 +109,7 @@ class EventShow extends Component {
     return (
       <Comment.Group>
         <Header as="h3" dividing>
-          Comments
+          People Are Saying...
         </Header>
 
         {this.props.comments.length > 0
@@ -129,21 +142,48 @@ class EventShow extends Component {
     console.log("COMMENTS: ", this.props.comments);
     console.log("----------------------- \n");
     return (
-      <Container style={{ marginTop: "7em" }}>
-        <Header as="h1">{this.props.currentEvent.event_name_en}</Header>
+      <Grid
+        container
+        stackable
+        verticalAlign="middle"
+        columns={2}
+        divided
+        style={{ marginTop: "7em" }}
+      >
+        <Grid.Row>
+          <Grid.Column floated="right" width={6}>
+            <Image size="huge" src={this.props.currentEvent.event_hero_url} />
+          </Grid.Column>
+          <Grid.Column width={8}>
+            <Header as="h1">{this.props.currentEvent.event_name_en}</Header>
+            {this.renderEvent()}
 
-        <Statistic color="grey">
-          <Statistic.Value>
-            <Icon name="check" />
-            {this.props.attending}
-          </Statistic.Value>
-          <Statistic.Label>attending</Statistic.Label>
-        </Statistic>
+            <p style={{ fontSize: "1.33em" }}>
+              We can give your company superpowers to do things that they never
+              thought possible. Let us delight your customers and empower your
+              needs... through pure data analytics.
+            </p>
+            <Header as="h3" style={{ fontSize: "2em" }}>
+              We Make Bananas That Can Dance
+            </Header>
+            <p style={{ fontSize: "1.33em" }}>
+              Yes that's right, you thought it was the stuff of dreams, but even
+              bananas can be bioengineered.
+            </p>
+            <Statistic color="grey">
+              <Statistic.Value>
+                <Icon name="check" />
+                {this.props.attending}
+              </Statistic.Value>
+              <Statistic.Label>attending</Statistic.Label>
+            </Statistic>
+          </Grid.Column>
+        </Grid.Row>
 
-        {this.renderEvent()}
-
-        {this.renderComments()}
-      </Container>
+        <Grid.Row centered>
+          <Grid.Column>{this.renderComments()}</Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   }
 }

@@ -7,6 +7,10 @@ BigCalendar.momentLocalizer(moment);
 
 // let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k]);
 
+// moment(new Date(event.start_date)).format(
+//   "dddd, MMMM Do"
+// )
+
 class Calendar extends Component {
   parseUserEventsForCalendar = props => {
     return this.props.events.map(event => {
