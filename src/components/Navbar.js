@@ -3,7 +3,14 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import { logoutUser } from "../actions";
-import { Container, Image, Menu, Button, Icon } from "semantic-ui-react";
+import {
+  Container,
+  Image,
+  Menu,
+  Button,
+  Icon,
+  Segment
+} from "semantic-ui-react";
 import SearchBarWrapper from "./SearchBarWrapper";
 import logo from "../logo.svg";
 
@@ -26,11 +33,7 @@ class Navbar extends Component {
 
   renderLogoutLink = props => {
     if (this.props.loggedIn) {
-      return (
-        <Menu.Item>
-          <Button onClick={this.handleLogout}>Logout</Button>
-        </Menu.Item>
-      );
+      return <Menu.Item onClick={this.handleLogout}>Logout</Menu.Item>;
     } else {
       return null;
     }
@@ -44,20 +47,19 @@ class Navbar extends Component {
 
   render() {
     return (
-      <Menu fixed="top">
+      <Menu inverted borderless fixed="top">
         <Container>
-          <Menu.Item as="a" header>
+          <Menu.Item as={Link} to="/" header>
             <Image size="mini" src={logo} style={{ marginRight: "1.5em" }} />
             ChicMi
           </Menu.Item>
-          <Menu.Item as={Link} to="/">
-            Home
-          </Menu.Item>
-          <Menu.Item>
-            <SearchBarWrapper />
-          </Menu.Item>
-          {this.renderProfileLink()}
-          {this.renderLogoutLink()}
+          <Menu.Menu position="right">
+            <Menu.Item>
+              <SearchBarWrapper />
+            </Menu.Item>
+            {this.renderProfileLink()}
+            {this.renderLogoutLink()}
+          </Menu.Menu>
         </Container>
       </Menu>
     );

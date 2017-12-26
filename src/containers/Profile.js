@@ -34,7 +34,7 @@ class Profile extends Component {
     console.log("----------------------- \n");
 
     return (
-      <Container text style={{ marginTop: "7em" }}>
+      <Container style={{ marginTop: "7em" }}>
         <Header as="h1">Profile</Header>
         <p>Welcome, {this.props.user.name}! Some text here.</p>
 

@@ -45,6 +45,7 @@ class SearchBar extends Component {
       <Grid>
         <Grid.Column width={8}>
           <Search
+            placeholder="Search All Sample Sales"
             loading={isLoading}
             onResultSelect={this.handleResultSelect}
             onSearchChange={this.handleSearchChange}

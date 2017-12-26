@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actions from "../actions";
 import { withRouter } from "react-router-dom";
+import * as actions from "../actions";
+import moment from "moment";
+import CommentCard from "../components/CommentCard";
 import {
   Container,
   Grid,
@@ -14,7 +16,6 @@ import {
   Form,
   Statistic
 } from "semantic-ui-react";
-import CommentCard from "../components/CommentCard";
 
 // IF I click on an event card, the event is persisted, redux store state is set and I'm taken to the show Page
 // IF i go to a URL/refresh, check to see if there is a currentEvent in the redux store. If not, do a fetch
@@ -151,25 +152,27 @@ class EventShow extends Component {
         style={{ marginTop: "7em" }}
       >
         <Grid.Row>
-          <Grid.Column floated="right" width={6}>
+          <Grid.Column floated="right" width={8}>
             <Image size="huge" src={this.props.currentEvent.event_hero_url} />
           </Grid.Column>
           <Grid.Column width={8}>
             <Header as="h1">{this.props.currentEvent.event_name_en}</Header>
             {this.renderEvent()}
 
-            <p style={{ fontSize: "1.33em" }}>
-              We can give your company superpowers to do things that they never
-              thought possible. Let us delight your customers and empower your
-              needs... through pure data analytics.
+            <p>
+              <strong>Starts:</strong>{" "}
+              {moment(new Date(this.props.currentEvent.start_date)).format(
+                "dddd, MMMM Do"
+              )}
             </p>
-            <Header as="h3" style={{ fontSize: "2em" }}>
-              We Make Bananas That Can Dance
-            </Header>
-            <p style={{ fontSize: "1.33em" }}>
-              Yes that's right, you thought it was the stuff of dreams, but even
-              bananas can be bioengineered.
+            <p>
+              <strong>Ends:</strong>{" "}
+              {moment(new Date(this.props.currentEvent.end_date)).format(
+                "dddd, MMMM Do"
+              )}
             </p>
+
+            <p>{this.props.currentEvent.summary}</p>
             <Statistic color="grey">
               <Statistic.Value>
                 <Icon name="check" />

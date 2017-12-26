@@ -16,7 +16,7 @@ class Calendar extends Component {
     return this.props.events.map(event => {
       let newEvent = { ...event };
       newEvent.title = event.event_name_en;
-      // newEvent.allDay = true;
+      newEvent.allDay = false;
       newEvent.start = new Date(event.start_date);
       newEvent.end = new Date(event.end_date);
       return newEvent;
