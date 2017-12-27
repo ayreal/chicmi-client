@@ -69,8 +69,9 @@ export const fetchAddEvent = (userId, event) => {
   return dispatch => {
     console.log("Inside action fetchAddEvent");
     dispatch({ type: ASYNC_START });
-    adapter.fetchAddEvent(userId, event).then(result => {
-      dispatch({ type: LOGIN_USER, user: result });
+    adapter.fetchAddEvent(userId, event).then(payload => {
+      dispatch({ type: LOGIN_USER, user: payload.user });
+      dispatch({ type: SET_CURRENT_EVENT, event: payload.currentEvent });
     });
   };
 };
@@ -81,8 +82,9 @@ export const fetchDeleteEvent = (userId, externalEventId) => {
   return dispatch => {
     console.log("Inside action fetchDeleteEvent");
     dispatch({ type: ASYNC_START });
-    adapter.fetchDeleteEvent(userId, externalEventId).then(result => {
-      dispatch({ type: LOGIN_USER, user: result });
+    adapter.fetchDeleteEvent(userId, externalEventId).then(payload => {
+      dispatch({ type: LOGIN_USER, user: payload.user });
+      dispatch({ type: SET_CURRENT_EVENT, event: payload.currentEvent });
     });
   };
 };
