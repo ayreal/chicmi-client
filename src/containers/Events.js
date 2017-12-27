@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions";
-import { Container, Header, Card, Segment } from "semantic-ui-react";
+import { Container, Header, Card, Segment, Grid } from "semantic-ui-react";
 import EventCard from "./EventCard";
 import splash from "../images/splashtest.png";
 
@@ -221,7 +221,9 @@ class Events extends Component {
                 fontSize: "4em",
                 fontWeight: "normal",
                 marginBottom: 0,
-                marginTop: "3em"
+                marginTop: "3em",
+                background:
+                  "url(/Users/ariel/dev/labs/chicmi/chicmi-client/src/images/splashtest.png) no-repeat center"
               }}
             />
             <Header
@@ -232,6 +234,7 @@ class Events extends Component {
             />
           </Container>
         </Segment>
+
         <Container>
           <Header as="h1">This Week's Sample Sales</Header>
           <p>Some text here.</p>

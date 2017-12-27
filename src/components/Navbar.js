@@ -58,6 +58,9 @@ class Navbar extends Component {
               <SearchBarWrapper />
             </Menu.Item>
             {this.renderProfileLink()}
+            <Menu.Item as="a">
+              <Icon name="star" />
+            </Menu.Item>
             {this.renderLogoutLink()}
           </Menu.Menu>
         </Container>
