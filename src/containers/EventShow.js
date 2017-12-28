@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as actions from "../actions";
 import moment from "moment";
+import { fetchRemoteEvent } from "../services/adapter";
 import CommentCard from "../components/CommentCard";
 import {
   Container,
@@ -150,8 +151,9 @@ class EventShow extends Component {
   render() {
     console.log("%c >> Inside render EventShow \n", "color: #bada55");
     console.log("PROPS: ", this.props);
-    console.log("COMMENTS: ", this.props.comments);
+    console.log("STATE: ", this.state);
     console.log("----------------------- \n");
+
     return (
       <Grid
         container
@@ -167,7 +169,6 @@ class EventShow extends Component {
           <Grid.Column width={8}>
             <Header as="h1">{this.props.currentEvent.event_name_en}</Header>
             {this.renderEvent()}
-
             <p>
               <strong>Starts: </strong>
               {moment(new Date(this.props.currentEvent.start_date)).format(
@@ -213,6 +214,7 @@ const mapStateToProps = state => {
     user: state.currentUser,
     userEvents: state.currentUser.events,
     currentEvent: state.currentEvent,
+    eventData: state.moreEventData,
     comments: state.currentEvent.comments,
     attending: state.currentEvent.attending
   };

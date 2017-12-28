@@ -3,7 +3,8 @@ import {
   LOGIN_USER,
   LOGOUT_USER,
   ADD_EVENTS_TO_STORE,
-  SET_CURRENT_EVENT
+  SET_CURRENT_EVENT,
+  SET_MORE_EVENT_DATA
 } from "./types";
 import * as adapter from "../services/adapter";
 
@@ -108,6 +109,16 @@ export const fetchEventBySlug = slug => {
     dispatch({ type: ASYNC_START });
     adapter.fetchEventBySlug(slug).then(result => {
       dispatch({ type: SET_CURRENT_EVENT, event: result });
+    });
+  };
+};
+
+export const fetchMoreEventData = externalId => {
+  return dispatch => {
+    console.log("Inside action fetchMoreEventData", externalId);
+    dispatch({ type: ASYNC_START });
+    adapter.fetchRemoteEvent(externalId).then(result => {
+      dispatch({ type: SET_MORE_EVENT_DATA, payload: result.values });
     });
   };
 };

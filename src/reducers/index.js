@@ -50,9 +50,20 @@ const currentEventReducer = (state = { comments: [] }, action) => {
   }
 };
 
+const moreEventDataReducer = (state = {}, action) => {
+  switch (action.type) {
+    case "SET_MORE_EVENT_DATA":
+      console.log("Action for SET_MORE_EVENT_DATA is", action.payload);
+      return { ...action.payload };
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   currentUser: currentUserReducer,
   currentEvent: currentEventReducer,
+  moreEventData: moreEventDataReducer,
   events: eventReducer
   // userEvents: userEventReducer
 });

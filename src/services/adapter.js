@@ -1,6 +1,7 @@
 const ROUTE = "http://localhost:3000/api/v1";
 const EXT_ROUTE =
-  "https://www.chicmi.com/api/calendar_in_city/?city=new-york&types=sample-sales&sectors=&designers=&stores=&users=&featured_only=yes&max_results=&days=90&source=embed";
+  "https://www.chicmi.com/api/calendar_in_city/?city=new-york&types=sample-sales&sectors=&designers=&stores=&users=&featured_only=&max_results=&days=60&source=embed";
+const EXT_ROUTE_EVENT = "https://www.chicmi.com/api/events_get";
 
 const headers = {
   Accepts: "application/json, text/plain",
@@ -75,4 +76,11 @@ export function fetchAddComment(userId, eventId, comment) {
     headers: headers,
     body: JSON.stringify({ user_id: userId, event_id: eventId, text: comment })
   }).then(res => res.json());
+}
+
+export function fetchRemoteEvent(externalId) {
+  // debugger;
+  return fetch(`${EXT_ROUTE_EVENT}/?event_id=${externalId}`).then(res =>
+    res.json()
+  );
 }
