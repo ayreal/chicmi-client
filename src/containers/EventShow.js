@@ -102,6 +102,16 @@ class EventShow extends Component {
     }
   };
 
+  renderAttendingInsight = () => {
+    if (this.props.attending > 10) {
+      return "This event is likely to be very busy. We recommend arriving between 45 minutes to 1 hour ahead of time to avoid lines.";
+    } else if (this.props.attending >= 5 && this.props.attending < 10) {
+      return "This event may be slightly busy.";
+    } else {
+      return null;
+    }
+  };
+
   renderEvent = () => {
     return <div>{this.props.loggedIn ? this.renderShowAttending() : null}</div>;
   };
@@ -180,6 +190,7 @@ class EventShow extends Component {
               </Statistic.Value>
               <Statistic.Label>attending</Statistic.Label>
             </Statistic>
+            <p>{this.renderAttendingInsight()}</p>
           </Grid.Column>
         </Grid.Row>
 
