@@ -158,7 +158,6 @@ class EventShow extends Component {
         stackable
         verticalAlign="middle"
         columns={2}
-        divided
         style={{ marginTop: "7em" }}
       >
         <Grid.Row>
@@ -170,18 +169,25 @@ class EventShow extends Component {
             {this.renderEvent()}
 
             <p>
-              <strong>Starts:</strong>{" "}
+              <strong>Starts: </strong>
               {moment(new Date(this.props.currentEvent.start_date)).format(
-                "dddd, MMMM Do"
+                "dddd, MMMM Do, h:mm a"
               )}
             </p>
             <p>
-              <strong>Ends:</strong>{" "}
+              <strong>Ends: </strong>
               {moment(new Date(this.props.currentEvent.end_date)).format(
-                "dddd, MMMM Do"
+                "dddd, MMMM Do, h:mm a"
               )}
             </p>
-
+            <p>
+              <strong>Where: </strong>{" "}
+              {this.props.currentEvent.address_business_name} - {" "}
+              {this.props.currentEvent.address_street_1}
+              {this.props.currentEvent.address_street_2
+                ? ", " + this.props.currentEvent.address_street_2
+                : null}
+            </p>
             <p>{this.props.currentEvent.summary}</p>
             <Statistic color="grey">
               <Statistic.Value>

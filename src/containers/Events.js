@@ -22,7 +22,14 @@ class Events extends Component {
         <Segment
           inverted
           textAlign="center"
-          style={{ minHeight: 700, padding: "1em 0em" }}
+          style={{
+            minHeight: 700,
+            padding: "1em 0em",
+            backgroundImage: `url(${splash})`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "0% 50%"
+          }}
           vertical
         >
           <Container text>
@@ -34,9 +41,7 @@ class Events extends Component {
                 fontSize: "4em",
                 fontWeight: "normal",
                 marginBottom: 0,
-                marginTop: "3em",
-                background:
-                  "url(/Users/ariel/dev/labs/chicmi/chicmi-client/src/images/splashtest.png) no-repeat center"
+                marginTop: "3em"
               }}
             />
             <Header
