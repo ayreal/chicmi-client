@@ -98,17 +98,14 @@ export const fetchCreateEvent = (event, history) => {
   // dispatch that event to the store
   // debugger;
   return dispatch => {
-    adapter
-      .fetchRemoteEvent(event.event_id)
-      .then(result => {
-        // debugger;
-        adapter.fetchCreateEvent(result.values);
-      })
-      .then(result => {
+    adapter.fetchRemoteEvent(event.event_id).then(result => {
+      // debugger;
+      adapter.fetchCreateEvent(result.values).then(result => {
         debugger;
         dispatch({ type: SET_CURRENT_EVENT, event: result });
         history.push(`${result.slug}`);
       });
+    });
   };
 };
 

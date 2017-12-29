@@ -80,7 +80,7 @@ export function fetchAddComment(userId, eventId, comment) {
 }
 
 export function fetchRemoteEvent(externalId) {
-  debugger;
+  // debugger;
   return fetch(`${EXT_ROUTE_EVENT}/?event_id=${externalId}`).then(res =>
     res.json()
   );
