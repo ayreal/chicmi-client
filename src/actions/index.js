@@ -93,15 +93,30 @@ export const fetchDeleteEvent = (userId, externalEventId) => {
 // PERSIST AN EVENT TO MY API
 
 export const fetchCreateEvent = (event, history) => {
+  // do another fetch to the external API
+  // create event in my API with the results
+  // dispatch that event to the store
   return dispatch => {
-    console.log("Inside action fetchCreateEvent");
-    dispatch({ type: ASYNC_START });
-    adapter.fetchCreateEvent(event).then(result => {
-      dispatch({ type: SET_CURRENT_EVENT, event: result });
-      history.push(`${result.slug}`);
-    });
+    adapter
+      .fetchRemoteEvent(event.event_id)
+      .then(result => {
+        adapter.fetchCreateEvent(result);
+      })
+      .then(result => {
+        dispatch({ type: SET_CURRENT_EVENT, event: result });
+        history.push(`${result.slug}`);
+      });
   };
 };
+
+//     console.log("Inside action fetchCreateEvent");
+//     dispatch({ type: ASYNC_START });
+//     adapter.fetchCreateEvent(event).then(result => {
+//       dispatch({ type: SET_CURRENT_EVENT, event: result });
+//       history.push(`${result.slug}`);
+//     });
+//   };
+// };
 
 export const fetchEventBySlug = slug => {
   return dispatch => {

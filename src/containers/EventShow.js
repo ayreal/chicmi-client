@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as actions from "../actions";
 import moment from "moment";
-import { fetchRemoteEvent } from "../services/adapter";
+import { fetchAddDesigners } from "../services/adapter";
 import CommentCard from "../components/CommentCard";
 import {
   Container,
@@ -30,6 +30,7 @@ class EventShow extends Component {
     const slug = this.props.match.params.slug;
     if (!this.props.loggedIn) {
       this.props.fetchEventBySlug(slug);
+      fetchAddDesigners(this.props.eventData);
     }
   }
 
