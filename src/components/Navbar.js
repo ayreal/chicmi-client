@@ -3,14 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import { logoutUser } from "../actions";
-import {
-  Container,
-  Image,
-  Menu,
-  Button,
-  Icon,
-  Segment
-} from "semantic-ui-react";
+import { Container, Image, Menu, Icon } from "semantic-ui-react";
 import SearchBarWrapper from "./SearchBarWrapper";
 import logo from "../logo.svg";
 

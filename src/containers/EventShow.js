@@ -5,10 +5,8 @@ import * as actions from "../actions";
 import moment from "moment";
 import CommentCard from "../components/CommentCard";
 import {
-  Container,
   Grid,
   Image,
-  Segment,
   Header,
   Button,
   Icon,

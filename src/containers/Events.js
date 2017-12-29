@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions";
-import { Container, Header, Card, Segment, Grid } from "semantic-ui-react";
+import { Container, Header, Card, Segment } from "semantic-ui-react";
 import EventCard from "./EventCard";
 import splash from "../images/splashtest.png";
 
