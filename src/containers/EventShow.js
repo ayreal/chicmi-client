@@ -26,6 +26,7 @@ class EventShow extends Component {
   };
 
   componentDidMount() {
+    // this is where bug from loggedout comes from
     const slug = this.props.match.params.slug;
     if (!this.props.loggedIn) {
       this.props.fetchEventBySlug(slug);

@@ -45,6 +45,7 @@ export function fetchAddEvent(userId, event) {
 }
 
 export function fetchCreateEvent(event) {
+  // debugger;
   return fetch(`${ROUTE}/get_event`, {
     method: "POST",
     headers: headers,
@@ -62,6 +63,7 @@ export function fetchDeleteEvent(userId, eventId) {
 }
 
 export function fetchEventBySlug(slug) {
+  // debugger;
   console.log("hit event by slug", slug);
   return fetch(`${ROUTE}/get_event`, {
     method: "POST",
@@ -83,11 +85,11 @@ export function fetchRemoteEvent(externalId) {
     res.json()
   );
 }
-
-export function fetchAddDesigners(data) {
-  return fetch(`${ROUTE}/designers`, {
-    method: "POST",
-    headers: headers,
-    body: JSON.stringify({ data: data })
-  }).then(res => res.json());
-}
+//
+// export function fetchAddDesigners(data) {
+//   return fetch(`${ROUTE}/designers`, {
+//     method: "POST",
+//     headers: headers,
+//     body: JSON.stringify({ data: data })
+//   }).then(res => res.json());
+// }
