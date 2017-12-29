@@ -96,13 +96,16 @@ export const fetchCreateEvent = (event, history) => {
   // do another fetch to the external API
   // create event in my API with the results
   // dispatch that event to the store
+  // debugger;
   return dispatch => {
     adapter
       .fetchRemoteEvent(event.event_id)
       .then(result => {
-        adapter.fetchCreateEvent(result);
+        // debugger;
+        adapter.fetchCreateEvent(result.values);
       })
       .then(result => {
+        debugger;
         dispatch({ type: SET_CURRENT_EVENT, event: result });
         history.push(`${result.slug}`);
       });
