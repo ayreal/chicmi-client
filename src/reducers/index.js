@@ -40,7 +40,10 @@ const eventReducer = (state = [], action) => {
   }
 };
 
-const currentEventReducer = (state = { comments: [] }, action) => {
+const currentEventReducer = (
+  state = { comments: [], designers: [] },
+  action
+) => {
   switch (action.type) {
     case "SET_CURRENT_EVENT":
       console.log("Action for SET_CURRENT_EVENT is", action.event);

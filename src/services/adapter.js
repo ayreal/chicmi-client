@@ -45,7 +45,7 @@ export function fetchAddEvent(userId, event) {
 }
 
 export function fetchCreateEvent(event) {
-  debugger;
+  // debugger;
   return fetch(`${ROUTE}/get_event`, {
     method: "POST",
     headers: headers,
@@ -87,7 +87,7 @@ export function fetchRemoteEvent(externalId) {
 }
 
 export function fetchAddDesigners(data) {
-  debugger;
+  // debugger;
   return fetch(`${ROUTE}/designers`, {
     method: "POST",
     headers: headers,
