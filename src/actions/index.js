@@ -100,6 +100,7 @@ export const fetchCreateEvent = (event, history) => {
     adapter.fetchRemoteEvent(event.event_id).then(result => {
       // debugger;
       adapter.fetchCreateEvent(result.values).then(result => {
+        // debugger;
         dispatch({ type: SET_CURRENT_EVENT, event: result });
         history.push(`${result.slug}`);
       });
