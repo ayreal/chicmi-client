@@ -37,7 +37,7 @@ export function fetchRemoteEvents() {
 }
 
 export function fetchAddEvent(userId, event) {
-  return fetch(`${ROUTE}/events`, {
+  return fetch(`${ROUTE}/add_event`, {
     method: "POST",
     headers: headers,
     body: JSON.stringify({ user_id: userId, event: event })
@@ -55,7 +55,7 @@ export function fetchCreateEvent(event) {
 
 // this should delete the association, not the Event instance in the back
 export function fetchDeleteEvent(userId, eventId) {
-  return fetch(`${ROUTE}/events/${eventId}`, {
+  return fetch(`${ROUTE}/userevents/${eventId}`, {
     method: "DELETE",
     headers: headers,
     body: JSON.stringify({ user_id: userId })
@@ -64,6 +64,7 @@ export function fetchDeleteEvent(userId, eventId) {
 
 export function fetchEventBySlug(slug) {
   // debugger;
+  // MAKE THIS GO TO A DIFFERENT ROUTE!
   console.log("hit event by slug", slug);
   return fetch(`${ROUTE}/get_event`, {
     method: "POST",
