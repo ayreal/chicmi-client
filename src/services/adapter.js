@@ -63,7 +63,6 @@ export function fetchDeleteEvent(userId, eventId) {
 
 export function fetchEventBySlug(slug) {
   console.log("hit event by slug", slug);
-  debugger;
   return fetch(`${ROUTE}/get_event`, {
     method: "POST",
     headers: headers,

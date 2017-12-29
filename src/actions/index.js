@@ -95,8 +95,10 @@ export const fetchCreateEvent = (event, history) => {
   // do another fetch to the external API for event-specific data
   // create event in my API with the results -- this will include creating Designers
   // dispatch that event to the store
+  // debugger;
   return dispatch => {
     adapter.fetchRemoteEvent(event.event_id).then(result => {
+      // debugger;
       adapter.fetchCreateEvent(result.values).then(result => {
         dispatch({ type: SET_CURRENT_EVENT, event: result });
         history.push(`${result.slug}`);
