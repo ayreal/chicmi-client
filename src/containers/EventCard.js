@@ -9,7 +9,6 @@ class EventCard extends Component {
   handleClick = () => {
     // dispatch an action that goes to the event show page based on the slug
     this.props.fetchCreateEvent(this.props.data, this.props.history);
-    // this.props.fetchMoreEventData(this.props.data.event_id);
   };
 
   isUserEvent = event => {

@@ -33,7 +33,6 @@ class EventShow extends Component {
   }
 
   handleRemove = () => {
-    // debugger;
     this.props.fetchDeleteEvent(this.props.user.id, this.props.currentEvent.id);
   };
 
@@ -213,7 +212,6 @@ const mapStateToProps = state => {
     user: state.currentUser,
     userEvents: state.currentUser.events,
     currentEvent: state.currentEvent,
-    eventData: state.moreEventData,
     comments: state.currentEvent.comments,
     attending: state.currentEvent.attending
   };

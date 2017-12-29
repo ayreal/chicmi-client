@@ -3,8 +3,7 @@ import {
   LOGIN_USER,
   LOGOUT_USER,
   ADD_EVENTS_TO_STORE,
-  SET_CURRENT_EVENT,
-  SET_MORE_EVENT_DATA
+  SET_CURRENT_EVENT
 } from "./types";
 import * as adapter from "../services/adapter";
 
@@ -93,13 +92,11 @@ export const fetchDeleteEvent = (userId, externalEventId) => {
 // PERSIST AN EVENT TO MY API
 
 export const fetchCreateEvent = (event, history) => {
-  // do another fetch to the external API
-  // create event in my API with the results
+  // do another fetch to the external API for event-specific data
+  // create event in my API with the results -- this will include creating Designers
   // dispatch that event to the store
-  // debugger;
   return dispatch => {
     adapter.fetchRemoteEvent(event.event_id).then(result => {
-      // debugger;
       adapter.fetchCreateEvent(result.values).then(result => {
         dispatch({ type: SET_CURRENT_EVENT, event: result });
         history.push(`${result.slug}`);
@@ -107,15 +104,6 @@ export const fetchCreateEvent = (event, history) => {
     });
   };
 };
-
-//     console.log("Inside action fetchCreateEvent");
-//     dispatch({ type: ASYNC_START });
-//     adapter.fetchCreateEvent(event).then(result => {
-//       dispatch({ type: SET_CURRENT_EVENT, event: result });
-//       history.push(`${result.slug}`);
-//     });
-//   };
-// };
 
 export const fetchEventBySlug = slug => {
   return dispatch => {
@@ -127,22 +115,11 @@ export const fetchEventBySlug = slug => {
   };
 };
 
-export const fetchMoreEventData = externalId => {
-  return dispatch => {
-    console.log("Inside action fetchMoreEventData", externalId);
-    dispatch({ type: ASYNC_START });
-    adapter.fetchRemoteEvent(externalId).then(result => {
-      dispatch({ type: SET_MORE_EVENT_DATA, payload: result.values });
-    });
-  };
-};
-
 export const fetchAddComment = (userId, eventId, comment) => {
   return dispatch => {
     console.log("Inside action fetchAddComment");
     dispatch({ type: ASYNC_START });
     adapter.fetchAddComment(userId, eventId, comment).then(result => {
-      // debugger;
       console.log("FETCH ADDCOMMENTRESULT,", result);
       dispatch({ type: SET_CURRENT_EVENT, event: result });
     });
