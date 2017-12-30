@@ -7,18 +7,33 @@ const DesignerCard = props => {
   console.log("----------------------- \n");
   return (
     <Card>
-      {/* <Image src={} /> */}
+      <Image src={props.data.designer_hero_card_url} />
       <Card.Content>
         <Card.Header>{props.data.designer_name_en}</Card.Header>
         <Card.Meta>
-          <span className="date">Joined in 2015</span>
+          <span className="date">{props.data.type_name}</span>
         </Card.Meta>
-        <Card.Description>{props.data.facebook}</Card.Description>
+        <Card.Description>
+          <a href={props.data.website} target="_blank">
+            Designer Website
+          </a>
+        </Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <a>
-          <Icon name="user" />
-          22 Friends
+        <a
+          href={`https://www.instagram.com/${props.data.instagram}`}
+          target="_blank"
+        >
+          <Icon name="instagram" size="large" />
+        </a>
+        <a href={props.data.facebook} target="_blank">
+          <Icon name="facebook" size="large" />
+        </a>
+        <a
+          href={`https://www.twitter.com/${props.data.twitter}`}
+          target="_blank"
+        >
+          <Icon name="twitter" size="large" />
         </a>
       </Card.Content>
     </Card>
