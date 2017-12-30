@@ -1,6 +1,6 @@
 const ROUTE = "http://localhost:3000/api/v1";
 const EXT_ROUTE =
-  "https://www.chicmi.com/api/calendar_in_city/?city=new-york&types=sample-sales&sectors=&designers=&stores=&users=&featured_only=&max_results=&days=60&source=embed";
+  "https://www.chicmi.com/api/calendar_in_city/?city=new-york&types=sample-sales&sectors=&designers=&stores=&users=&featured_only=&max_results=&days=90&source=embed";
 const EXT_ROUTE_EVENT = "https://www.chicmi.com/api/events_get";
 
 const headers = {
@@ -37,7 +37,7 @@ export function fetchRemoteEvents() {
 }
 
 export function fetchAddEvent(userId, event) {
-  return fetch(`${ROUTE}/add_event`, {
+  return fetch(`${ROUTE}/events`, {
     method: "POST",
     headers: headers,
     body: JSON.stringify({ user_id: userId, event: event })
@@ -55,7 +55,7 @@ export function fetchCreateEvent(event) {
 
 // this should delete the association, not the Event instance in the back
 export function fetchDeleteEvent(userId, eventId) {
-  return fetch(`${ROUTE}/userevents/${eventId}`, {
+  return fetch(`${ROUTE}/events/${eventId}`, {
     method: "DELETE",
     headers: headers,
     body: JSON.stringify({ user_id: userId })

@@ -41,7 +41,7 @@ const eventReducer = (state = [], action) => {
 };
 
 const currentEventReducer = (
-  state = { comments: [], designers: [], unfetched: true },
+  state = { comments: [], designers: [] },
   action
 ) => {
   switch (action.type) {

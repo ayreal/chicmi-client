@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import * as actions from "../actions";
 import moment from "moment";
 import CommentCard from "../components/CommentCard";
+import DesignerCard from "../components/DesignerCard";
 import {
   Grid,
   Image,
@@ -199,6 +200,12 @@ class EventShow extends Component {
           </Grid.Column>
         </Grid.Row>
 
+        <Grid.Row>
+          {this.props.designers.map(designer => (
+            <DesignerCard key={designer.designer_id} data={designer} />
+          ))}
+        </Grid.Row>
+
         <Grid.Row centered>
           <Grid.Column>{this.renderComments()}</Grid.Column>
         </Grid.Row>
@@ -213,7 +220,8 @@ const mapStateToProps = state => {
     userEvents: state.currentUser.events,
     currentEvent: state.currentEvent,
     comments: state.currentEvent.comments,
-    attending: state.currentEvent.attending
+    attending: state.currentEvent.attending,
+    designers: state.currentEvent.designers
   };
 };
 export default withRouter(connect(mapStateToProps, actions)(EventShow));
