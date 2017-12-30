@@ -44,6 +44,14 @@ export function fetchAddEvent(userId, event) {
   }).then(res => res.json());
 }
 
+export function fetchAddDesigner(userId, designer) {
+  return fetch(`${ROUTE}/designers`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({ user_id: userId, designer: designer })
+  }).then(res => res.json());
+}
+
 export function fetchCreateEvent(event) {
   // debugger;
   return fetch(`${ROUTE}/get_event`, {

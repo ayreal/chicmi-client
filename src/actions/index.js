@@ -3,7 +3,8 @@ import {
   LOGIN_USER,
   LOGOUT_USER,
   ADD_EVENTS_TO_STORE,
-  SET_CURRENT_EVENT
+  SET_CURRENT_EVENT,
+  SET_USER_DESIGNERS
 } from "./types";
 import * as adapter from "../services/adapter";
 
@@ -25,7 +26,7 @@ export function signupUser(data, history) {
 
 export function fetchProfile(data, history) {
   return dispatch => {
-    console.log("Inside action fetchProfile, history is", history);
+    // console.log("Inside action fetchProfile, history is", history);
     dispatch({ type: ASYNC_START });
     adapter.loginUser(data).then(user => {
       localStorage.setItem("token", user.token);
@@ -38,7 +39,7 @@ export function fetchProfile(data, history) {
 
 export function fetchCurrentUser() {
   return dispatch => {
-    console.log("Inside action fetchCurrentUser");
+    // console.log("Inside action fetchCurrentUser");
     dispatch({ type: ASYNC_START });
     adapter.fetchCurrentUser().then(user => {
       dispatch({ type: LOGIN_USER, user: user });
@@ -47,7 +48,7 @@ export function fetchCurrentUser() {
 }
 
 export const logoutUser = () => {
-  console.log("Inside logoutUser action");
+  // console.log("Inside logoutUser action");
   localStorage.removeItem("token");
   return { type: LOGOUT_USER };
 };
@@ -55,7 +56,7 @@ export const logoutUser = () => {
 // GET EVENTS FROM EXTERNAL API
 export const fetchRemoteEvents = () => {
   return dispatch => {
-    console.log("Inside action fetchRemoteEvents");
+    // console.log("Inside action fetchRemoteEvents");
     dispatch({ type: ASYNC_START });
     adapter.fetchRemoteEvents().then(results => {
       dispatch({ type: ADD_EVENTS_TO_STORE, events: results.values.events });
@@ -85,6 +86,18 @@ export const fetchDeleteEvent = (userId, externalEventId) => {
     adapter.fetchDeleteEvent(userId, externalEventId).then(payload => {
       dispatch({ type: LOGIN_USER, user: payload.user });
       dispatch({ type: SET_CURRENT_EVENT, event: payload.currentEvent });
+    });
+  };
+};
+
+// ADD DESIGNER TO A USER'S DESIGNERS
+
+export const fetchAddDesigner = (userId, designer) => {
+  return dispatch => {
+    console.log("Inside action fetchAddDesigner");
+    dispatch({ type: ASYNC_START });
+    adapter.fetchAddDesigner(userId, designer).then(payload => {
+      dispatch({ type: SET_USER_DESIGNERS, designers: payload });
     });
   };
 };

@@ -53,10 +53,21 @@ const currentEventReducer = (
   }
 };
 
+const userDesignerReducer = (state = [], action) => {
+  switch (action.type) {
+    case "SET_USER_DESIGNERS":
+      console.log("Action for SET_USER_DESIGNERS is", action.designers);
+      return { ...action.designers };
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   currentUser: currentUserReducer,
   currentEvent: currentEventReducer,
-  events: eventReducer
+  events: eventReducer,
+  userDesigners: userDesignerReducer
 });
 
 // NOTE:

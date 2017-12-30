@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Icon, Image } from "semantic-ui-react";
+import { Card, Icon, Image, Button } from "semantic-ui-react";
 
 const DesignerCard = props => {
   console.log("%c >> Inside render DesignerCard \n", "color: #bada55");
@@ -13,6 +13,9 @@ const DesignerCard = props => {
         <Card.Meta>
           <span className="date">{props.data.type_name}</span>
         </Card.Meta>
+        <Button onClick={() => props.handleFollowDesigner(props.data)}>
+          Click
+        </Button>
         <Card.Description>
           <a href={props.data.website} target="_blank">
             Designer Website

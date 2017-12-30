@@ -47,6 +47,11 @@ class EventShow extends Component {
     });
   };
 
+  handleFollowDesigner = data => {
+    // debugger;
+    this.props.fetchAddDesigner(this.props.user.id, data);
+  };
+
   handleSubmit = e => {
     e.preventDefault();
     let userId;
@@ -202,7 +207,11 @@ class EventShow extends Component {
 
         <Grid.Row>
           {this.props.designers.map(designer => (
-            <DesignerCard key={designer.designer_id} data={designer} />
+            <DesignerCard
+              key={designer.designer_id}
+              data={designer}
+              handleFollowDesigner={this.handleFollowDesigner}
+            />
           ))}
         </Grid.Row>
 
@@ -221,7 +230,8 @@ const mapStateToProps = state => {
     currentEvent: state.currentEvent,
     comments: state.currentEvent.comments,
     attending: state.currentEvent.attending,
-    designers: state.currentEvent.designers
+    designers: state.currentEvent.designers,
+    userDesigners: state.userDesigners
   };
 };
 export default withRouter(connect(mapStateToProps, actions)(EventShow));
