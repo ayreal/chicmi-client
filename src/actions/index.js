@@ -14,10 +14,10 @@ export function signupUser(data, history) {
     console.log("inside actions/functions, signupUser");
     console.log("--------------------------------------");
 
-    adapter.signupUser(data).then(user => {
-      console.log("response from signup is: ", user);
-      localStorage.setItem("token", user.token);
-      dispatch({ type: LOGIN_USER, user: user });
+    adapter.signupUser(data).then(payload => {
+      console.log("response from signup is: ", payload);
+      localStorage.setItem("token", payload.token);
+      dispatch({ type: LOGIN_USER, user: payload.user });
       history.push("/");
     });
   };
@@ -27,10 +27,10 @@ export function fetchProfile(data, history) {
   return dispatch => {
     // console.log("Inside action fetchProfile, history is", history);
     dispatch({ type: ASYNC_START });
-    adapter.loginUser(data).then(user => {
-      localStorage.setItem("token", user.token);
-      console.log("About to dispatch user, user is \n", user);
-      dispatch({ type: LOGIN_USER, user: user });
+    adapter.loginUser(data).then(payload => {
+      localStorage.setItem("token", payload.token);
+      console.log("About to dispatch user, payload is \n", payload);
+      dispatch({ type: LOGIN_USER, user: payload.user });
       history.push("/");
     });
   };

@@ -8,19 +8,7 @@ const currentUserReducer = (state = { designers: [], events: [] }, action) => {
     case "LOGIN_USER":
       console.log("Action.user is", action.user);
       return {
-        ...state,
-        id: action.user.id,
-        name: action.user.name,
-        email: action.user.email,
-        photo: action.user.photo,
-        city_id: action.user.city_id,
-        username: action.user.username,
-        twitter: action.user.twitter,
-        instagram: action.user.instagram,
-        bio: action.user.bio,
-        events: action.user.events,
-        designers: action.user.designers,
-        isFetching: false
+        ...action.user
       };
     case "LOGOUT_USER":
       return {};
