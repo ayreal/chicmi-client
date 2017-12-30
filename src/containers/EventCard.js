@@ -28,6 +28,28 @@ class EventCard extends Component {
     }
   };
 
+  renderGcalLink = () => {
+    return (
+      <a
+        href={`http://www.google.com/calendar/event?action=TEMPLATE&text=${this
+          .props.data.event_name_en}&dates=${new Date(
+          this.props.data.start_date
+        )
+          .toISOString()
+          .replace(/-|:|\.\d\d\d/g, "")}/${new Date(this.props.data.end_date)
+          .toISOString()
+          .replace(/-|:|\.\d\d\d/g, "")}&location=${this.props.data
+          .address_street_1} ${this.props.data.address_street_2} ${this.props
+          .data.address_city} ${this.props.data
+          .address_zip}&trp=false&sprop=&sprop=name:`}
+        target="_blank"
+        rel="nofollow"
+      >
+        Add to my calendar
+      </a>
+    );
+  };
+
   render() {
     return (
       <Card>
@@ -37,7 +59,9 @@ class EventCard extends Component {
           <Card.Meta>
             {moment(new Date(this.props.data.start_date)).format(
               "dddd, MMMM Do"
-            )}
+            )}{" "}
+            <br />
+            {this.renderGcalLink()}
           </Card.Meta>
         </Card.Content>
         {this.props.loggedIn ? this.renderShowAttending() : null}
