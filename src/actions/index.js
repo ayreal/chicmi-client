@@ -96,7 +96,18 @@ export const fetchAddDesigner = (userId, designer) => {
     console.log("Inside action fetchAddDesigner");
     dispatch({ type: ASYNC_START });
     adapter.fetchAddDesigner(userId, designer).then(payload => {
-      debugger;
+      dispatch({ type: LOGIN_USER, user: payload });
+    });
+  };
+};
+
+// REMOVE DESIGNER FROM A USER'S DESIGNERS
+
+export const fetchDeleteDesigner = (userId, event) => {
+  return dispatch => {
+    console.log("Inside action fetchDeleteDesigner");
+    dispatch({ type: ASYNC_START });
+    adapter.fetchDeleteDesigner(userId, event).then(payload => {
       dispatch({ type: LOGIN_USER, user: payload });
     });
   };

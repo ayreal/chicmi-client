@@ -52,6 +52,10 @@ class EventShow extends Component {
     this.props.fetchAddDesigner(this.props.user.id, data);
   };
 
+  handleUnfollowDesigner = data => {
+    this.props.fetchDeleteDesigner(this.props.user.id, data);
+  };
+
   handleSubmit = e => {
     e.preventDefault();
     let userId;
@@ -211,6 +215,7 @@ class EventShow extends Component {
               key={designer.designer_id}
               data={designer}
               handleFollowDesigner={this.handleFollowDesigner}
+              handleUnfollowDesigner={this.handleUnfollowDesigner}
               userDesigners={this.props.userDesigners}
             />
           ))}

@@ -3,14 +3,19 @@ import { Card, Icon, Image, Button } from "semantic-ui-react";
 
 class DesignerCard extends Component {
   isUserDesigner = designer => {
-    designer.id === this.props.data.id;
+    return designer.id === this.props.data.id;
   };
 
   renderFollowButton = () => {
-    // if the currentEvent is also a userEvent
+    // if the currentDesigner is also a userDesigner
     if (this.props.userDesigners.find(this.isUserDesigner)) {
       return (
-        <Button animated size="small" textAlign="center">
+        <Button
+          animated
+          size="small"
+          textAlign="center"
+          onClick={() => this.props.handleUnfollowDesigner(this.props.data)}
+        >
           <Button.Content visible>Unfollow</Button.Content>
           <Button.Content hidden>
             <Icon name="cancel" />

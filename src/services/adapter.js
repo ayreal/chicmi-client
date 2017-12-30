@@ -36,24 +36,8 @@ export function fetchRemoteEvents() {
   return fetch(`${EXT_ROUTE}/current_user`).then(res => res.json());
 }
 
-export function fetchAddEvent(userId, event) {
-  return fetch(`${ROUTE}/events`, {
-    method: "POST",
-    headers: headers,
-    body: JSON.stringify({ user_id: userId, event: event })
-  }).then(res => res.json());
-}
-
-export function fetchAddDesigner(userId, designer) {
-  return fetch(`${ROUTE}/designers`, {
-    method: "POST",
-    headers: headers,
-    body: JSON.stringify({ user_id: userId, designer: designer })
-  }).then(res => res.json());
-}
-
+// Creates a new event from the external data in EventCard.js
 export function fetchCreateEvent(event) {
-  // debugger;
   return fetch(`${ROUTE}/get_event`, {
     method: "POST",
     headers: headers,
@@ -61,18 +45,8 @@ export function fetchCreateEvent(event) {
   }).then(res => res.json());
 }
 
-// this should delete the association, not the Event instance in the back
-export function fetchDeleteEvent(userId, eventId) {
-  return fetch(`${ROUTE}/events/${eventId}`, {
-    method: "DELETE",
-    headers: headers,
-    body: JSON.stringify({ user_id: userId })
-  }).then(res => res.json());
-}
-
+// Gets the current event on page refresh
 export function fetchEventBySlug(slug) {
-  // debugger;
-  // MAKE THIS GO TO A DIFFERENT ROUTE!
   console.log("hit event by slug", slug);
   return fetch(`${ROUTE}/get_event`, {
     method: "POST",
@@ -81,6 +55,43 @@ export function fetchEventBySlug(slug) {
   }).then(res => res.json());
 }
 
+// Adds event to the User's event (UserEvents association table)
+export function fetchAddEvent(userId, event) {
+  return fetch(`${ROUTE}/events`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({ user_id: userId, event: event })
+  }).then(res => res.json());
+}
+
+// Delete UserEvent row in association table
+export function fetchDeleteEvent(userId, eventId) {
+  return fetch(`${ROUTE}/events/${eventId}`, {
+    method: "DELETE",
+    headers: headers,
+    body: JSON.stringify({ user_id: userId })
+  }).then(res => res.json());
+}
+
+// Adds designer to the User's designers (UserDesigners association table)
+export function fetchAddDesigner(userId, designer) {
+  return fetch(`${ROUTE}/designers`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({ user_id: userId, designer: designer })
+  }).then(res => res.json());
+}
+
+// Delete UserDesigner row
+export function fetchDeleteDesigner(userId, designer) {
+  return fetch(`${ROUTE}/designers/${designer.id}`, {
+    method: "DELETE",
+    headers: headers,
+    body: JSON.stringify({ user_id: userId })
+  }).then(res => res.json());
+}
+
+// Post a comment
 export function fetchAddComment(userId, eventId, comment) {
   return fetch(`${ROUTE}/comments`, {
     method: "POST",
@@ -89,16 +100,9 @@ export function fetchAddComment(userId, eventId, comment) {
   }).then(res => res.json());
 }
 
+// Get more data from the event-specific route in external API
 export function fetchRemoteEvent(externalId) {
   return fetch(`${EXT_ROUTE_EVENT}/?event_id=${externalId}`).then(res =>
     res.json()
   );
 }
-//
-// export function fetchAddDesigners(data) {
-//   return fetch(`${ROUTE}/designers`, {
-//     method: "POST",
-//     headers: headers,
-//     body: JSON.stringify({ data: data })
-//   }).then(res => res.json());
-// }
