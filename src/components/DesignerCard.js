@@ -41,9 +41,6 @@ class DesignerCard extends Component {
 
   render() {
     const { data } = this.props;
-    console.log("%c >> Inside render DesignerCard \n", "color: #bada55");
-    console.log("PROPS: ", this.props);
-    console.log("----------------------- \n");
 
     return (
       <Card>

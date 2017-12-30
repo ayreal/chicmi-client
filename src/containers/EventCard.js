@@ -57,7 +57,8 @@ class EventCard extends Component {
         <Card.Content>
           <Card.Header>{this.props.data.event_name_en}</Card.Header>
           <Card.Meta>
-            {moment(new Date(this.props.data.start_date)).format(
+            Through{" "}
+            {moment(new Date(this.props.data.end_date)).format(
               "dddd, MMMM Do"
             )}{" "}
             <br />

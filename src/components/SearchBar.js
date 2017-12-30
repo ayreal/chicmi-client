@@ -17,6 +17,8 @@ class SearchBar extends Component {
     this.setState({ isLoading: false, results: [], value: "" });
 
   handleResultSelect = (e, { result }) => {
+    console.log(this.props.history);
+    console.log(result);
     this.setState({ value: "" });
     this.props.fetchCreateEvent(result, this.props.history);
   };
