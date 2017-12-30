@@ -8,7 +8,8 @@ class DesignerCard extends Component {
 
   renderFollowButton = () => {
     // if the currentDesigner is also a userDesigner
-    if (this.props.userDesigners.find(this.isUserDesigner)) {
+    console.log("INSIDE FOLLOW BUTTON PROPS:", this.props);
+    if (this.props.user.designers.find(this.isUserDesigner)) {
       return (
         <Button
           animated
@@ -50,7 +51,7 @@ class DesignerCard extends Component {
           <Card.Meta>
             <span className="date">{data.type_name}</span>
           </Card.Meta>
-          {this.renderFollowButton()}
+          {this.props.loggedIn ? this.renderFollowButton() : null}
           <Card.Description>
             <a href={data.website} target="_blank">
               Designer Website

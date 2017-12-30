@@ -216,7 +216,8 @@ class EventShow extends Component {
               data={designer}
               handleFollowDesigner={this.handleFollowDesigner}
               handleUnfollowDesigner={this.handleUnfollowDesigner}
-              userDesigners={this.props.userDesigners}
+              user={this.props.user}
+              loggedIn={this.props.loggedIn}
             />
           ))}
         </Grid.Row>
@@ -236,8 +237,7 @@ const mapStateToProps = state => {
     currentEvent: state.currentEvent,
     comments: state.currentEvent.comments,
     attending: state.currentEvent.attending,
-    designers: state.currentEvent.designers,
-    userDesigners: state.currentUser.designers
+    designers: state.currentEvent.designers
   };
 };
 export default withRouter(connect(mapStateToProps, actions)(EventShow));
