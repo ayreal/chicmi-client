@@ -8,7 +8,6 @@ class DesignerCard extends Component {
 
   renderFollowButton = () => {
     // if the currentDesigner is also a userDesigner
-    console.log("INSIDE FOLLOW BUTTON PROPS:", this.props);
     if (this.props.user.designers.find(this.isUserDesigner)) {
       return (
         <Button

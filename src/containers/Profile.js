@@ -1,15 +1,25 @@
 import React, { Component } from "react";
 // import { connect } from "react-redux";
-// import * as actions from "../actions";
+import * as actions from "../actions";
 import { Container, Header, Card, Embed } from "semantic-ui-react";
 import withAuth from "../hocs/withAuth";
 import EventCard from "./EventCard";
+import DesignerCard from "../components/DesignerCard";
 import Calendar from "../components/Calendar";
 import MapContainer from "./MapContainer";
 
 class Profile extends Component {
   state = {
     calendarEvent: {}
+  };
+
+  handleFollowDesigner = data => {
+    // debugger;
+    this.props.fetchAddDesigner(this.props.user.id, data);
+  };
+
+  handleUnfollowDesigner = data => {
+    this.props.fetchDeleteDesigner(this.props.user.id, data);
   };
 
   setCalendarEvent = event => {
@@ -24,6 +34,23 @@ class Profile extends Component {
       <div>
         <strong> More details for {event.event_name_en} will go here</strong>
       </div>
+    );
+  };
+
+  renderDesigners = () => {
+    return (
+      <Card.Group itemsPerRow={3}>
+        {this.props.user.designers.map(designer => (
+          <DesignerCard
+            key={designer.designer_id}
+            data={designer}
+            handleFollowDesigner={this.handleFollowDesigner}
+            handleUnfollowDesigner={this.handleUnfollowDesigner}
+            user={this.props.user}
+            loggedIn={this.props.loggedIn}
+          />
+        ))}
+      </Card.Group>
     );
   };
 
@@ -45,6 +72,9 @@ class Profile extends Component {
             <EventCard key={event.id} data={event} />
           ))}
         </Card.Group>
+
+        <h2>Designers I Follow</h2>
+        {this.renderDesigners()}
 
         <Embed active={true}>
           <MapContainer events={this.props.user.events} />
