@@ -3,8 +3,7 @@ import {
   LOGIN_USER,
   LOGOUT_USER,
   ADD_EVENTS_TO_STORE,
-  SET_CURRENT_EVENT,
-  SET_USER_DESIGNERS
+  SET_CURRENT_EVENT
 } from "./types";
 import * as adapter from "../services/adapter";
 
@@ -97,7 +96,8 @@ export const fetchAddDesigner = (userId, designer) => {
     console.log("Inside action fetchAddDesigner");
     dispatch({ type: ASYNC_START });
     adapter.fetchAddDesigner(userId, designer).then(payload => {
-      dispatch({ type: SET_USER_DESIGNERS, designers: payload });
+      debugger;
+      dispatch({ type: LOGIN_USER, user: payload });
     });
   };
 };

@@ -74,7 +74,7 @@ class EventShow extends Component {
     return myEvent.id === this.props.currentEvent.id;
   };
 
-  renderShowAttending = () => {
+  renderFollowButton = () => {
     // if the currentEvent is also a userEvent
     if (this.props.userEvents.find(this.isUserEvent)) {
       return (
@@ -118,7 +118,7 @@ class EventShow extends Component {
   };
 
   renderEvent = () => {
-    return <div>{this.props.loggedIn ? this.renderShowAttending() : null}</div>;
+    return <div>{this.props.loggedIn ? this.renderFollowButton() : null}</div>;
   };
 
   renderComments = () => {
@@ -211,6 +211,7 @@ class EventShow extends Component {
               key={designer.designer_id}
               data={designer}
               handleFollowDesigner={this.handleFollowDesigner}
+              userDesigners={this.props.userDesigners}
             />
           ))}
         </Grid.Row>
@@ -231,7 +232,7 @@ const mapStateToProps = state => {
     comments: state.currentEvent.comments,
     attending: state.currentEvent.attending,
     designers: state.currentEvent.designers,
-    userDesigners: state.userDesigners
+    userDesigners: state.currentUser.designers
   };
 };
 export default withRouter(connect(mapStateToProps, actions)(EventShow));
