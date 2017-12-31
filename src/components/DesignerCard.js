@@ -43,34 +43,43 @@ class DesignerCard extends Component {
     const { data } = this.props;
 
     return (
-      <Card>
-        <Image src={data.designer_hero_card_url} />
+      <Card className="designer-card">
         <Card.Content>
+          <Image src={data.designer_hero_card_url} size="tiny" floated="left" />
           <Card.Header>{data.designer_name_en}</Card.Header>
           <Card.Meta>
             <span className="date">{data.type_name}</span>
           </Card.Meta>
-          {this.props.loggedIn ? this.renderFollowButton() : null}
-          <Card.Description>
-            <a href={data.website} target="_blank">
-              Designer Website
+
+          <p>
+            <a
+              href={`https://www.instagram.com/${data.instagram}`}
+              target="_blank"
+            >
+              <Icon name="instagram" size="large" />
             </a>
-          </Card.Description>
+            <a href={data.facebook} target="_blank">
+              <Icon name="facebook" size="large" />
+            </a>
+            <a href={`https://www.twitter.com/${data.twitter}`} target="_blank">
+              <Icon name="twitter" size="large" />
+            </a>
+          </p>
         </Card.Content>
-        <Card.Content extra>
-          <a
-            href={`https://www.instagram.com/${data.instagram}`}
-            target="_blank"
+        <Button.Group>
+          {this.props.loggedIn ? this.renderFollowButton() : null}
+
+          <Button
+            icon
+            labelPosition="right"
+            href={data.website}
+            target="_"
+            onClick={this.handleClick}
           >
-            <Icon name="instagram" size="large" />
-          </a>
-          <a href={data.facebook} target="_blank">
-            <Icon name="facebook" size="large" />
-          </a>
-          <a href={`https://www.twitter.com/${data.twitter}`} target="_blank">
-            <Icon name="twitter" size="large" />
-          </a>
-        </Card.Content>
+            Shop Now
+            <Icon name="shop" />
+          </Button>
+        </Button.Group>
       </Card>
     );
   }

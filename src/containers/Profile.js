@@ -39,7 +39,7 @@ class Profile extends Component {
 
   renderDesigners = () => {
     return (
-      <Card.Group itemsPerRow={3}>
+      <Card.Group itemsPerRow={4}>
         {this.props.user.designers.map(designer => (
           <DesignerCard
             key={designer.designer_id}
@@ -49,6 +49,16 @@ class Profile extends Component {
             user={this.props.user}
             loggedIn={this.props.loggedIn}
           />
+        ))}
+      </Card.Group>
+    );
+  };
+
+  renderEvents = () => {
+    return (
+      <Card.Group itemsPerRow={3}>
+        {this.props.user.events.map(event => (
+          <EventCard key={event.id} data={event} />
         ))}
       </Card.Group>
     );
@@ -67,11 +77,7 @@ class Profile extends Component {
 
         <h2>Events I'm Attending</h2>
 
-        <Card.Group itemsPerRow={3}>
-          {this.props.user.events.map(event => (
-            <EventCard key={event.id} data={event} />
-          ))}
-        </Card.Group>
+        {this.renderEvents()}
 
         <h2>Designers I Follow</h2>
         {this.renderDesigners()}
