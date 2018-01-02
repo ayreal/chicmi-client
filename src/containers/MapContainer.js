@@ -1,6 +1,16 @@
 import React, { Component } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
+// import { Icon } from "semantic-ui-react";
 const mapStyles = require("./mapStyles.json");
+const markerStyles = {
+  path:
+    "M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z",
+  scale: 0.5,
+  fillColor: "#f54f59",
+  fillOpacity: 0.8,
+  strokeColor: "#f54f59",
+  strokeWeight: 5
+};
 
 export class MapContainer extends Component {
   state = {
@@ -53,6 +63,7 @@ export class MapContainer extends Component {
               lng: myEvent.longitude
             }}
             onClick={this.onMarkerClick}
+            icon={markerStyles}
           />
         ))}
         <InfoWindow
