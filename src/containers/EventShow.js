@@ -6,6 +6,7 @@ import moment from "moment";
 import CommentCard from "../components/CommentCard";
 import DesignerCard from "../components/DesignerCard";
 import {
+  Card,
   Grid,
   Image,
   Header,
@@ -156,6 +157,23 @@ class EventShow extends Component {
     );
   };
 
+  renderDesigners = () => {
+    return (
+      <Card.Group itemsPerRow={4}>
+        {this.props.designers.map(designer => (
+          <DesignerCard
+            key={designer.designer_id}
+            data={designer}
+            handleFollowDesigner={this.handleFollowDesigner}
+            handleUnfollowDesigner={this.handleUnfollowDesigner}
+            user={this.props.user}
+            loggedIn={this.props.loggedIn}
+          />
+        ))}
+      </Card.Group>
+    );
+  };
+
   render() {
     console.log("%c >> Inside render EventShow \n", "color: #bada55");
     console.log("PROPS: ", this.props);
@@ -170,56 +188,46 @@ class EventShow extends Component {
         columns={2}
         style={{ marginTop: "7em" }}
       >
-        <Grid.Row>
-          <Grid.Column floated="right" width={8}>
-            <Image size="huge" src={this.props.currentEvent.event_hero_url} />
-          </Grid.Column>
-          <Grid.Column width={8}>
-            <Header as="h1">{this.props.currentEvent.event_name_en}</Header>
-            {this.renderEvent()}
-            <p>
-              <strong>Starts: </strong>
-              {moment(new Date(this.props.currentEvent.start_date)).format(
-                "dddd, MMMM Do, h:mm a"
-              )}
-            </p>
-            <p>
-              <strong>Ends: </strong>
-              {moment(new Date(this.props.currentEvent.end_date)).format(
-                "dddd, MMMM Do, h:mm a"
-              )}
-            </p>
-            <p>
-              <strong>Where: </strong>{" "}
-              {this.props.currentEvent.address_business_name} - {" "}
-              {this.props.currentEvent.address_street_1}
-              {this.props.currentEvent.address_street_2
-                ? ", " + this.props.currentEvent.address_street_2
-                : null}
-            </p>
-            <p>{this.props.currentEvent.summary}</p>
-            <Statistic color="grey">
-              <Statistic.Value>
-                <Icon name="check" />
-                {this.props.attending}
-              </Statistic.Value>
-              <Statistic.Label>attending</Statistic.Label>
-            </Statistic>
-            <p>{this.renderAttendingInsight()}</p>
-          </Grid.Column>
-        </Grid.Row>
+        <Grid.Column floated="right">
+          <Image size="huge" src={this.props.currentEvent.event_hero_url} />
+        </Grid.Column>
+        <Grid.Column>
+          <Header as="h1">{this.props.currentEvent.event_name_en}</Header>
+          {this.renderEvent()}
+          <p>
+            <strong>Starts: </strong>
+            {moment(new Date(this.props.currentEvent.start_date)).format(
+              "dddd, MMMM Do, h:mm a"
+            )}
+          </p>
+          <p>
+            <strong>Ends: </strong>
+            {moment(new Date(this.props.currentEvent.end_date)).format(
+              "dddd, MMMM Do, h:mm a"
+            )}
+          </p>
+          <p>
+            <strong>Where: </strong>{" "}
+            {this.props.currentEvent.address_business_name} - {" "}
+            {this.props.currentEvent.address_street_1}
+            {this.props.currentEvent.address_street_2
+              ? ", " + this.props.currentEvent.address_street_2
+              : null}
+          </p>
+          <p>{this.props.currentEvent.summary}</p>
+          <Statistic color="grey">
+            <Statistic.Value>
+              <Icon name="check" />
+              {this.props.attending}
+            </Statistic.Value>
+            <Statistic.Label>attending</Statistic.Label>
+          </Statistic>
+          <p>{this.renderAttendingInsight()}</p>
+        </Grid.Column>
 
         <Grid.Row>
-          {this.props.designers.map(designer => (
-            <DesignerCard
-              key={designer.designer_id}
-              data={designer}
-              handleFollowDesigner={this.handleFollowDesigner}
-              handleUnfollowDesigner={this.handleUnfollowDesigner}
-              user={this.props.user}
-              loggedIn={this.props.loggedIn}
-            />
-          ))}
+          <Header as="h2">Designers In This Sale</Header>
+          {this.renderDesigners()}
         </Grid.Row>
 
         <Grid.Row centered>

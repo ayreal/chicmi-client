@@ -1,12 +1,25 @@
 import React, { Component } from "react";
 // import { connect } from "react-redux";
 import * as actions from "../actions";
-import { Container, Header, Card, Embed } from "semantic-ui-react";
+import {
+  Container,
+  Header,
+  Card,
+  Embed,
+  Grid,
+  Divider,
+  Image
+} from "semantic-ui-react";
 import withAuth from "../hocs/withAuth";
 import EventCard from "./EventCard";
 import DesignerCard from "../components/DesignerCard";
 import Calendar from "../components/Calendar";
 import MapContainer from "./MapContainer";
+
+const style = {
+  background: "ccc",
+  position: "relative"
+};
 
 class Profile extends Component {
   state = {
@@ -14,7 +27,6 @@ class Profile extends Component {
   };
 
   handleFollowDesigner = data => {
-    // debugger;
     this.props.fetchAddDesigner(this.props.user.id, data);
   };
 
@@ -29,6 +41,7 @@ class Profile extends Component {
   };
 
   renderCalendarEvent = () => {
+    // make it so that the calendar responds to the map and vice-versa (ie they set the same state and things are rendered based on that)
     const event = this.state.calendarEvent;
     return (
       <div>
@@ -75,22 +88,52 @@ class Profile extends Component {
         <Header as="h1">Welcome, {this.props.user.name}!</Header>
         <p>You can view and manage your profile here</p>
 
-        <h2>Events I'm Attending</h2>
+        <Divider hidden />
+        <Header as="h2">Events I'm Attending</Header>
 
         {this.renderEvents()}
 
-        <h2>Designers I Follow</h2>
+        <Divider hidden />
+        <Header as="h2">Designers I Follow</Header>
         {this.renderDesigners()}
 
-        <Embed active={true}>
-          <MapContainer events={this.props.user.events} />
-        </Embed>
+        <Header as="h2">Map My Events</Header>
 
-        {this.state.calendarEvent.id ? this.renderCalendarEvent() : null}
-        <Calendar
-          events={this.props.user.events}
-          setCalendarEvent={this.setCalendarEvent}
-        />
+        <Grid columns={2}>
+          <Grid.Column width={10}>
+            <Embed active={true}>
+              <MapContainer events={this.props.user.events} />
+            </Embed>
+          </Grid.Column>
+
+          <Grid.Column width={6}>
+            <Image
+              fluid
+              centered
+              verticalAlign="middle"
+              src={this.state.calendarEvent.event_hero_url}
+              size="medium"
+            />
+          </Grid.Column>
+        </Grid>
+
+        <Divider hidden />
+        <Header as="h2">My Calendar</Header>
+
+        <Grid columns={2}>
+          <Grid.Column width={4}>
+            {this.state.calendarEvent.id ? this.renderCalendarEvent() : null}
+          </Grid.Column>
+          <Grid.Column width={12}>
+            <Calendar
+              className="calendar"
+              style={style}
+              events={this.props.user.events}
+              setCalendarEvent={this.setCalendarEvent}
+            />
+          </Grid.Column>
+        </Grid>
+        <Divider hidden />
       </Container>
     );
   }

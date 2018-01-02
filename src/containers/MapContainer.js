@@ -7,6 +7,7 @@ const style = {
   height: "100%",
   position: "relative"
 };
+
 export class MapContainer extends Component {
   state = {
     showingInfoWindow: false,

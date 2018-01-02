@@ -45,14 +45,14 @@ class EventCard extends Component {
         target="_blank"
         rel="nofollow"
       >
-        Add to my calendar
+        Add to my gCal
       </a>
     );
   };
 
   render() {
     return (
-      <Card>
+      <Card className="event-card">
         <Image src={this.props.data.event_hero_url} />
         <Card.Content>
           <Card.Header>{this.props.data.event_name_en}</Card.Header>
