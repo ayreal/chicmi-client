@@ -72,8 +72,8 @@ class Profile extends Component {
 
     return (
       <Container style={{ marginTop: "7em" }}>
-        <Header as="h1">Profile</Header>
-        <p>Welcome, {this.props.user.name}! Some text here.</p>
+        <Header as="h1">Welcome, {this.props.user.name}!</Header>
+        <p>You can view and manage your profile here</p>
 
         <h2>Events I'm Attending</h2>
 
