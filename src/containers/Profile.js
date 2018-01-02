@@ -94,9 +94,6 @@ class Profile extends Component {
         {this.renderEvents()}
 
         <Divider hidden />
-        <Header as="h2">Designers I Follow</Header>
-        {this.renderDesigners()}
-
         <Header as="h2">Map My Events</Header>
 
         <Grid columns={2}>
@@ -120,19 +117,21 @@ class Profile extends Component {
         <Divider hidden />
         <Header as="h2">My Calendar</Header>
 
-        <Grid columns={2}>
-          <Grid.Column width={4}>
-            {this.state.calendarEvent.id ? this.renderCalendarEvent() : null}
-          </Grid.Column>
-          <Grid.Column width={12}>
-            <Calendar
-              className="calendar"
-              style={style}
-              events={this.props.user.events}
-              setCalendarEvent={this.setCalendarEvent}
-            />
-          </Grid.Column>
+        <Grid centered columns={2}>
+          <Grid.Row centered>
+            <Grid.Column>
+              <Calendar
+                className="calendar"
+                style={style}
+                events={this.props.user.events}
+                setCalendarEvent={this.setCalendarEvent}
+              />
+            </Grid.Column>
+          </Grid.Row>
         </Grid>
+        <Divider hidden />
+        <Header as="h2">Designers I Follow</Header>
+        {this.renderDesigners()}
         <Divider hidden />
       </Container>
     );

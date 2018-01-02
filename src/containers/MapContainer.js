@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
-// import { Container } from "semantic-ui-react";
-
-const style = {
-  width: "100%",
-  height: "100%",
-  position: "relative"
-};
+const mapStyles = require("./mapStyles.json");
 
 export class MapContainer extends Component {
   state = {
@@ -42,7 +36,7 @@ export class MapContainer extends Component {
         className={"map"}
         google={this.props.google}
         zoom={14}
-        style={style}
+        styles={mapStyles}
         initialCenter={{
           lat: 40.7433809,
           lng: -73.9912899
