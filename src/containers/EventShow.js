@@ -6,6 +6,7 @@ import moment from "moment";
 import CommentCard from "../components/CommentCard";
 import DesignerCard from "../components/DesignerCard";
 import {
+  Container,
   Card,
   Grid,
   Image,
@@ -129,7 +130,7 @@ class EventShow extends Component {
   renderComments = () => {
     return (
       <Comment.Group>
-        <Header as="h3" dividing>
+        <Header as="h2" dividing>
           People Are Saying...
         </Header>
 
@@ -181,59 +182,54 @@ class EventShow extends Component {
     console.log("----------------------- \n");
 
     return (
-      <Grid
-        container
-        stackable
-        verticalAlign="middle"
-        columns={2}
-        style={{ marginTop: "7em" }}
-      >
-        <Grid.Column floated="right">
-          <Image size="huge" src={this.props.currentEvent.event_hero_url} />
-        </Grid.Column>
-        <Grid.Column>
-          <Header as="h1">{this.props.currentEvent.event_name_en}</Header>
-          {this.renderEvent()}
-          <p>
-            <strong>Starts: </strong>
-            {moment(new Date(this.props.currentEvent.start_date)).format(
-              "dddd, MMMM Do, h:mm a"
-            )}
-          </p>
-          <p>
-            <strong>Ends: </strong>
-            {moment(new Date(this.props.currentEvent.end_date)).format(
-              "dddd, MMMM Do, h:mm a"
-            )}
-          </p>
-          <p>
-            <strong>Where: </strong>{" "}
-            {this.props.currentEvent.address_business_name} - {" "}
-            {this.props.currentEvent.address_street_1}
-            {this.props.currentEvent.address_street_2
-              ? ", " + this.props.currentEvent.address_street_2
-              : null}
-          </p>
-          <p>{this.props.currentEvent.summary}</p>
-          <Statistic color="grey">
-            <Statistic.Value>
-              <Icon name="check" />
-              {this.props.attending}
-            </Statistic.Value>
-            <Statistic.Label>attending</Statistic.Label>
-          </Statistic>
-          <p>{this.renderAttendingInsight()}</p>
-        </Grid.Column>
+      <Container style={{ marginTop: "7em" }}>
+        <Grid container stackable verticalAlign="middle" columns={2}>
+          <Grid.Column floated="right">
+            <Image size="huge" src={this.props.currentEvent.event_hero_url} />
+          </Grid.Column>
+          <Grid.Column>
+            <Header as="h1">{this.props.currentEvent.event_name_en}</Header>
+            {this.renderEvent()}
+            <p>
+              <strong>Starts: </strong>
+              {moment(new Date(this.props.currentEvent.start_date)).format(
+                "dddd, MMMM Do, h:mm a"
+              )}
+            </p>
+            <p>
+              <strong>Ends: </strong>
+              {moment(new Date(this.props.currentEvent.end_date)).format(
+                "dddd, MMMM Do, h:mm a"
+              )}
+            </p>
+            <p>
+              <strong>Where: </strong>{" "}
+              {this.props.currentEvent.address_business_name} -{" "}
+              {this.props.currentEvent.address_street_1}
+              {this.props.currentEvent.address_street_2
+                ? ", " + this.props.currentEvent.address_street_2
+                : null}
+            </p>
+            <p>{this.props.currentEvent.summary}</p>
+            <Statistic color="grey">
+              <Statistic.Value>
+                <Icon name="check" />
+                {this.props.attending}
+              </Statistic.Value>
+              <Statistic.Label>attending</Statistic.Label>
+            </Statistic>
+            <p>{this.renderAttendingInsight()}</p>
+          </Grid.Column>
+        </Grid>
 
-        <Grid.Row>
-          <Header as="h2">Designers In This Sale</Header>
-          {this.renderDesigners()}
-        </Grid.Row>
-
-        <Grid.Row centered>
-          <Grid.Column>{this.renderComments()}</Grid.Column>
-        </Grid.Row>
-      </Grid>
+        <Header as="h2">Designers In This Sale</Header>
+        {this.renderDesigners()}
+        <Grid centered columns={2}>
+          <Grid.Row centered>
+            <Grid.Column>{this.renderComments()}</Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
     );
   }
 }

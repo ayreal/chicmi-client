@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions";
-import { Container, Header, Card, Segment, Divider } from "semantic-ui-react";
+import {
+  Container,
+  Header,
+  Card,
+  Segment,
+  Divider,
+  Button
+} from "semantic-ui-react";
 import EventCard from "./EventCard";
 import splash from "../images/splashtest.png";
 
@@ -23,12 +30,12 @@ class Events extends Component {
           inverted
           textAlign="center"
           style={{
-            minHeight: 700,
+            minHeight: 900,
             padding: "1em 0em",
             backgroundImage: `url(${splash})`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            backgroundPosition: "0% 50%"
+            backgroundPosition: "0% 70%"
           }}
           vertical
         >
@@ -39,9 +46,8 @@ class Events extends Component {
               inverted
               style={{
                 fontSize: "4em",
-                fontWeight: "normal",
                 marginBottom: 0,
-                marginTop: "3em",
+                marginTop: "4em",
                 fontFamily: "Karla",
                 fontWeight: "bold"
               }}
@@ -56,6 +62,9 @@ class Events extends Component {
                 fontWeight: "normal"
               }}
             />
+            <Button basic inverted size="massive" href="#sales">
+              View More
+            </Button>
           </Container>
         </Segment>
 
@@ -63,7 +72,9 @@ class Events extends Component {
           <Divider hidden />
           <Divider hidden />
           <Divider hidden />
-          <Header as="h2">Ongoing Sample Sales</Header>
+          <Header as="h2" name="sales">
+            Ongoing Sample Sales
+          </Header>
           <p>Some text here.</p>
           <Card.Group itemsPerRow={3}>
             {this.props.events ? this.renderEvents() : null}
