@@ -12,13 +12,13 @@ class Navbar extends Component {
     if (this.props.loggedIn) {
       return (
         <Menu.Item as={Link} to="/profile">
-          <Icon name="user" />
+          <Icon name="user" size="large" />
         </Menu.Item>
       );
     } else {
       return (
         <Menu.Item as={Link} to="/login">
-          <Icon name="user" />
+          <Icon name="user" size="large" />
         </Menu.Item>
       );
     }
@@ -54,7 +54,7 @@ class Navbar extends Component {
             </Menu.Item>
             {this.renderProfileLink()}
             <Menu.Item as="a">
-              <Icon name="star" />
+              <Icon name="star" size="large" />
             </Menu.Item>
             {this.renderLogoutLink()}
           </Menu.Menu>

@@ -80,6 +80,7 @@ class Events extends Component {
             {this.props.events ? this.renderEvents() : null}
           </Card.Group>
         </Container>
+        <Divider hidden />
       </div>
     );
   }

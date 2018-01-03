@@ -84,7 +84,11 @@ class Profile extends Component {
     console.log("----------------------- \n");
 
     return (
-      <Container style={{ marginTop: "7em" }}>
+      <Container>
+        <br />
+        <br />
+        <br />
+        <br />
         <Header as="h1">Welcome, {this.props.user.name}!</Header>
         <p>You can view and manage your profile here</p>
 

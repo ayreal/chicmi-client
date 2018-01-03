@@ -53,6 +53,7 @@ class SearchBar extends Component {
             onSearchChange={this.handleSearchChange}
             results={results}
             value={value}
+            size="large"
             {...this.props}
           />
         </Grid.Column>

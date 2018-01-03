@@ -25,7 +25,11 @@ class Login extends Component {
     console.log("---------------------");
 
     return (
-      <Container style={{ marginTop: "7em" }}>
+      <Container>
+        <br />
+        <br />
+        <br />
+        <br />
         <Header as="h1">Login</Header>
 
         <Form onSubmit={this.handleSubmit}>

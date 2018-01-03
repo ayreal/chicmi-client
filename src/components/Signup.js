@@ -36,7 +36,11 @@ class Signup extends Component {
 
   render() {
     return (
-      <Container style={{ marginTop: "7em" }}>
+      <Container>
+        <br />
+        <br />
+        <br />
+        <br />
         <Header as="h1">Signup</Header>
         <Form onSubmit={this.handleSubmit}>
           <Input
