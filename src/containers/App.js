@@ -6,6 +6,7 @@ import Main from "./Main";
 import Footer from "../components/Footer";
 import * as actions from "../actions";
 import { Route } from "react-router-dom";
+import "../custom.css";
 
 class App extends Component {
   componentDidMount() {

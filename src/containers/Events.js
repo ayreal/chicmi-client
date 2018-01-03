@@ -17,7 +17,12 @@ class Events extends Component {
     return this.props.events.map(event => {
       return <EventCard key={event.event_id} data={event} />;
     });
+    window.scrollTo(0, 0);
   };
+
+  // handleViewMore = () => {
+  //   window.scrollTo(0, 400);
+  // };
 
   render() {
     console.log("%c >> Inside render Events \n", "color: #bada55");
@@ -62,7 +67,12 @@ class Events extends Component {
                 fontWeight: "normal"
               }}
             />
-            <Button basic inverted size="massive" href="#sales">
+            <Button
+              basic
+              inverted
+              size="massive"
+              onClick={() => window.scrollTo(0, 920)}
+            >
               View More
             </Button>
           </Container>
@@ -72,9 +82,7 @@ class Events extends Component {
           <Divider hidden />
           <Divider hidden />
           <Divider hidden />
-          <Header as="h2" name="sales">
-            Ongoing Sample Sales
-          </Header>
+          <Header as="h2">Ongoing Sample Sales</Header>
           <p>Some text here.</p>
           <Card.Group itemsPerRow={3}>
             {this.props.events ? this.renderEvents() : null}

@@ -32,6 +32,8 @@ class EventShow extends Component {
     // if (!this.props.currentEvent.id) {
     //   console.log("Inside componentDidMount")
     this.props.fetchEventBySlug(slug);
+    window.scrollTo(0, 0);
+
     // }
   }
 
