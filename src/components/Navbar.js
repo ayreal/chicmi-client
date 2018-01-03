@@ -5,7 +5,7 @@ import { Link, withRouter } from "react-router-dom";
 import { logoutUser } from "../actions";
 import { Container, Image, Menu, Icon } from "semantic-ui-react";
 import SearchBarWrapper from "./SearchBarWrapper";
-import logo from "../logo.svg";
+import logo from "../logo2.svg";
 
 class Navbar extends Component {
   renderProfileLink = props => {
