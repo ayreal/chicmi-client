@@ -120,12 +120,14 @@ class Profile extends Component {
         <Grid centered columns={2}>
           <Grid.Row centered>
             <Grid.Column>
-              <Calendar
-                className="calendar"
-                style={style}
-                events={this.props.user.events}
-                setCalendarEvent={this.setCalendarEvent}
-              />
+              <div style={{ height: "700 px" }}>
+                <Calendar
+                  className="calendar"
+                  style={style}
+                  events={this.props.user.events}
+                  setCalendarEvent={this.setCalendarEvent}
+                />
+              </div>
             </Grid.Column>
           </Grid.Row>
         </Grid>
