@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import React from "react";
 import { Label } from "semantic-ui-react";
-
 import SearchBar from "./SearchBar";
 
 const resultRenderer = ({ event_name_en, event_id }) => (
@@ -13,6 +13,11 @@ resultRenderer.propTypes = {
   event_id: PropTypes.string
 };
 
-const SearchBarWrapper = () => <SearchBar resultRenderer={resultRenderer} />;
+const SearchBarWrapper = props => {
+  console.log("%c>> Inside render SearchBarWrapper \n", "color: #bada55");
+  console.log("PROPS: ", props);
+  console.log("----------------------- \n");
+  return <SearchBar resultRenderer={resultRenderer} />;
+};
 
-export default SearchBarWrapper;
+export default withRouter(SearchBarWrapper);

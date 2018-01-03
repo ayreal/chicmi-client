@@ -132,6 +132,20 @@ export const fetchCreateEvent = (event, history) => {
   };
 };
 
+export const fetchCreateEventFromNav = (event, history) => {
+  // do another fetch FROM THE NAVBAR to the external API for event-specific data
+  // create event in my API with the results -- this will include creating Designers
+  // dispatch that event to the store
+  return dispatch => {
+    adapter.fetchRemoteEvent(event.event_id).then(result => {
+      adapter.fetchCreateEvent(result.values).then(result => {
+        dispatch({ type: SET_CURRENT_EVENT, event: result });
+        history.push(`events/${result.slug}`);
+      });
+    });
+  };
+};
+
 export const fetchEventBySlug = slug => {
   return dispatch => {
     console.log("Inside action fetchEventBySlug", slug);

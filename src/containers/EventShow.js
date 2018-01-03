@@ -187,6 +187,7 @@ class EventShow extends Component {
         <br />
         <br />
         <br />
+        <br />
         <Grid container stackable verticalAlign="middle" columns={2}>
           <Grid.Column floated="right">
             <Image size="huge" src={this.props.currentEvent.event_hero_url} />

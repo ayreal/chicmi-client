@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { Search, Grid } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchCreateEvent } from "../actions";
+import { fetchCreateEventFromNav } from "../actions";
 
 // the error here is from a static router?
 
@@ -20,6 +20,7 @@ class SearchBar extends Component {
     console.log(this.props.history);
     console.log(result);
     this.setState({ value: "" });
+    // case statement?
     this.props.fetchCreateEvent(result, this.props.history);
   };
 
@@ -41,7 +42,9 @@ class SearchBar extends Component {
 
   render() {
     const { isLoading, value, results } = this.state;
-    console.log("PROPS in searchbar: ", this.props);
+    console.log("%c>> Inside render SearchBar \n", "color: #bada55");
+    console.log("PROPS: ", this.props);
+    console.log("----------------------- \n");
 
     return (
       <Grid>
@@ -71,7 +74,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      fetchCreateEvent: fetchCreateEvent
+      fetchCreateEvent: fetchCreateEventFromNav
     },
     dispatch
   );
