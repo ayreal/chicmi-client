@@ -102,6 +102,7 @@ export function fetchAddComment(userId, eventId, comment) {
 
 // Get more data from the event-specific route in external API
 export function fetchRemoteEvent(externalId) {
+  // debugger;
   return fetch(`${EXT_ROUTE_EVENT}/?event_id=${externalId}`).then(res =>
     res.json()
   );

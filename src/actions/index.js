@@ -119,17 +119,27 @@ export const fetchCreateEvent = (event, history) => {
   // do another fetch to the external API for event-specific data
   // create event in my API with the results -- this will include creating Designers
   // dispatch that event to the store
-  // debugger;
-  return dispatch => {
-    adapter.fetchRemoteEvent(event.event_id).then(result => {
-      // debugger;
-      adapter.fetchCreateEvent(result.values).then(result => {
-        // debugger;
-        dispatch({ type: SET_CURRENT_EVENT, event: result });
-        history.push(`${result.slug}`);
+  if (event.event_id) {
+    return dispatch => {
+      adapter.fetchRemoteEvent(event.event_id).then(result => {
+        adapter.fetchCreateEvent(result.values).then(result => {
+          // debugger;
+          dispatch({ type: SET_CURRENT_EVENT, event: result });
+          history.push(`${result.slug}`);
+        });
       });
-    });
-  };
+    };
+  } else {
+    return dispatch => {
+      adapter.fetchRemoteEvent(event.external_id).then(result => {
+        adapter.fetchCreateEvent(result.values).then(result => {
+          // debugger;
+          dispatch({ type: SET_CURRENT_EVENT, event: result });
+          history.push(`${result.slug}`);
+        });
+      });
+    };
+  }
 };
 
 export const fetchCreateEventFromNav = (event, history) => {
