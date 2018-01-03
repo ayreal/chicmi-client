@@ -41,14 +41,20 @@ class Events extends Component {
                 fontSize: "4em",
                 fontWeight: "normal",
                 marginBottom: 0,
-                marginTop: "3em"
+                marginTop: "3em",
+                fontFamily: "Karla",
+                fontWeight: "bold"
               }}
             />
             <Header
               as="h2"
               content="For sample sales in NYC, drama-free."
               inverted
-              style={{ fontSize: "1.7em", fontWeight: "normal" }}
+              style={{
+                fontSize: "1.7em",
+                fontFamily: "Karla",
+                fontWeight: "normal"
+              }}
             />
           </Container>
         </Segment>
