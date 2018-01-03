@@ -45,7 +45,9 @@ class Navbar extends Component {
           <Menu.Item as={Link} to="/" header>
             <Image size="mini" src={logo} style={{ marginRight: "1.5em" }} />
           </Menu.Item>
-          <Menu.Item style={{ fontFamily: "Orbitron" }}>C H I C M I</Menu.Item>
+          <Menu.Item as={Link} to="/" style={{ fontFamily: "Orbitron" }} header>
+            C H I C M I
+          </Menu.Item>
           <Menu.Menu position="right">
             <Menu.Item>
               <SearchBarWrapper />

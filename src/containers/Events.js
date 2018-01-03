@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions";
-import { Container, Header, Card, Segment } from "semantic-ui-react";
+import { Container, Header, Card, Segment, Divider } from "semantic-ui-react";
 import EventCard from "./EventCard";
 import splash from "../images/splashtest.png";
 
@@ -18,7 +18,7 @@ class Events extends Component {
     console.log("PROPS EVENTS LENGTH:", this.props.events.length);
     console.log("----------------------- \n");
     return (
-      <div style={{ marginTop: "4em" }}>
+      <div style={{ marginTop: "5em" }}>
         <Segment
           inverted
           textAlign="center"
@@ -60,7 +60,10 @@ class Events extends Component {
         </Segment>
 
         <Container>
-          <Header as="h1">This Week's Sample Sales</Header>
+          <Divider hidden />
+          <Divider hidden />
+          <Divider hidden />
+          <Header as="h2">Ongoing Sample Sales</Header>
           <p>Some text here.</p>
           <Card.Group itemsPerRow={3}>
             {this.props.events ? this.renderEvents() : null}
