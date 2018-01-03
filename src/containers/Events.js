@@ -20,22 +20,18 @@ class Events extends Component {
     window.scrollTo(0, 0);
   };
 
-  // handleViewMore = () => {
-  //   window.scrollTo(0, 400);
-  // };
-
   render() {
     console.log("%c >> Inside render Events \n", "color: #bada55");
     console.log("PROPS: ", this.props);
     console.log("PROPS EVENTS LENGTH:", this.props.events.length);
     console.log("----------------------- \n");
     return (
-      <div style={{ marginTop: "5em" }}>
+      <div style={{ marginTop: "4.2em" }}>
         <Segment
           inverted
           textAlign="center"
           style={{
-            minHeight: 900,
+            minHeight: 950,
             padding: "1em 0em",
             backgroundImage: `url(${splash})`,
             backgroundSize: "cover",
@@ -71,7 +67,7 @@ class Events extends Component {
               basic
               inverted
               size="massive"
-              onClick={() => window.scrollTo(0, 920)}
+              onClick={() => window.scrollTo(0, 960)}
             >
               View More
             </Button>

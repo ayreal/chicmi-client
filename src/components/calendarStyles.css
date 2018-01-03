@@ -59,7 +59,7 @@ button.rbc-input::-moz-focus-inner {
   color: #999999;
 }
 .rbc-off-range-bg {
-  background: #ddd;
+  background: #fff;
 }
 .rbc-header {
   overflow: hidden;
