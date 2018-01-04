@@ -170,7 +170,7 @@ class Profile extends Component {
                   as="h2"
                   inverted
                   style={{
-                    minHeight: "600px",
+                    minHeight: "700px",
                     fontSize: "3em",
                     marginBottom: 0,
                     marginTop: "6em",
@@ -185,6 +185,7 @@ class Profile extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
+        <Divider hidden />
       </Container>
     );
   }
