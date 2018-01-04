@@ -136,7 +136,7 @@ class Profile extends Component {
         <Divider hidden />
 
         <Grid verticalAlign="middle" columns={2} centered>
-          <Grid.Row width={16}>
+          <Grid.Row>
             <Grid.Column>
               <Card fluid>
                 {this.state.calendarEvent.id

@@ -5,16 +5,19 @@ import * as actions from "../actions";
 import moment from "moment";
 import CommentCard from "../components/CommentCard";
 import DesignerCard from "../components/DesignerCard";
+import horizontalFill from "../images/fillhoriz1.png";
 import {
-  Container,
-  Card,
-  Grid,
-  Image,
-  Header,
   Button,
-  Icon,
+  Card,
   Comment,
+  Container,
+  Divider,
   Form,
+  Grid,
+  Header,
+  Icon,
+  Image,
+  Segment,
   Statistic
 } from "semantic-ui-react";
 
@@ -132,10 +135,6 @@ class EventShow extends Component {
   renderComments = () => {
     return (
       <Comment.Group>
-        <Header as="h2" dividing>
-          People Are Saying...
-        </Header>
-
         {this.props.comments.length > 0
           ? null
           : "There are no comments yet. Be the first!"}
@@ -154,7 +153,7 @@ class EventShow extends Component {
             value={this.state.comment}
             onChange={this.handleChangeComment}
           />
-          <Button content="Comment" labelPosition="left" icon="edit" />
+          <Button content="Comment" />
         </Form>
       </Comment.Group>
     );
@@ -190,13 +189,20 @@ class EventShow extends Component {
         <br />
         <br />
         <br />
-        <Grid container stackable verticalAlign="middle" columns={2}>
+        <Grid
+          container
+          stackable
+          verticalAlign="middle"
+          columns={2}
+          style={{ background: "#fff" }}
+        >
           <Grid.Column floated="right">
             <Image size="huge" src={this.props.currentEvent.event_hero_url} />
           </Grid.Column>
           <Grid.Column>
             <Header as="h1">{this.props.currentEvent.event_name_en}</Header>
             {this.renderEvent()}
+            <br />
             <p>
               <strong>Starts: </strong>
               {moment(new Date(this.props.currentEvent.start_date)).format(
@@ -231,11 +237,40 @@ class EventShow extends Component {
 
         <Header as="h2">Designers In This Sale</Header>
         {this.renderDesigners()}
-        <Grid centered columns={2}>
-          <Grid.Row centered>
-            <Grid.Column>{this.renderComments()}</Grid.Column>
-          </Grid.Row>
+        <Divider />
+        <Divider hidden />
+        <Grid columns={2} centered style={{ background: "#FFF" }}>
+          <Grid.Column>{this.renderComments()}</Grid.Column>
+          <Grid.Column>
+            <Segment
+              inverted
+              textAlign="center"
+              style={{
+                padding: "1em 0em",
+                backgroundImage: `url(${horizontalFill})`,
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "0% 0%"
+              }}
+              vertical
+            >
+              <Header
+                as="h2"
+                inverted
+                style={{
+                  fontSize: "3em",
+                  marginTop: "6em",
+                  fontFamily: "Karla",
+                  fontWeight: "bold"
+                }}
+              >
+                {" "}
+                <Icon name="angle left" /> People Are Saying...
+              </Header>
+            </Segment>
+          </Grid.Column>
         </Grid>
+        <Divider hidden />
       </Container>
     );
   }
