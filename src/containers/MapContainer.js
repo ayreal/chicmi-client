@@ -25,6 +25,7 @@ export class MapContainer extends Component {
       activeMarker: marker,
       showingInfoWindow: true
     });
+    this.props.setCalendarEvent(props);
   };
 
   onMapClicked = props => {
@@ -63,6 +64,7 @@ export class MapContainer extends Component {
             key={myEvent.id}
             title={myEvent.event_name_en}
             name={myEvent.event_name_en}
+            data={myEvent}
             position={{
               lat: myEvent.latitude,
               lng: myEvent.longitude
@@ -76,7 +78,9 @@ export class MapContainer extends Component {
           visible={this.state.showingInfoWindow}
         >
           <div>
-            <h4>{this.state.selectedPlace.name}</h4>
+            <h4 style={{ fontFamily: "Karla" }}>
+              {this.state.selectedPlace.name}
+            </h4>
           </div>
         </InfoWindow>
       </Map>

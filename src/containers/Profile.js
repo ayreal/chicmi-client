@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-// import { connect } from "react-redux";
-// import * as actions from "../actions";
 import {
   Container,
   Header,
@@ -17,8 +15,8 @@ import EventCard from "./EventCard";
 import DesignerCard from "../components/DesignerCard";
 import Calendar from "../components/Calendar";
 import MapContainer from "./MapContainer";
+import moment from "moment";
 import verticalFill from "../images/fillvert1.png";
-import horizontalFill from "../images/fillhoriz1.png";
 
 class Profile extends Component {
   state = {
@@ -33,9 +31,15 @@ class Profile extends Component {
     this.props.fetchDeleteDesigner(this.props.user.id, data);
   };
 
-  setCalendarEvent = event => {
+  setCalendarEvent = props => {
     this.setState({
-      calendarEvent: event
+      calendarEvent: props
+    });
+  };
+  setCalendarEventFromMap = props => {
+    // debugger;
+    this.setState({
+      calendarEvent: props.data
     });
   };
 
@@ -77,13 +81,23 @@ class Profile extends Component {
   };
 
   renderCurrentEventDetails = () => {
+    const { calendarEvent } = this.state;
     return (
       <Card.Content>
-        <Image src={this.state.calendarEvent.event_logo_pin} floated="left" />
-        <Card.Header>{this.state.calendarEvent.event_name_en}</Card.Header>
+        <Image src={calendarEvent.event_logo_pin} floated="left" />
+        <Card.Header>{calendarEvent.event_name_en}</Card.Header>
         <Card.Meta>
-          <span className="date">hi</span>
+          {moment(new Date(calendarEvent.start_date)).format("M/D/YY, h:mm a")}{" "}
+          thru{" "}
+          {moment(new Date(calendarEvent.end_date)).format("M/D/YY, h:mm a")}
         </Card.Meta>
+        <p>
+          {calendarEvent.address_business_name} -{" "}
+          {calendarEvent.address_street_1}
+          {calendarEvent.address_street_2
+            ? ", " + calendarEvent.address_street_2
+            : null}
+        </p>
       </Card.Content>
     );
   };
@@ -131,8 +145,8 @@ class Profile extends Component {
               </Card>
               <Embed active={true}>
                 <MapContainer
+                  setCalendarEvent={this.setCalendarEventFromMap}
                   events={this.props.user.events}
-                  style={{ minHeight: "500px" }}
                 />
               </Embed>
               <Segment
@@ -179,7 +193,7 @@ class Profile extends Component {
                   }}
                 >
                   {" "}
-                  <Icon name="angle left" /> Plan The Sales
+                  <Icon name="angle left" /> Plan Your Sales
                 </Header>
               </Segment>
             </Grid.Column>
