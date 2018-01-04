@@ -13,6 +13,13 @@ const CommentCard = props => {
           <div> {moment(new Date(props.data.created_at)).fromNow()}</div>
         </Comment.Metadata>
         <Comment.Text>{props.data.text}</Comment.Text>
+        <Comment.Actions>
+          {props.data.user_id === props.currentUser.id ? (
+            <Comment.Action onClick={() => props.deleteComment(props.data)}>
+              Delete?
+            </Comment.Action>
+          ) : null}
+        </Comment.Actions>
       </Comment.Content>
     </Comment>
   );

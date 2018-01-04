@@ -176,3 +176,14 @@ export const fetchAddComment = (userId, eventId, comment) => {
     });
   };
 };
+
+export const fetchDeleteComment = comment => {
+  return dispatch => {
+    console.log("Inside action fetchDeleteComment");
+    dispatch({ type: ASYNC_START });
+    adapter.fetchDeleteComment(comment).then(result => {
+      debugger;
+      dispatch({ type: SET_CURRENT_EVENT, event: result });
+    });
+  };
+};

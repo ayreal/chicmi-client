@@ -100,6 +100,16 @@ export function fetchAddComment(userId, eventId, comment) {
   }).then(res => res.json());
 }
 
+// Delete a comment
+export function fetchDeleteComment(comment) {
+  // debugger;
+  return fetch(`${ROUTE}/comments/${comment.id}`, {
+    method: "DELETE",
+    headers: headers,
+    body: JSON.stringify({ comment: comment })
+  }).then(res => res.json());
+}
+
 // Get more data from the event-specific route in external API
 export function fetchRemoteEvent(externalId) {
   // debugger;

@@ -202,6 +202,7 @@ class EventShow extends Component {
             data={comment}
             loggedIn={this.props.loggedIn}
             currentUser={this.props.user}
+            deleteComment={this.props.fetchDeleteComment}
           />
         ))}
 
