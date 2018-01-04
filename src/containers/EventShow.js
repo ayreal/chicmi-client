@@ -248,9 +248,9 @@ class EventShow extends Component {
               style={{
                 padding: "1em 0em",
                 backgroundImage: `url(${horizontalFill})`,
-                backgroundSize: "contain",
+                backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
-                backgroundPosition: "0% 0%"
+                backgroundPosition: "60% 00%"
               }}
               vertical
             >

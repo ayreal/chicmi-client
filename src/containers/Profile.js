@@ -17,7 +17,7 @@ import Calendar from "../components/Calendar";
 import MapContainer from "./MapContainer";
 import moment from "moment";
 import verticalFill from "../images/fillvert1.png";
-import horizontalFill from "../images/fillprofile.png";
+import horizontalFill from "../images/fillhoriz2.jpg";
 
 class Profile extends Component {
   state = {
