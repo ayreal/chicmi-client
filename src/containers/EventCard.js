@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Icon, Image, Button } from "semantic-ui-react";
+import { Card, Icon, Image, Button, Label } from "semantic-ui-react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
@@ -18,9 +18,9 @@ class EventCard extends Component {
   renderShowAttending = () => {
     if (this.props.user.events.find(this.isUserEvent)) {
       return (
-        <Button size="mini" floated="right">
+        <Label basic as="a" color="grey" ribbon="right">
           I'm Going
-        </Button>
+        </Label>
       );
     } else {
       return null;
@@ -54,13 +54,12 @@ class EventCard extends Component {
       <Card className="event-card">
         <Image src={this.props.data.event_hero_url} />
         <Card.Content>
+          {this.props.loggedIn ? this.renderShowAttending() : null}
+
           <Card.Header>{this.props.data.event_name_en}</Card.Header>
           <Card.Meta>
-            {this.props.loggedIn ? this.renderShowAttending() : null}
             Through{" "}
-            {moment(new Date(this.props.data.end_date)).format(
-              "dddd, MMMM Do"
-            )}{" "}
+            {moment(new Date(this.props.data.end_date)).format("dddd, MMMM Do")}{" "}
             <br />
             {this.renderGcalLink()}
           </Card.Meta>

@@ -211,18 +211,22 @@ class EventShow extends Component {
 
   renderDesigners = () => {
     return (
-      <Card.Group itemsPerRow={4}>
-        {this.props.designers.map(designer => (
-          <DesignerCard
-            key={designer.designer_id}
-            data={designer}
-            handleFollowDesigner={this.handleFollowDesigner}
-            handleUnfollowDesigner={this.handleUnfollowDesigner}
-            user={this.props.user}
-            loggedIn={this.props.loggedIn}
-          />
-        ))}
-      </Card.Group>
+      <div>
+        <Header as="h2">Designers In This Sale</Header>
+
+        <Card.Group itemsPerRow={4}>
+          {this.props.designers.map(designer => (
+            <DesignerCard
+              key={designer.designer_id}
+              data={designer}
+              handleFollowDesigner={this.handleFollowDesigner}
+              handleUnfollowDesigner={this.handleUnfollowDesigner}
+              user={this.props.user}
+              loggedIn={this.props.loggedIn}
+            />
+          ))}
+        </Card.Group>
+      </div>
     );
   };
 
@@ -285,8 +289,7 @@ class EventShow extends Component {
           </Grid.Column>
         </Grid>
 
-        <Header as="h2">Designers In This Sale</Header>
-        {this.renderDesigners()}
+        {this.props.designers.count > 0 ? this.renderDesigners() : null}
 
         {this.props.loggedIn ? this.renderCommentsSection() : null}
         <Divider hidden />
