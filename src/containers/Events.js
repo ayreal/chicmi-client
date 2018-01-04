@@ -79,7 +79,6 @@ class Events extends Component {
           <Divider hidden />
           <Divider hidden />
           <Header as="h2">Ongoing Sample Sales</Header>
-          <p>Some text here.</p>
           <Card.Group itemsPerRow={3}>
             {this.props.events ? this.renderEvents() : null}
           </Card.Group>

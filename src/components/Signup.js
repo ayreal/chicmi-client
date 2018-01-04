@@ -62,34 +62,46 @@ class Signup extends Component {
           style={{ minHeight: "620px" }}
           verticalAlign="middle"
         >
-          <Grid.Column style={{ maxWidth: 450 }}>
+          <Grid.Column style={{ maxWidth: 500 }}>
             <Header as="h2" textAlign="center">
               Sign up for a Chicmi account
             </Header>
             <Form size="large" onSubmit={this.handleSubmit}>
               <Segment>
-                <Input
+                <Form.Input
+                  label="Name"
                   type="text"
                   name="name"
-                  placeholder="Your Name"
                   value={this.state.name}
                   onChange={this.handleChange}
                 />
-                <Input
-                  type="password"
-                  name="password"
-                  placeholder="Choose a password"
-                  value={this.state.password}
-                  onChange={this.handleChange}
-                />
-                <Input
+                <Form.Input
+                  label="E-mail"
                   type="text"
                   name="email"
                   placeholder="you@youremail.com"
                   value={this.state.email}
                   onChange={this.handleChange}
                 />
-                <Input
+                <Form.Group widths="equal">
+                  <Form.Input
+                    label="Username"
+                    type="text"
+                    name="username"
+                    placeholder="Choose a username"
+                    value={this.state.username}
+                    onChange={this.handleChange}
+                  />
+                  <Form.Input
+                    label="Password"
+                    type="password"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                  />
+                </Form.Group>
+                <Form.Input
+                  label="Photo"
                   type="text"
                   name="photo"
                   placeholder="Link to your photo"
@@ -97,30 +109,29 @@ class Signup extends Component {
                   onChange={this.handleChange}
                 />
 
-                <Input
-                  type="text"
-                  name="username"
-                  placeholder="Choose a username"
-                  value={this.state.username}
-                  onChange={this.handleChange}
-                />
-
-                <Input
-                  type="text"
-                  name="twitter"
-                  placeholder="Your Twitter"
-                  value={this.state.twitter}
-                  onChange={this.handleChange}
-                />
-                <Input
-                  type="text"
-                  name="instagram"
-                  placeholder="Your Instagram"
-                  value={this.state.instagram}
-                  onChange={this.handleChange}
-                />
-
-                <TextArea
+                <Form.Group widths="equal">
+                  <Form.Input
+                    icon="twitter"
+                    iconPosition="left"
+                    label="Twitter"
+                    type="text"
+                    name="twitter"
+                    value={this.state.twitter}
+                    onChange={this.handleChange}
+                  />
+                  <Form.Input
+                    label="Instagram"
+                    icon="instagram"
+                    iconPosition="left"
+                    type="text"
+                    name="instagram"
+                    value={this.state.instagram}
+                    onChange={this.handleChange}
+                  />
+                </Form.Group>
+                <Form.Field
+                  label="Bio"
+                  control={TextArea}
                   name="bio"
                   value={this.state.bio}
                   onChange={this.handleChange}

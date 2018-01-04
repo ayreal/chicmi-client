@@ -237,7 +237,7 @@ class EventShow extends Component {
     console.log("----------------------- \n");
 
     return (
-      <Container>
+      <Container style={{ minHeight: "700px" }}>
         <br />
         <br />
         <br />
