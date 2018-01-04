@@ -1,5 +1,6 @@
 import React from "react";
 import { Comment } from "semantic-ui-react";
+import moment from "moment";
 
 const CommentCard = props => {
   console.log("%c ... rendering Comment \n", "color: #42dff4");
@@ -9,7 +10,7 @@ const CommentCard = props => {
       <Comment.Content>
         <Comment.Author as="a">{props.data.name}</Comment.Author>
         <Comment.Metadata>
-          <div>{props.data.created_at}</div>
+          <div> {moment(new Date(props.data.created_at)).fromNow()}</div>
         </Comment.Metadata>
         <Comment.Text>{props.data.text}</Comment.Text>
       </Comment.Content>

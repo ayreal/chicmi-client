@@ -182,14 +182,21 @@ class EventShow extends Component {
     );
   };
 
+  sortComments = () => {
+    return this.props.comments.sort(function(a, b) {
+      return new Date(b.created_at) - new Date(a.created_at);
+    });
+  };
+
   renderComments = () => {
+    const comments = this.sortComments();
     return (
       <Comment.Group>
-        {this.props.comments.length > 0
+        {comments.length > 0
           ? null
           : "There are no comments yet. Be the first!"}
 
-        {this.props.comments.map(comment => (
+        {comments.map(comment => (
           <CommentCard
             key={comment.id}
             data={comment}

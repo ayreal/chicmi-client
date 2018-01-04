@@ -58,10 +58,14 @@ class EventCard extends Component {
 
           <Card.Header>{this.props.data.event_name_en}</Card.Header>
           <Card.Meta>
-            Through{" "}
-            {moment(new Date(this.props.data.end_date)).format("dddd, MMMM Do")}{" "}
-            <br />
-            {this.renderGcalLink()}
+            <span>
+              Through{" "}
+              {moment(new Date(this.props.data.end_date)).format(
+                "dddd, MMMM Do"
+              )}{" "}
+              <br />
+              {this.renderGcalLink()}
+            </span>
           </Card.Meta>
         </Card.Content>
 
