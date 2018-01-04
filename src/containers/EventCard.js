@@ -74,7 +74,7 @@ class EventCard extends Component {
           onClick={this.handleClick}
         >
           View More
-          <Icon name="right arrow" />
+          <Icon name="angle right" size="large" />
         </Button>
       </Card>
     );

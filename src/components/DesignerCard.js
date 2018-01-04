@@ -77,7 +77,7 @@ class DesignerCard extends Component {
             onClick={this.handleClick}
           >
             Shop Now
-            <Icon name="shop" />
+            <Icon name="external" />
           </Button>
         </Button.Group>
       </Card>

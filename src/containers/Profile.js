@@ -8,6 +8,8 @@ import {
   Embed,
   Grid,
   Divider,
+  Segment,
+  Icon,
   Image
 } from "semantic-ui-react";
 import withAuth from "../hocs/withAuth";
@@ -15,11 +17,8 @@ import EventCard from "./EventCard";
 import DesignerCard from "../components/DesignerCard";
 import Calendar from "../components/Calendar";
 import MapContainer from "./MapContainer";
-
-const style = {
-  background: "ccc",
-  position: "relative"
-};
+import verticalFill from "../images/fillvert1.png";
+import horizontalFill from "../images/fillhoriz1.png";
 
 class Profile extends Component {
   state = {
@@ -77,6 +76,26 @@ class Profile extends Component {
     );
   };
 
+  renderCurrentEventDetails = () => {
+    return (
+      <Card.Content>
+        <Image src={this.state.calendarEvent.event_logo_pin} floated="left" />
+        <Card.Header>{this.state.calendarEvent.event_name_en}</Card.Header>
+        <Card.Meta>
+          <span className="date">hi</span>
+        </Card.Meta>
+      </Card.Content>
+    );
+  };
+
+  componentDidMount = () => {
+    if (this.props.user.events) {
+      this.setState({
+        calendarEvent: this.props.user.events[0]
+      });
+    }
+  };
+
   render() {
     console.log("%c Inside render Profile \n", "color: #bada55");
     console.log("PROPS: ", this.props);
@@ -98,47 +117,74 @@ class Profile extends Component {
         {this.renderEvents()}
 
         <Divider hidden />
-        <Header as="h2">Map My Events</Header>
-
-        <Grid columns={2}>
-          <Grid.Column width={10}>
-            <Embed active={true}>
-              <MapContainer events={this.props.user.events} />
-            </Embed>
-          </Grid.Column>
-
-          <Grid.Column width={6}>
-            <Image
-              fluid
-              centered
-              verticalAlign="middle"
-              src={this.state.calendarEvent.event_hero_url}
-              size="medium"
-            />
-          </Grid.Column>
-        </Grid>
-
-        <Divider hidden />
-        <Header as="h2">My Calendar</Header>
-
-        <Grid centered columns={2}>
-          <Grid.Row centered>
-            <Grid.Column>
-              <div style={{ height: "700 px" }}>
-                <Calendar
-                  className="calendar"
-                  style={style}
-                  events={this.props.user.events}
-                  setCalendarEvent={this.setCalendarEvent}
-                />
-              </div>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-        <Divider hidden />
         <Header as="h2">Designers I Follow</Header>
         {this.renderDesigners()}
         <Divider hidden />
+
+        <Grid verticalAlign="middle" columns={2} centered>
+          <Grid.Row width={16}>
+            <Grid.Column>
+              <Card fluid>
+                {this.state.calendarEvent.id
+                  ? this.renderCurrentEventDetails()
+                  : "You're not going to any sales. :/ Follow some and track them here!"}
+              </Card>
+              <Embed active={true}>
+                <MapContainer
+                  events={this.props.user.events}
+                  style={{ minHeight: "500px" }}
+                />
+              </Embed>
+              <Segment
+                style={{
+                  background: "#fff",
+                  border: "none",
+                  boxShadow: "none"
+                }}
+              >
+                <Calendar
+                  className="calendar"
+                  style={{
+                    background: "fff",
+                    position: "relative"
+                  }}
+                  events={this.props.user.events}
+                  setCalendarEvent={this.setCalendarEvent}
+                />
+              </Segment>
+            </Grid.Column>
+            <Grid.Column>
+              <Segment
+                inverted
+                textAlign="center"
+                style={{
+                  padding: "1em 0em",
+                  backgroundImage: `url(${verticalFill})`,
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "0% 0%"
+                }}
+                vertical
+              >
+                <Header
+                  as="h2"
+                  inverted
+                  style={{
+                    minHeight: "600px",
+                    fontSize: "3em",
+                    marginBottom: 0,
+                    marginTop: "6em",
+                    fontFamily: "Karla",
+                    fontWeight: "bold"
+                  }}
+                >
+                  {" "}
+                  <Icon name="angle left" /> Plan The Sales
+                </Header>
+              </Segment>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </Container>
     );
   }
