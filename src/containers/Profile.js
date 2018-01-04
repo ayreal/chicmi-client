@@ -17,6 +17,7 @@ import Calendar from "../components/Calendar";
 import MapContainer from "./MapContainer";
 import moment from "moment";
 import verticalFill from "../images/fillvert1.png";
+import horizontalFill from "../images/fillprofile.png";
 
 class Profile extends Component {
   state = {
@@ -122,8 +123,33 @@ class Profile extends Component {
         <br />
         <br />
         <br />
-        <Header as="h1">Welcome, {this.props.user.name}!</Header>
-        <p>You can view and manage your profile here</p>
+
+        <Segment
+          inverted
+          textAlign="right"
+          style={{
+            padding: "1em 0em",
+            backgroundImage: `url(${horizontalFill})`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "0% 0%"
+          }}
+          vertical
+        >
+          <Header
+            as="h1"
+            inverted
+            style={{
+              fontSize: "3em",
+              marginBottom: 0,
+              marginTop: "2em",
+              fontFamily: "Karla",
+              fontWeight: "bold"
+            }}
+          >
+            Welcome, {this.props.user.name}! &nbsp;
+          </Header>
+        </Segment>
 
         <Divider hidden />
         <Header as="h2">Events I'm Attending</Header>
