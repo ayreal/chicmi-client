@@ -119,10 +119,20 @@ class EventShow extends Component {
   };
 
   renderAttendingInsight = () => {
-    if (this.props.attending > 10) {
-      return "This event is likely to be very busy. We recommend arriving between 45 minutes to 1 hour ahead of time to avoid lines.";
+    if (this.props.attending >= 10) {
+      return (
+        <Segment inverted color="red" secondary>
+          <Icon name="fire" size="large" />This event is likely to be very busy.
+          We recommend arriving between 45 minutes to 1 hour ahead of time to
+          avoid lines.
+        </Segment>
+      );
     } else if (this.props.attending >= 5 && this.props.attending < 10) {
-      return "This event may be slightly busy.";
+      return (
+        <Segment inverted color="yellow" secondary>
+          <Icon name="fire" size="large" />This event may be slightly busy.
+        </Segment>
+      );
     } else {
       return null;
     }
@@ -130,6 +140,46 @@ class EventShow extends Component {
 
   renderEvent = () => {
     return <div>{this.props.loggedIn ? this.renderFollowButton() : null}</div>;
+  };
+
+  renderCommentsSection = () => {
+    return (
+      <div>
+        <Divider />
+        <Divider hidden />
+        <Grid columns={2} centered style={{ background: "#FFF" }}>
+          <Grid.Column>{this.renderComments()}</Grid.Column>
+          <Grid.Column>
+            <Segment
+              inverted
+              textAlign="center"
+              style={{
+                padding: "1em 0em",
+                backgroundImage: `url(${horizontalFill})`,
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "60% 00%"
+              }}
+              vertical
+            >
+              <Header
+                as="h2"
+                inverted
+                style={{
+                  fontSize: "3em",
+                  marginTop: "6em",
+                  fontFamily: "Karla",
+                  fontWeight: "bold"
+                }}
+              >
+                {" "}
+                <Icon name="angle left" /> People Are Saying...
+              </Header>
+            </Segment>
+          </Grid.Column>
+        </Grid>
+      </div>
+    );
   };
 
   renderComments = () => {
@@ -237,39 +287,8 @@ class EventShow extends Component {
 
         <Header as="h2">Designers In This Sale</Header>
         {this.renderDesigners()}
-        <Divider />
-        <Divider hidden />
-        <Grid columns={2} centered style={{ background: "#FFF" }}>
-          <Grid.Column>{this.renderComments()}</Grid.Column>
-          <Grid.Column>
-            <Segment
-              inverted
-              textAlign="center"
-              style={{
-                padding: "1em 0em",
-                backgroundImage: `url(${horizontalFill})`,
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "60% 00%"
-              }}
-              vertical
-            >
-              <Header
-                as="h2"
-                inverted
-                style={{
-                  fontSize: "3em",
-                  marginTop: "6em",
-                  fontFamily: "Karla",
-                  fontWeight: "bold"
-                }}
-              >
-                {" "}
-                <Icon name="angle left" /> People Are Saying...
-              </Header>
-            </Segment>
-          </Grid.Column>
-        </Grid>
+
+        {this.props.loggedIn ? this.renderCommentsSection() : null}
         <Divider hidden />
       </Container>
     );
