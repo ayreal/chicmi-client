@@ -1,7 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
-import { Container, Header, Form, Input, Button } from "semantic-ui-react";
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Image,
+  Message,
+  Divider,
+  Segment
+} from "semantic-ui-react";
+
 import * as actions from "../actions";
 
 class Login extends Component {
@@ -25,31 +35,68 @@ class Login extends Component {
     console.log("---------------------");
 
     return (
-      <Container>
+      <div className="login-form">
         <br />
         <br />
         <br />
         <br />
-        <Header as="h1">Login</Header>
+        <br />
+        {/*
+          Heads up! The styles below are necessary for the correct render of this example.
+          You can do same with CSS, the main idea is that all the elements up to the `Grid`
+          below must have a height of 100%.
+        */}
+        <style>{`
+          body > div,
+          body > div > div,
+          body > div > div > div.login-form {
+            height: 100%;
+          }
+        `}</style>
+        <Grid
+          textAlign="center"
+          style={{ minHeight: "620px" }}
+          verticalAlign="middle"
+        >
+          <Grid.Column style={{ maxWidth: 450 }}>
+            <Header as="h2" textAlign="center">
+              Log-in to your account
+            </Header>
+            <Form size="large" onSubmit={this.handleSubmit}>
+              <Segment>
+                <Form.Input
+                  fluid
+                  icon="user"
+                  iconPosition="left"
+                  placeholder="Username"
+                  type="text"
+                  name="username"
+                  value={this.state.username}
+                  onChange={this.handleChange}
+                />
+                <Form.Input
+                  fluid
+                  icon="lock"
+                  iconPosition="left"
+                  placeholder="Password"
+                  type="password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                />
 
-        <Form onSubmit={this.handleSubmit}>
-          <Input
-            type="text"
-            name="username"
-            value={this.state.username}
-            onChange={this.handleChange}
-          />
-          <Input
-            type="password"
-            name="password"
-            value={this.state.password}
-            onChange={this.handleChange}
-          />
-          <Button type="submit">Login</Button>
-        </Form>
-
-        <Link to="/signup">Signup</Link>
-      </Container>
+                <Button type="submit" fluid size="large" secondary>
+                  Login
+                </Button>
+              </Segment>
+            </Form>
+            <Message>
+              New to us? <Link to="/signup">Signup</Link>
+            </Message>
+          </Grid.Column>
+        </Grid>
+        <Divider hidden />
+      </div>
     );
   }
 }
