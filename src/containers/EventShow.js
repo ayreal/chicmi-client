@@ -197,9 +197,12 @@ class EventShow extends Component {
     const comments = this.sortComments();
     return (
       <Comment.Group>
-        {comments.length > 0
-          ? null
-          : "There are no comments yet. Be the first!"}
+        {comments.length > 0 ? null : (
+          <Header textAlign="center" as="h3">
+            <br />
+            There are no comments yet. Be the first!
+          </Header>
+        )}
 
         {comments.map(comment => (
           <CommentCard
@@ -303,9 +306,9 @@ class EventShow extends Component {
             <p>{this.renderAttendingInsight()}</p>
           </Grid.Column>
         </Grid>
+        <Divider hidden />
 
-        {this.props.designers.count > 0 ? this.renderDesigners() : null}
-
+        {this.props.designers.length > 0 ? this.renderDesigners() : null}
         {this.props.loggedIn ? this.renderCommentsSection() : null}
         <Divider hidden />
       </Container>

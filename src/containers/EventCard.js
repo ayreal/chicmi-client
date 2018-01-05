@@ -68,7 +68,10 @@ class EventCard extends Component {
         <Card.Content>
           <Card.Header>{this.props.data.event_name_en}</Card.Header>
           {this.props.loggedIn ? this.renderShowAttending() : null}
-          <span>Ends {moment().to(new Date(this.props.data.end_date))}</span>
+          <span style={{ color: "#c1a57f" }}>
+            {this.state.isPast ? "Ended" : "Ends"}{" "}
+            {moment().to(new Date(this.props.data.end_date))}
+          </span>
         </Card.Content>
 
         <Button
