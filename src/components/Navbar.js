@@ -17,6 +17,10 @@ import SearchBarWrapper from "./SearchBarWrapper";
 import logo from "../logo2.svg";
 
 class Navbar extends Component {
+  state = {
+    showLabel: true
+  };
+
   renderProfileLink = props => {
     if (this.props.loggedIn) {
       return (
@@ -33,18 +37,25 @@ class Navbar extends Component {
     }
   };
 
+  removeLabel = () => {
+    this.setState({ showLabel: false });
+  };
+
   renderAlertLink = () => {
     const alertEvents = this.getAlertEvents();
     if (this.props.loggedIn && alertEvents.length > 0) {
       return (
         <Menu.Item>
-          <Label circular color="red">
-            {alertEvents.length}
-          </Label>
+          {this.state.showLabel ? (
+            <Label circular color="red">
+              {alertEvents.length}
+            </Label>
+          ) : null}
           <Popup
             flowing
             trigger={<Icon name="bell" size="large" />}
             hideOnScroll
+            onClose={this.removeLabel}
             on="click"
             as="a"
             style={{ fontFamily: "Karla" }}
