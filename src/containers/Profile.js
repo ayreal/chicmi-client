@@ -109,6 +109,7 @@ class Profile extends Component {
         calendarEvent: this.props.user.events[0]
       });
     }
+    window.scrollTo(0, 0);
   };
 
   render() {
@@ -116,7 +117,7 @@ class Profile extends Component {
     console.log("PROPS: ", this.props);
     console.log("STATE: ", this.state);
     console.log("----------------------- \n");
-    window.scrollTo(0, 0);
+
     return (
       <Container>
         <br />
@@ -165,9 +166,14 @@ class Profile extends Component {
           <Grid.Row>
             <Grid.Column>
               <Card fluid>
-                {this.state.calendarEvent.id
-                  ? this.renderCurrentEventDetails()
-                  : "You're not going to any sales. :/ Follow some and track them here!"}
+                {this.state.calendarEvent.id ? (
+                  this.renderCurrentEventDetails()
+                ) : (
+                  <Header as="h3">
+                    You're not going to any sales. :/ Follow some and track them
+                    here!
+                  </Header>
+                )}
               </Card>
               <Embed active={true}>
                 <MapContainer

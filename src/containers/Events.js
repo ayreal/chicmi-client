@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 import {
-  Container,
-  Header,
+  Button,
   Card,
-  Segment,
+  Container,
   Divider,
-  Button
+  Header,
+  Segment
 } from "semantic-ui-react";
 import EventCard from "./EventCard";
 import splash from "../images/splashtest.png";
@@ -23,7 +23,6 @@ class Events extends Component {
   render() {
     console.log("%c >> Inside render Events \n", "color: #bada55");
     console.log("PROPS: ", this.props);
-    console.log("PROPS EVENTS LENGTH:", this.props.events.length);
     console.log("----------------------- \n");
     return (
       <div style={{ marginTop: "4.2em" }}>
@@ -78,7 +77,13 @@ class Events extends Component {
           <Divider hidden />
           <Divider hidden />
           <Divider hidden />
-          <Header as="h2">Ongoing Sample Sales</Header>
+          <Segment padded="very" basic>
+            <Header as="h2">
+              Explore our year-round calendar of fashion sample sales ranging
+              from luxury and high street labels through to independent and
+              emerging brands.
+            </Header>
+          </Segment>
           <Card.Group itemsPerRow={3}>
             {this.props.events ? this.renderEvents() : null}
           </Card.Group>
