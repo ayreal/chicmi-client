@@ -41,3 +41,9 @@ div.right.floated.column > img,
 .card > img.ui.image {
   border-bottom: 4px solid black;
 }
+
+div > a.label {
+  font-family: "Karla" !important;
+  font-weight: "regular" !important;
+  margin-bottom: 6px !important;
+}
