@@ -3,7 +3,16 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import { logoutUser } from "../actions";
-import { Container, Image, Menu, Icon, Popup } from "semantic-ui-react";
+import {
+  Container,
+  Icon,
+  Image,
+  Label,
+  List,
+  Menu,
+  Popup
+} from "semantic-ui-react";
+import moment from "moment";
 import SearchBarWrapper from "./SearchBarWrapper";
 import logo from "../logo2.svg";
 
@@ -25,27 +34,49 @@ class Navbar extends Component {
   };
 
   renderAlertLink = () => {
-    if (this.props.loggedIn && this.props.events.length > 0) {
-      const nextEvent = this.getNextEvent();
+    const alertEvents = this.getAlertEvents();
+    if (this.props.loggedIn && alertEvents.length > 0) {
       return (
         <Menu.Item>
+          <Label circular color="red">
+            {alertEvents.length}
+          </Label>
           <Popup
-            trigger={<Icon name="star" size="large" />}
+            flowing
+            trigger={<Icon name="bell" size="large" />}
+            hideOnScroll
             on="click"
             as="a"
-            content={nextEvent.address_business_name}
-            style={{
-              borderRadius: 0,
-              opacity: 0.7,
-              padding: "2em"
-            }}
-            inverted
-          />
+            style={{ fontFamily: "Karla" }}
+          >
+            {this.renderAlertList(alertEvents)}
+          </Popup>
         </Menu.Item>
       );
     } else {
       return null;
     }
+  };
+
+  renderAlertList = alertEvents => {
+    return (
+      <List>
+        <p>
+          <strong>These sales are ending soon:</strong>
+        </p>
+        {alertEvents.map(myEvent => (
+          <List.Item>
+            <List.Icon name="exclamation" />
+            <List.Content>
+              <Link to={`/events/${myEvent.slug}`}>
+                {myEvent.event_name_en}
+              </Link>{" "}
+              ({moment().to(new Date(myEvent.end_date))})
+            </List.Content>
+          </List.Item>
+        ))}
+      </List>
+    );
   };
 
   renderLogoutLink = props => {
@@ -57,15 +88,21 @@ class Navbar extends Component {
   };
 
   handleLogout = e => {
-    console.log("Inside components/Navbar handleLogout");
     e.preventDefault();
     this.props.logoutUser();
   };
 
-  getNextEvent = () => {
-    return this.props.events.sort(function(a, b) {
-      return new Date(a.end_date) - new Date(b.end_date);
-    })[0];
+  getAlertEvents = () => {
+    return this.props.events.filter(myEvent => this.isWithinFiveDays(myEvent));
+  };
+
+  isWithinFiveDays = myEvent => {
+    const today = moment();
+    const eventDate = moment(new Date(myEvent.end_date));
+    const difference = eventDate.diff(today, "hours");
+    if (difference > 0 && difference <= 120) {
+      return true;
+    }
   };
 
   render() {
@@ -83,7 +120,7 @@ class Navbar extends Component {
               <SearchBarWrapper />
             </Menu.Item>
             {this.renderProfileLink()}
-            {this.renderAlertLink()}
+            {this.props.loggedIn ? this.renderAlertLink() : null}
             {this.renderLogoutLink()}
           </Menu.Menu>
         </Container>
