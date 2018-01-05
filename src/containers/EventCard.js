@@ -32,8 +32,15 @@ class EventCard extends Component {
   renderShowAttending = () => {
     if (this.props.user.events.find(this.isUserEvent)) {
       return (
-        <Label basic as="a" color="grey" ribbon="right">
-          I'm Going
+        <Label
+          as="a"
+          href={this.gCalLink()}
+          target="_blank"
+          rel="nofollow"
+          color="gray"
+          ribbon
+        >
+          <Icon name="add to calendar" /> I'm Going
         </Label>
       );
     } else {
@@ -41,48 +48,27 @@ class EventCard extends Component {
     }
   };
 
-  renderGcalLink = () => {
-    if (!this.state.isPast) {
-      return (
-        <a
-          href={`http://www.google.com/calendar/event?action=TEMPLATE&text=${
-            this.props.data.event_name_en
-          }&dates=${new Date(this.props.data.start_date)
-            .toISOString()
-            .replace(/-|:|\.\d\d\d/g, "")}/${new Date(this.props.data.end_date)
-            .toISOString()
-            .replace(/-|:|\.\d\d\d/g, "")}&location=${
-            this.props.data.address_street_1
-          } ${this.props.data.address_street_2} ${
-            this.props.data.address_city
-          } ${this.props.data.address_zip}&trp=false&sprop=&sprop=name:`}
-          target="_blank"
-          rel="nofollow"
-        >
-          Add to my gCal
-        </a>
-      );
-    }
-  };
+  gCalLink = () =>
+    `http://www.google.com/calendar/event?action=TEMPLATE&text=${
+      this.props.data.event_name_en
+    }&dates=${new Date(this.props.data.start_date)
+      .toISOString()
+      .replace(/-|:|\.\d\d\d/g, "")}/${new Date(this.props.data.end_date)
+      .toISOString()
+      .replace(/-|:|\.\d\d\d/g, "")}&location=${
+      this.props.data.address_street_1
+    } ${this.props.data.address_street_2} ${this.props.data.address_city} ${
+      this.props.data.address_zip
+    }&trp=false&sprop=&sprop=name:`;
 
   render() {
     return (
       <Card className="event-card">
         <Image src={this.props.data.event_hero_url} />
         <Card.Content>
-          {this.props.loggedIn ? this.renderShowAttending() : null}
-
           <Card.Header>{this.props.data.event_name_en}</Card.Header>
-          <Card.Meta>
-            <span>
-              Through{" "}
-              {moment(new Date(this.props.data.end_date)).format(
-                "dddd, MMMM Do"
-              )}{" "}
-              <br />
-              {this.renderGcalLink()}
-            </span>
-          </Card.Meta>
+          {this.props.loggedIn ? this.renderShowAttending() : null}
+          <span>Ends {moment().to(new Date(this.props.data.end_date))}</span>
         </Card.Content>
 
         <Button
