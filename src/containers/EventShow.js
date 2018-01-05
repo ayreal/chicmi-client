@@ -30,14 +30,9 @@ class EventShow extends Component {
   };
 
   componentDidMount() {
-    // this is where bug from loggedout comes from
     const slug = this.props.match.params.slug;
-    // if (!this.props.currentEvent.id) {
-    //   console.log("Inside componentDidMount")
     this.props.fetchEventBySlug(slug);
     window.scrollTo(0, 0);
-
-    // }
   }
 
   handleRemove = () => {
@@ -85,9 +80,19 @@ class EventShow extends Component {
     return myEvent.id === this.props.currentEvent.id;
   };
 
+  isPastEvent = () => {
+    return moment(new Date(this.props.currentEvent.end_date)).isBefore();
+  };
+
   renderFollowButton = () => {
     // if the currentEvent is also a userEvent
-    if (this.props.userEvents.find(this.isUserEvent)) {
+    if (this.isPastEvent) {
+      return (
+        <Segment inverted color="gray" secondary>
+          <Icon name="clock" size="large" /> This event has ended.
+        </Segment>
+      );
+    } else if (this.props.userEvents.find(this.isUserEvent)) {
       return (
         <Button
           animated
@@ -291,7 +296,9 @@ class EventShow extends Component {
                 <Icon name="check" />
                 {this.props.attending}
               </Statistic.Value>
-              <Statistic.Label>attending</Statistic.Label>
+              <Statistic.Label>
+                {this.isPastEvent ? "attended" : "attending"}
+              </Statistic.Label>
             </Statistic>
             <p>{this.renderAttendingInsight()}</p>
           </Grid.Column>

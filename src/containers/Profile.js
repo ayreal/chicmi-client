@@ -71,13 +71,35 @@ class Profile extends Component {
     );
   };
 
+  getPastEvents = () => {
+    return this.props.user.events.filter(myEvent =>
+      moment(new Date(myEvent.end_date)).isBefore()
+    );
+  };
+
+  getPresentEvents = () => {
+    return this.props.user.events.filter(myEvent =>
+      moment(new Date(myEvent.end_date)).isAfter()
+    );
+  };
+
   renderEvents = () => {
+    const past = this.getPastEvents();
+    const present = this.getPresentEvents();
     return (
-      <Card.Group itemsPerRow={3}>
-        {this.props.user.events.map(event => (
-          <EventCard key={event.id} data={event} />
-        ))}
-      </Card.Group>
+      <div>
+        <Header as="h2">Events I'm Attending</Header>
+
+        <Card.Group itemsPerRow={3}>
+          {present.map(event => <EventCard key={event.id} data={event} />)}
+        </Card.Group>
+
+        <Header as="h2">Events I Attended</Header>
+
+        <Card.Group itemsPerRow={3}>
+          {past.map(event => <EventCard key={event.id} data={event} />)}
+        </Card.Group>
+      </div>
     );
   };
 
@@ -153,7 +175,6 @@ class Profile extends Component {
         </Segment>
 
         <Divider hidden />
-        <Header as="h2">Events I'm Attending</Header>
 
         {this.renderEvents()}
 
