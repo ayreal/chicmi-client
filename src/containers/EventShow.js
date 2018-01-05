@@ -80,13 +80,13 @@ class EventShow extends Component {
     return myEvent.id === this.props.currentEvent.id;
   };
 
-  isPastEvent = () => {
+  isPastEvent = myEvent => {
     return moment(new Date(this.props.currentEvent.end_date)).isBefore();
   };
 
   renderFollowButton = () => {
     // if the currentEvent is also a userEvent
-    if (this.isPastEvent) {
+    if (this.isPastEvent()) {
       return (
         <Segment inverted color="gray" secondary>
           <Icon name="clock" size="large" /> This event has ended.
@@ -297,7 +297,7 @@ class EventShow extends Component {
                 {this.props.attending}
               </Statistic.Value>
               <Statistic.Label>
-                {this.isPastEvent ? "attended" : "attending"}
+                {this.isPastEvent() ? "attended" : "attending"}
               </Statistic.Label>
             </Statistic>
             <p>{this.renderAttendingInsight()}</p>
