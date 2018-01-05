@@ -55,20 +55,25 @@ class Profile extends Component {
   };
 
   renderDesigners = () => {
-    return (
-      <Card.Group itemsPerRow={4}>
-        {this.props.user.designers.map(designer => (
-          <DesignerCard
-            key={designer.designer_id}
-            data={designer}
-            handleFollowDesigner={this.handleFollowDesigner}
-            handleUnfollowDesigner={this.handleUnfollowDesigner}
-            user={this.props.user}
-            loggedIn={this.props.loggedIn}
-          />
-        ))}
-      </Card.Group>
-    );
+    if (this.props.user.designers.length > 0) {
+      return (
+        <div>
+          <Header as="h2">Designers I Follow</Header>
+          <Card.Group itemsPerRow={4}>
+            {this.props.user.designers.map(designer => (
+              <DesignerCard
+                key={designer.designer_id}
+                data={designer}
+                handleFollowDesigner={this.handleFollowDesigner}
+                handleUnfollowDesigner={this.handleUnfollowDesigner}
+                user={this.props.user}
+                loggedIn={this.props.loggedIn}
+              />
+            ))}
+          </Card.Group>
+        </div>
+      );
+    }
   };
 
   getPastEvents = () => {
@@ -84,21 +89,24 @@ class Profile extends Component {
   };
 
   renderEvents = () => {
-    const past = this.getPastEvents();
     const present = this.getPresentEvents();
+    const past = this.getPastEvents();
     return (
       <div>
         <Header as="h2">Events I'm Attending</Header>
-
         <Card.Group itemsPerRow={3}>
           {present.map(event => <EventCard key={event.id} data={event} />)}
         </Card.Group>
 
-        <Header as="h2">Events I Attended</Header>
-
-        <Card.Group itemsPerRow={3}>
-          {past.map(event => <EventCard key={event.id} data={event} />)}
-        </Card.Group>
+        {past.length > 0 ? (
+          <div>
+            <Header as="h2">Events I Attended</Header>
+            <Card.Group itemsPerRow={3}>
+              {past.map(event => <EventCard key={event.id} data={event} />)}
+            </Card.Group>
+          </div>
+        ) : null}
+        <Divider hidden />
       </div>
     );
   };
@@ -179,7 +187,6 @@ class Profile extends Component {
         {this.renderEvents()}
 
         <Divider hidden />
-        <Header as="h2">Designers I Follow</Header>
         {this.renderDesigners()}
         <Divider hidden />
 
