@@ -1,12 +1,13 @@
 import React from "react";
 import { Comment } from "semantic-ui-react";
 import moment from "moment";
+import noImage from "../images/person_ico.png";
 
 const CommentCard = props => {
   console.log("%c ... rendering Comment \n", "color: #42dff4");
   return (
     <Comment>
-      <Comment.Avatar src={props.data.photo} />
+      <Comment.Avatar src={props.data.photo ? props.data.photo : noImage} />
       <Comment.Content>
         <Comment.Author as="a">{props.data.name}</Comment.Author>
         <Comment.Metadata>
