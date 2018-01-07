@@ -57,7 +57,7 @@ class Profile extends Component {
   renderCurrentEventMessage = () => {
     if (this.state.calendarEvent.id) {
       return this.renderCurrentEventDetails();
-    } else if (!!this.props.user.events) {
+    } else if (this.props.user.events.length === 0) {
       return (
         <Header as="h3">
           You're not following any events :/ <br /> Follow sales and track them
