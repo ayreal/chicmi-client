@@ -54,6 +54,43 @@ class Profile extends Component {
     );
   };
 
+  renderCurrentEventMessage = () => {
+    if (this.state.calendarEvent.id) {
+      return this.renderCurrentEventDetails();
+    } else if (!!this.props.user.events) {
+      return (
+        <Header as="h3">
+          You're not following any events :/ <br /> Follow sales and track them
+          here!
+        </Header>
+      );
+    } else {
+      return <Header as="h3">Choose a sale to view here.</Header>;
+    }
+  };
+
+  renderCurrentEventDetails = () => {
+    const { calendarEvent } = this.state;
+    return (
+      <Card.Content>
+        <Image src={calendarEvent.event_logo_pin} floated="left" />
+        <Card.Header>{calendarEvent.event_name_en}</Card.Header>
+        <Card.Meta>
+          {moment(new Date(calendarEvent.start_date)).format("M/D/YY, h:mm a")}{" "}
+          thru{" "}
+          {moment(new Date(calendarEvent.end_date)).format("M/D/YY, h:mm a")}
+        </Card.Meta>
+        <p>
+          {calendarEvent.address_business_name} -{" "}
+          {calendarEvent.address_street_1}
+          {calendarEvent.address_street_2
+            ? ", " + calendarEvent.address_street_2
+            : null}
+        </p>
+      </Card.Content>
+    );
+  };
+
   renderDesigners = () => {
     if (this.props.user.designers.length > 0) {
       return (
@@ -111,34 +148,7 @@ class Profile extends Component {
     );
   };
 
-  renderCurrentEventDetails = () => {
-    const { calendarEvent } = this.state;
-    return (
-      <Card.Content>
-        <Image src={calendarEvent.event_logo_pin} floated="left" />
-        <Card.Header>{calendarEvent.event_name_en}</Card.Header>
-        <Card.Meta>
-          {moment(new Date(calendarEvent.start_date)).format("M/D/YY, h:mm a")}{" "}
-          thru{" "}
-          {moment(new Date(calendarEvent.end_date)).format("M/D/YY, h:mm a")}
-        </Card.Meta>
-        <p>
-          {calendarEvent.address_business_name} -{" "}
-          {calendarEvent.address_street_1}
-          {calendarEvent.address_street_2
-            ? ", " + calendarEvent.address_street_2
-            : null}
-        </p>
-      </Card.Content>
-    );
-  };
-
   componentDidMount = () => {
-    if (this.props.user.events) {
-      this.setState({
-        calendarEvent: this.props.user.events[0]
-      });
-    }
     window.scrollTo(0, 0);
   };
 
@@ -193,16 +203,7 @@ class Profile extends Component {
         <Grid verticalAlign="middle" columns={2} centered>
           <Grid.Row>
             <Grid.Column>
-              <Card fluid>
-                {this.state.calendarEvent.id ? (
-                  this.renderCurrentEventDetails()
-                ) : (
-                  <Header as="h3">
-                    You're not going to any sales. :/ Follow some and track them
-                    here!
-                  </Header>
-                )}
-              </Card>
+              <Card fluid>{this.renderCurrentEventMessage()}</Card>
               <Embed active={true}>
                 <MapContainer
                   setCalendarEvent={this.setCalendarEventFromMap}
