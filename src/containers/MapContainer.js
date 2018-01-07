@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
-import { config } from "../config";
+// import { config } from "../config";
 const mapStyles = require("./mapStyles.json");
 // const KEY = config.GOOGLE;
 const markerStyles = {
