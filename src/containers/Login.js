@@ -6,7 +6,6 @@ import {
   Form,
   Grid,
   Header,
-  Image,
   Message,
   Divider,
   Segment

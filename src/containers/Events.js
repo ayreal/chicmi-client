@@ -17,7 +17,7 @@ class Events extends Component {
     return this.props.events.map(event => {
       return <EventCard key={event.event_id} data={event} />;
     });
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
   };
 
   render() {
