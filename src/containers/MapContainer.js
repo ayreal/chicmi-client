@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
-import { config } from "../config";
+// import { config } from "../config";
 const mapStyles = require("./mapStyles.json");
-const KEY = config.GOOGLE;
+// const KEY = config.GOOGLE;
 const markerStyles = {
   path:
     "M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z",
@@ -90,5 +90,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: KEY
+  apiKey: "AIzaSyAole5aYswLbjR4-ah12Q6uLvIBPdS8rxI"
 })(MapContainer);

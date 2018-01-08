@@ -1,5 +1,8 @@
 const ROUTE = "https://chicmi-api.herokuapp.com/api/v1";
+<<<<<<< HEAD
 const PROD_ROUTE = "http://localhost:3000/api/v1";
+=======
+>>>>>>> prodfix
 const EXT_ROUTE =
   "https://www.chicmi.com/api/calendar_in_city/?city=new-york&types=sample-sales&sectors=&designers=&stores=&users=&featured_only=&max_results=&days=90&source=embed";
 const EXT_ROUTE_EVENT = "https://www.chicmi.com/api/events_get";
