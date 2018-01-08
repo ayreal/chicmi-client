@@ -31,7 +31,7 @@ class Login extends Component {
 
   handleErrors = () => {
     console.log(this.props.errors);
-    debugger;
+    return <Message negative>{this.props.errors[0]}</Message>;
   };
 
   render() {
