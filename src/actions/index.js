@@ -3,7 +3,8 @@ import {
   LOGIN_USER,
   LOGOUT_USER,
   ADD_EVENTS_TO_STORE,
-  SET_CURRENT_EVENT
+  SET_CURRENT_EVENT,
+  RETURN_ERROR
 } from "./types";
 import * as adapter from "../services/adapter";
 
@@ -25,20 +26,22 @@ export function signupUser(data, history) {
 
 export function fetchProfile(data, history) {
   return dispatch => {
-    // console.log("Inside action fetchProfile, history is", history);
     dispatch({ type: ASYNC_START });
     adapter.loginUser(data).then(payload => {
       localStorage.setItem("token", payload.token);
       console.log("About to dispatch user, payload is \n", payload);
-      dispatch({ type: LOGIN_USER, user: payload.user });
-      history.push("/");
+      if (payload.error) {
+        dispatch({ type: RETURN_ERROR, error: payload });
+      } else {
+        dispatch({ type: LOGIN_USER, user: payload.user });
+        history.push("/");
+      }
     });
   };
 }
 
 export function fetchCurrentUser() {
   return dispatch => {
-    // console.log("Inside action fetchCurrentUser");
     dispatch({ type: ASYNC_START });
     adapter.fetchCurrentUser().then(user => {
       dispatch({ type: LOGIN_USER, user: user });
@@ -47,7 +50,6 @@ export function fetchCurrentUser() {
 }
 
 export const logoutUser = () => {
-  // console.log("Inside logoutUser action");
   localStorage.removeItem("token");
   return { type: LOGOUT_USER };
 };
@@ -55,7 +57,6 @@ export const logoutUser = () => {
 // GET EVENTS FROM EXTERNAL API
 export const fetchRemoteEvents = () => {
   return dispatch => {
-    // console.log("Inside action fetchRemoteEvents");
     dispatch({ type: ASYNC_START });
     adapter.fetchRemoteEvents().then(results => {
       dispatch({ type: ADD_EVENTS_TO_STORE, events: results.values.events });
@@ -123,7 +124,6 @@ export const fetchCreateEvent = (event, history) => {
     return dispatch => {
       adapter.fetchRemoteEvent(event.event_id).then(result => {
         adapter.fetchCreateEvent(result.values).then(result => {
-          // debugger;
           dispatch({ type: SET_CURRENT_EVENT, event: result });
           history.push(`${result.slug}`);
         });
@@ -133,7 +133,6 @@ export const fetchCreateEvent = (event, history) => {
     return dispatch => {
       adapter.fetchRemoteEvent(event.external_id).then(result => {
         adapter.fetchCreateEvent(result.values).then(result => {
-          // debugger;
           dispatch({ type: SET_CURRENT_EVENT, event: result });
           history.push(`${result.slug}`);
         });

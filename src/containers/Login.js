@@ -29,8 +29,14 @@ class Login extends Component {
     this.setState({ [name]: value });
   };
 
+  handleErrors = () => {
+    console.log(this.props.errors);
+    debugger;
+  };
+
   render() {
     console.log("%c >> Inside render Login \n", "color: #bada55");
+    console.log("STATE:", this.state);
     console.log("---------------------");
 
     return (
@@ -61,6 +67,7 @@ class Login extends Component {
             <Header as="h2" textAlign="center">
               Log-in to your account
             </Header>
+            {this.props.errors ? this.handleErrors() : null}
             <Form size="large" onSubmit={this.handleSubmit}>
               <Segment>
                 <Form.Input
@@ -100,4 +107,10 @@ class Login extends Component {
   }
 }
 
-export default withRouter(connect(null, actions)(Login));
+const mapStateToProps = state => {
+  return {
+    errors: state.errors
+  };
+};
+
+export default withRouter(connect(mapStateToProps, actions)(Login));

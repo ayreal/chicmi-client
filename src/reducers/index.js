@@ -42,10 +42,20 @@ const currentEventReducer = (
   }
 };
 
+const errorReducer = (state = {}, action) => {
+  switch (action.type) {
+    case "RETURN_ERROR":
+      return { ...action.error };
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   currentUser: currentUserReducer,
   currentEvent: currentEventReducer,
-  events: eventReducer
+  events: eventReducer,
+  errors: errorReducer
 });
 
 // NOTE:
