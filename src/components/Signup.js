@@ -67,14 +67,14 @@ class Signup extends Component {
             <Form size="large" onSubmit={this.handleSubmit}>
               <Segment>
                 <Form.Input
-                  label="Name"
+                  label="Name *"
                   type="text"
                   name="name"
                   value={this.state.name}
                   onChange={this.handleChange}
                 />
                 <Form.Input
-                  label="E-mail"
+                  label="E-mail *"
                   type="text"
                   name="email"
                   placeholder="you@youremail.com"
@@ -83,7 +83,7 @@ class Signup extends Component {
                 />
                 <Form.Group widths="equal">
                   <Form.Input
-                    label="Username"
+                    label="Username *"
                     type="text"
                     name="username"
                     placeholder="Choose a username"
@@ -91,7 +91,7 @@ class Signup extends Component {
                     onChange={this.handleChange}
                   />
                   <Form.Input
-                    label="Password"
+                    label="Password *"
                     type="password"
                     name="password"
                     value={this.state.password}
@@ -135,6 +135,7 @@ class Signup extends Component {
                   onChange={this.handleChange}
                   placeholder="Tell us about yourself"
                 />
+                <p> * Required </p>
 
                 <Button type="submit" fluid size="large" secondary>
                   Signup
