@@ -10,6 +10,8 @@ const currentUserReducer = (state = { designers: [], events: [] }, action) => {
       return {
         ...action.user
       };
+    case "RETURN_ERROR":
+      return { ...state, errors: [action.error] };
     case "LOGOUT_USER":
       return {};
     default:
@@ -41,6 +43,16 @@ const currentEventReducer = (
       return state;
   }
 };
+
+// const errorReducer = (state, action) => {
+//   switch (action.type) {
+//     case "RETURN_ERROR":
+//       // console.log("Action for SET_CURRENT_EVENT is", action.event);
+//       return [...action.error];
+//     default:
+//       return state;
+//   }
+// };
 
 const rootReducer = combineReducers({
   currentUser: currentUserReducer,
