@@ -109,7 +109,7 @@ class Login extends Component {
 
 const mapStateToProps = state => {
   return {
-    errors: state.errors
+    errors: state.currentUser.errors
   };
 };
 

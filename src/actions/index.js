@@ -31,7 +31,7 @@ export function fetchProfile(data, history) {
       localStorage.setItem("token", payload.token);
       console.log("About to dispatch user, payload is \n", payload);
       if (payload.error) {
-        dispatch({ type: RETURN_ERROR, error: payload });
+        dispatch({ type: RETURN_ERROR, error: payload.error });
       } else {
         dispatch({ type: LOGIN_USER, user: payload.user });
         history.push("/");
